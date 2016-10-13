@@ -1,0 +1,14 @@
+- platform: kodi
+  host: http://osmc
+  port: 8080
+  name: Livingroom OSMC
+  username: !secret livingroom_kodi_username
+  password: !secret livingroom_kodi_password
+  turn_off_action: reboot
+- platform: kodi
+  host: http://bedroompi
+  port: 8080
+  name: Bedroom OSMC
+  username: !secret bedroom_kodi_username
+  password: !secret bedroom_kodi_password
+  turn_off_action: reboot

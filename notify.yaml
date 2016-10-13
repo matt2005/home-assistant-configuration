@@ -1,0 +1,16 @@
+- name: slack
+  platform: slack
+  api_key: !secret slack_api_key
+  default_channel: '#general'
+- platform: kodi
+  host: http://osmc
+  port: 8080
+  name: Livingroom OSMC
+  username: !secret livingroom_kodi_username
+  password: !secret livingroom_kodi_password
+- platform: kodi
+  host: http://bedroompi
+  port: 8080
+  name: Bedroom OSMC
+  username: !secret bedroom_kodi_password
+  password: !secret bedroom_kodi_password

@@ -1,0 +1,5 @@
+- platform: ffmpeg
+  input: rtsp://192.168.1.111:554/onvif1
+  name: Lyra
+  extra_arguments: -q:v 2-32 #-q:v 2
+
