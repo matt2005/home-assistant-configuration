@@ -16,5 +16,7 @@ Software on the Pi : HASSbian
 * Camera:ffmpeg  to a sricam ipcam
 * Speedtest
 
+Notifies via slack channel when HASS updates are available
+
 
   
