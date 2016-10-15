@@ -1,0 +1,9 @@
+- alias: Wifi Extender down
+  trigger:
+    - platform: state
+      entity_id: device_tracker.tplinkwifiextender
+      state: away
+  action:
+    service: notify.slack
+    data:
+      message: 'Wifi Extender is DOWN'

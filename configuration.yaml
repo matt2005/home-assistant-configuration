@@ -61,4 +61,4 @@ device_tracker: !include device_tracker.yaml
 camera: !include camera.yaml
 media_player: !include media_players.yaml
 sensor speedtest: !include speedtest.yaml
-automation: !include automation.yaml
+automation: !include_dir_merge_list automation
