@@ -5,6 +5,6 @@
 - platform: owntracks
   max_gps_accuracy: 1500
   waypoints: True
-- platform: bluetooth_tracker
+#- platform: bluetooth_tracker
 
 

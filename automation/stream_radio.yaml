@@ -1,0 +1,30 @@
+alias: Stream Radio - Template
+trigger:
+  - platform: state
+    entity_id: input_select.radio_station
+action:
+  - service: media_player.play_media
+    data_template:
+      entity_id: >
+        {% if is_state("input_select.radio_player", "Living Room") %}
+          media_player.living_room
+        {%-elif is_state("input_select.radio_player", "Bedroom") %}
+          media_player.bedroom
+        {% else %}
+          none
+        {% endif %}
+      media_content_id: >
+        {% if is_state("input_select.radio_station", "Z88.3") %}
+          http://ice.zradio.org/z/high.mp3
+        {%-elif is_state("input_select.radio_station", "Virgin") %}
+          http://icecast.unitedradio.it/Virgin.mp3
+        {%-elif is_state("input_select.radio_station", "RMC") %}
+          http://icecast.unitedradio.it/RMC.mp3
+        {%-elif is_state("input_select.radio_station", "rmcHQ") %}
+          http://icecast.unitedradio.it/rmcHQ.mp3
+        {%-elif is_state("input_select.radio_station", "105") %}
+          http://icecast.unitedradio.it/Radio105.mp3
+        {% else %}
+          none
+        {% endif %}
+      media_content_type: 'audio/mp4'

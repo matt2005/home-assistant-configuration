@@ -1,0 +1,11 @@
+radio_station:
+  name: Radio Station
+  options:
+    - Z88.3
+    - Virgin
+    - RMC
+    - rmcHQ
+    - 105
+    - None
+  initial: None
+  icon: mdi:radio

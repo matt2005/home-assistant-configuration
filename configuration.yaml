@@ -41,7 +41,7 @@ logbook:
 sun:
 
 # Weather Prediction
-sensor:
+sensor yr:
   platform: yr
 
 mqtt:
@@ -62,5 +62,7 @@ camera: !include camera.yaml
 media_player: !include media_players.yaml
 sensor speedtest: !include speedtest.yaml
 automation: !include_dir_merge_list automation
+sensor: !include_dir_merge_list sensor
+input_select: !include_dir_merge_list input_select
 # Web Links #
 weblink: !include web_links.yaml

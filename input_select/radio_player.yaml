@@ -1,0 +1,8 @@
+radio_player:
+  name: Radio Player
+  options:
+    - Living Room
+    - Bedroom
+    - None
+  initial: None
+  icon: mdi:airplay
