@@ -1,4 +1,4 @@
-radio_station:
+- radio_station:
   name: Radio Station
   options:
     - Z88.3
