@@ -1,0 +1,54 @@
+#watts clever RF switch - this is triggered by the RFLink when the command is sent
+#  optimistic required as you get no response from the RFLink when you send a command apart from OK
+#   and there is no way t tell if the actuion actually worked!!
+- platform: mqtt
+  name: "EnergenieRemoteButton1"
+  state_topic: "RF/Eurodomest-ID=0a7e0f"
+  command_topic: "RF/command"
+  qos: 0
+  payload_on: "10;Eurodomest;0a7e0f;00;ON\n"
+  payload_off: "10;Eurodomest;0a7e0f;00;OFF\n" 
+  optimistic: true
+- platform: mqtt
+  name: "EnergenieRemoteButton2"
+  state_topic: "RF/Eurodomest-ID=0a7e0f"
+  command_topic: "RF/command"
+  qos: 0
+  payload_on: "10;Eurodomest;0a7e0f;03;ON\n"
+  payload_off: "10;Eurodomest;0a7e0f;03;OFF\n" 
+  optimistic: true
+- platform: mqtt
+  name: "EnergenieRemoteButton3"
+  state_topic: "RF/Eurodomest-ID=0a7e0f"
+  command_topic: "RF/command"
+  qos: 0
+  payload_on: "10;Eurodomest;0a7e0f;02;ON\n"
+  payload_off: "10;Eurodomest;0a7e0f;02;OFF\n" 
+  optimistic: true
+- platform: mqtt
+  name: "EnergenieRemoteButton4"
+  state_topic: "RF/Eurodomest-ID=0a7e0f"
+  command_topic: "RF/command"
+  qos: 0
+  payload_on: "10;Eurodomest;0a7e0f;06;ALLOFF\n"
+  payload_off: "10;Eurodomest;0a7e0f;06;ALLON\n" 
+  optimistic: true
+- platform: mqtt
+  name: "EnergenieRemoteButtonAll"
+  state_topic: "RF/Eurodomest-ID=0a7e0f"
+  command_topic: "RF/command"
+  qos: 0
+  payload_on: "10;Eurodomest;0a7e0f;01;ON\n"
+  payload_off: "10;Eurodomest;0a7e0f;01;OFF\n" 
+  optimistic: true
+# This is a byron doorbell button (generic 433)
+# setup as a switch rather than binary sensor to use the template and try and set it on and off
+- platform: mqtt
+  name: "Button1"
+  state_topic: "RF/Byron-ID=00ff"
+  command_topic: "RF/Byron-ID=00ff"
+#    command_topic: "RF/TriState-ID=02a981"
+  qos: 0
+  payload_on: "ON"
+  payload_off: "OFF"
+  value_template: '{{ value_json.CMD }}'

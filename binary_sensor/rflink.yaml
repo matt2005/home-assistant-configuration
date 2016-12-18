@@ -1,0 +1,8 @@
+# status of the bridge - so we can tell if it is online or not via its will
+- platform: mqtt
+  state_topic: "RF/status"
+  name: "RF Bridge Status"
+  qos: 0
+  payload_on: "online"
+  payload_off: "offline"
+  sensor_class: connectivity
