@@ -1,8 +1,10 @@
 radio_player:
   name: Radio Player
   options:
+    - Living Room OSMC
     - Living Room
     - Bedroom
+    - Kitchen
     - None
   initial: None
   icon: mdi:airplay
