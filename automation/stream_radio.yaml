@@ -6,7 +6,7 @@
     - service: media_player.play_media
       data_template:
         entity_id: >
-          {% if is_state("input_select.radio_player", "Living Room OSMC %}
+          {% if is_state("input_select.radio_player", "Living Room OSMC") %}
             media_player.livingroom_osmc
           {%-elif is_state("input_select.radio_player", "Living Room") %}
             media_player.living_room_firestick
