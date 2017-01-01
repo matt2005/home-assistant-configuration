@@ -18,16 +18,10 @@
             none
           {% endif %}
         media_content_id: >
-          {% if is_state("input_select.radio_station", "Z88.3") %}
-            http://ice.zradio.org/z/high.mp3
-          {%-elif is_state("input_select.radio_station", "Virgin") %}
-            http://icecast.unitedradio.it/Virgin.mp3
-          {%-elif is_state("input_select.radio_station", "RMC") %}
-            http://icecast.unitedradio.it/RMC.mp3
-          {%-elif is_state("input_select.radio_station", "rmcHQ") %}
-            http://icecast.unitedradio.it/rmcHQ.mp3
-          {%-elif is_state("input_select.radio_station", "105") %}
-            http://icecast.unitedradio.it/Radio105.mp3
+          {% if is_state("input_select.radio_station", "Heart (Thames Valley)") %}
+            http://media-ice.musicradio.com/HeartBerkshireMP3.m3u
+          {%-elif is_state("input_select.radio_station", "Breeze Basingstoke") %}
+            http://webradio.radiomonitor.com/m3u/Breeze-Basingstoke-128.m3u
           {% else %}
             none
           {% endif %}
