@@ -6,9 +6,30 @@
   password: !secret livingroom_kodi_password
   turn_off_action: reboot
 - platform: kodi
-  host: http://bedroompi
+  host: http://firestick-bedroom
   port: 8080
-  name: Bedroom OSMC
+  name: Bedroom Firestick
   username: !secret bedroom_kodi_username
   password: !secret bedroom_kodi_password
+  turn_off_action: reboot
+- platform: kodi
+  host: http://firestick-kitchen
+  port: 8080
+  name: Kitchen Firestick
+  username: !secret firestick_kodi_username
+  password: !secret firestick_kodi_password
+  turn_off_action: reboot
+- platform: kodi
+  host: http://firestick-livingroom
+  port: 8080
+  name: Living room Firestick
+  username: !secret firestick_kodi_username
+  password: !secret firestick_kodi_password
+  turn_off_action: reboot
+- platform: kodi
+  host: http://firestick-bedroom
+  port: 8080
+  name: Bedroom Firestick
+  username: !secret firestick_kodi_username
+  password: !secret firestick_kodi_password
   turn_off_action: reboot
