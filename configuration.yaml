@@ -68,3 +68,10 @@ switch: !include_dir_merge_list switch/
 input_select: !include_dir_merge_named input_select/
 # Web Links #
 weblink: !include web_links.yaml
+
+logger:
+  default: info
+  logs:
+    homeassistant.components.device_tracker: info
+    homeassistant.components.camera: critical
+    homeassistant.components.media_player: debug

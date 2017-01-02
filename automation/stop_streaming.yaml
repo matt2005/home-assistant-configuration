@@ -4,7 +4,7 @@
       entity_id: input_select.radio_station
       to: "None"
   action:
-    service: media_player.stop_media
+    service: media_player.media_stop
     data_template:
       entity_id: >
           {% if is_state("input_select.radio_player", "Living Room OSMC") %}
