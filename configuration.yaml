@@ -72,6 +72,6 @@ weblink: !include web_links.yaml
 logger:
   default: info
   logs:
-    homeassistant.components.device_tracker: info
+    homeassistant.components.device_tracker: critical
     homeassistant.components.camera: critical
-    homeassistant.components.media_player: debug
+    homeassistant.components.media_player: critical
