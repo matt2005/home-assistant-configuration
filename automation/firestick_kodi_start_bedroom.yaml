@@ -4,6 +4,7 @@
       entity_id: media_player.bedroom_firestick
       state: off
   condition:
+    condition: state
     entity_id: device_tracker.ac63be3a9c98
     state: home
     for:
