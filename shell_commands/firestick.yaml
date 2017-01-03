@@ -1,0 +1,3 @@
+firestick_kodi_bedroom_start: "~/.homeassistant/shell_commands/firestick-start-kodi.sh firestick-bedroom"
+firestick_kodi_kitchen_start: "~/.homeassistant/shell_commands/firestick-start-kodi.sh firestick-bedroom"
+firestick_kodi_livingroom_start: "~/.homeassistant/shell_commands/firestick-start-kodi.sh firestick-bedroom"

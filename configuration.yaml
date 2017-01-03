@@ -68,7 +68,7 @@ switch: !include_dir_merge_list switch/
 input_select: !include_dir_merge_named input_select/
 # Web Links #
 weblink: !include web_links.yaml
-
+shell_command: !include_dir_merge_named shell_commands/
 logger:
   default: info
   logs:
