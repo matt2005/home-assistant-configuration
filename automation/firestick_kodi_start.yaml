@@ -15,8 +15,8 @@
       delay:
         minutes: 5
     - service: notify.slack
-        data:
-          message: 'Kodi is DOWN on Bedroom Firestick, Starting Kodi'
+      data:
+        message: 'Kodi is DOWN on Bedroom Firestick, Starting Kodi'
 - alias: Firestick Livingroom - Start Kodi
   trigger:
     - platform: state
@@ -34,8 +34,8 @@
       delay:
         minutes: 5
     - service: notify.slack
-        data:
-          message: 'Kodi is DOWN on room Firestick, Starting Kodi'
+      data:
+        message: 'Kodi is DOWN on room Firestick, Starting Kodi'
 - alias: Firestick Kitchen - Start Kodi
   trigger:
     - platform: state
@@ -53,5 +53,5 @@
       delay:
         minutes: 5
     - service: notify.slack
-        data:
-          message: 'Kodi is DOWN on Kitchen Firestick, Starting Kodi'
+      data:
+        message: 'Kodi is DOWN on Kitchen Firestick, Starting Kodi'
