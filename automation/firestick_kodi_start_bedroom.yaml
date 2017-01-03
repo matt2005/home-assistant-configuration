@@ -1,15 +1,15 @@
 - alias: Firestick Bedroom - Start Kodi
   trigger:
-    - platform: state
-      entity_id: media_player.bedroom_firestick
-      state: off
+    platform: state
+    entity_id: media_player.bedroom_firestick
+    state: 'off'
   condition:
     condition: state
     entity_id: device_tracker.ac63be3a9c98
-    state: home
+    state: 'home'
     for:
       hours: 0
-      minutes: 30
+      minutes: 10
       seconds: 0
   action:
     - service: shell_command.firestick_kodi_bedroom_start
