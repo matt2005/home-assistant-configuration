@@ -13,7 +13,7 @@
       seconds: 0
   action:
     - service: shell_command.firestick_kodi_bedroom_start
-      delay:
+    - delay:
         minutes: 5
     - service: notify.slack
       data:
