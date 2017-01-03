@@ -4,13 +4,17 @@
     entity_id: media_player.kitchen_firestick
     state: 'off'
   condition:
-    condition: state
-    entity_id: device_tracker.kindlea0c9dd832homelocal
-    state: 'home'
-    for:
-      hours: 0
-      minutes: 10
-      seconds: 0
+    conditions: and
+    - condition: state
+      entity_id: device_tracker.kindlea0c9dd832homelocal
+      state: 'home'
+    - condition: state
+      entity_id: media_player.kitchen_firestick
+      state: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
   action:
     - service: shell_command.firestick_kodi_kitchen_start
     - delay:

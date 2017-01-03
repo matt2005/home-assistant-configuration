@@ -4,17 +4,19 @@
     entity_id: media_player.bedroom_firestick
     state: 'off'
   condition:
-    condition: state
-    entity_id: device_tracker.ac63be3a9c98
-    state: 'home'
-    for:
+    conditions: and
+    - condition: state
+      entity_id: device_tracker.ac63be3a9c98
+      state: 'home'
+    - condition: state
+      entity_id: media_player.bedroom_firestick
+      state: 'off'
+      for:
       hours: 0
-      minutes: 10
+      minutes: 5
       seconds: 0
   action:
     - service: shell_command.firestick_kodi_bedroom_start
-    - delay:
-        minutes: 5
     - service: notify.slack
       data:
         message: 'Kodi is DOWN on Bedroom Firestick, Starting Kodi'
