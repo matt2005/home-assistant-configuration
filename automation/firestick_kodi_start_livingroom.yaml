@@ -1,0 +1,19 @@
+- alias: Firestick Livingroom - Start Kodi
+  trigger:
+    - platform: state
+      entity_id: media_player.living_room_firestick
+      state: off
+  condition:
+    entity_id: device_tracker.kindle6a36ac6e8homelocal
+    state: home
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
+  action:
+    - service: shell_command.firestick_kodi_livingroom_start
+      delay:
+        minutes: 5
+    - service: notify.slack
+      data:
+        message: 'Kodi is DOWN on Living room Firestick, Starting Kodi'

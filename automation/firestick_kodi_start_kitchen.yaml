@@ -1,0 +1,19 @@
+- alias: Firestick Kitchen - Start Kodi
+  trigger:
+    - platform: state
+      entity_id: media_player.kitchen_firestick
+      state: off
+  condition:
+    entity_id: device_tracker.kindlea0c9dd832homelocal
+    state: home
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
+  action:
+    - service: shell_command.firestick_kodi_kitchen_start
+      delay:
+        minutes: 5
+    - service: notify.slack
+      data:
+        message: 'Kodi is DOWN on Kitchen Firestick, Starting Kodi'
