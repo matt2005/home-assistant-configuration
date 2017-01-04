@@ -4,7 +4,8 @@
     entity_id: media_player.kitchen_firestick
     state: 'off'
   condition:
-    conditions: and
+    condition: and
+    conditions:
     - condition: state
       entity_id: device_tracker.kindlea0c9dd832homelocal
       state: 'home'
