@@ -10,7 +10,7 @@
       entity_id: device_tracker.kindle6a36ac6e8homelocal
       state: 'home'
     - condition: state
-      entity_id: device_tracker.kindle6a36ac6e8homelocal
+      entity_id: media_player.living_room_firestick
       state: 'off'
       for:
         hours: 0
@@ -18,8 +18,6 @@
         seconds: 0
   action:
     - service: shell_command.firestick_kodi_livingroom_start
-    - delay:
-        minutes: 5
     - service: notify.slack
       data:
         message: 'Kodi is DOWN on Living room Firestick, Starting Kodi'
