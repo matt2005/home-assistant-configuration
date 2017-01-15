@@ -19,6 +19,6 @@ Software on the Pi : HASSbian
 Notifies via slack channel when HASS updates are available
 
 The setup this I've written a script
->wget -Nnv https://gist.githubusercontent.com/matt2005/32011478f1c3bf54f58ca57042702517/raw/3c2ada863101b40af14be55340c6b7940281ebef/homeassistant_setup.sh && chown pi:pi homeassistant_setup.sh && bash homeassistant_setup.sh
+>wget -Nnv https://gist.githubusercontent.com/matt2005/32011478f1c3bf54f58ca57042702517/raw/homeassistant_setup.sh && chown pi:pi homeassistant_setup.sh && bash homeassistant_setup.sh
 
   
