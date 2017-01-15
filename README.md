@@ -11,12 +11,14 @@ Software on the Pi : HASSbian
 * git
 
 ** HASS components and devices **
-* Media_players :2 OSMC (Kodi)
+* Media_players :1 OSMC (Kodi), 3 Amazon Firesticks runnong Kodi
 * Device Trakers: NMAP, owntracks
-* Camera:ffmpeg  to a sricam ipcam
+* Camera:ffmpeg  to a sricam ipcam (Currently Disabled)
 * Speedtest
 
 Notifies via slack channel when HASS updates are available
 
+The setup this I've written a script
+>wget -Nnv https://gist.githubusercontent.com/matt2005/32011478f1c3bf54f58ca57042702517/raw/3c2ada863101b40af14be55340c6b7940281ebef/homeassistant_setup.sh && chown pi:pi homeassistant_setup.sh && bash homeassistant_setup.sh
 
   
