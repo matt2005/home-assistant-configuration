@@ -45,7 +45,7 @@ sensor yr:
   platform: yr
 
 mqtt:
-  broker: 127.0.0.1
+  broker: !secret mqtt_broker
   port: 1883
   client_id: home-assistant-1
   username: !secret mqtt_username
