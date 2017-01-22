@@ -2,13 +2,13 @@
 - platform: mqtt
   state_topic: 'RF/DKW2012-ID=0004'
   name: 'Outside Temperature'
-  unit_of_measurement: '°C'
+  unit_of_measurement: "°C"
   value_template: '{{ value_json.TEMP }}'
 
 - platform: mqtt
   state_topic: 'RF/DKW2012-ID=0004'
   name: 'Outside Humidity'
-  unit_of_measurement: '%'
+  unit_of_measurement: "%"
   value_template: '{{ value_json.HUM }}'
 
 - platform: mqtt
@@ -19,17 +19,17 @@
 - platform: mqtt
   state_topic: 'RF/DKW2012-ID=0004'
   name: 'Wind Speed'
-  unit_of_measurement: 'kph'
+  unit_of_measurement: "kph"
   value_template: '{{ value_json.WINSP }}'
 
 - platform: mqtt
   state_topic: 'RF/DKW2012-ID=0004'
   name: 'Wind Gust Speed'
-  unit_of_measurement: 'kph'
+  unit_of_measurement: "kph"
   value_template: '{{ value_json.WINGS }}'
 
 - platform: mqtt
   state_topic: 'RF/DKW2012-ID=0004'
   name: 'Rain Fall'
-  unit_of_measurement: 'mm'
+  unit_of_measurement: "mm"
   value_template: '{{ value_json.RAIN }}'
