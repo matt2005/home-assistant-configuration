@@ -10,3 +10,4 @@ secrets.yaml
 known_devices.yaml
 phue.conf
 pyozw.sqlite
+.HA_VERSION
