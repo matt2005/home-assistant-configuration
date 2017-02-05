@@ -2,13 +2,11 @@
   trigger:
     platform: state
     entity_id: media_player.bedroom_firestick
-    state: 'off'
+    from: 'idle'
+    to: 'off'
   condition:
     condition: and
     conditions:
-    - condition: state
-      entity_id: device_tracker.ac63be3a9c98
-      state: 'home'
     - condition: state
       entity_id: media_player.bedroom_firestick
       state: 'off'
