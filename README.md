@@ -7,14 +7,17 @@ Home Assistant runs on my Raspberry Pi B (256MB), yes it's one of the first ones
 Software on the Pi : HASSbian
 
 ** Additional packages installed: **
-* avconv
+* ffmpeg
 * git
 
 ** HASS components and devices **
-* Media_players :1 OSMC (Kodi), 3 Amazon Firesticks runnong Kodi
-* Device Trakers: NMAP, owntracks
+* Media_players :1 OSMC (Kodi), 3 Amazon Firesticks running Kodi
+* Device Trakers: NMAP, owntracks, Bluetooth, BLE
 * Camera:ffmpeg  to a sricam ipcam (Currently Disabled)
-* Speedtest
+* Speedtest (disabled)
+* Notify: html5, Slack and Kodi
+* Switch: WOL
+* MQTT Switches and sensors via RFlink to Mqtt using a ESP NodeMCU.
 
 Notifies via slack channel when HASS updates are available
 
