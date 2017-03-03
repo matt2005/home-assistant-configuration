@@ -10,3 +10,5 @@ secrets.yaml
 known_devices.yaml
 phue.conf
 pyozw.sqlite
+html5_push_registrations.conf
+
