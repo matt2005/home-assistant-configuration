@@ -1,0 +1,5 @@
+livingroom:
+  name: Livingroom
+  entities:
+    - media_player.living_room_firestick
+    - media_player.livingroom_osmc

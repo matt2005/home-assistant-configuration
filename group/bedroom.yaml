@@ -1,0 +1,5 @@
+bedroom:
+  name: Bedroom
+  entities:
+    - media_player.bedroom_firestick 
+    - device_tracker.ac63be3a9c98

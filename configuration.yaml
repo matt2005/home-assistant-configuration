@@ -69,6 +69,7 @@ input_select: !include_dir_merge_named input_select/
 # Web Links #
 weblink: !include web_links.yaml
 shell_command: !include_dir_merge_named shell_commands/
+group: !include_dir_merge_named group/
 logger:
   default: info
   logs:
