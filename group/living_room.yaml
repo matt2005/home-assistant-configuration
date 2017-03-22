@@ -3,3 +3,4 @@ livingroom:
   entities:
     - media_player.living_room_firestick
     - media_player.livingroom_osmc
+    - device_tracker.kindle6a36ac6e8homelocal
