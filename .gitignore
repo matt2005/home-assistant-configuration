@@ -3,6 +3,8 @@
 OZW_Log.txt
 home-assistant.log
 home-assistant_v2.db
+*.db
+*.db-shm
 *.db-journal
 lib
 deps
