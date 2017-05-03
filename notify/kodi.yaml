@@ -1,23 +1,23 @@
 - platform: kodi
-  host: http://osmc
+  host: osmc
   port: 8080
   name: Livingroom OSMC
   username: !secret livingroom_kodi_username
   password: !secret livingroom_kodi_password
 - platform: kodi
-  host: http://firestick-kitchen
+  host: firestick-kitchen
   port: 8080
   name: Kitchen Firestick
   username: !secret firestick_kodi_username
   password: !secret firestick_kodi_password
 - platform: kodi
-  host: http://firestick-livingroom
+  host: firestick-livingroom
   port: 8080
   name: Living room Firestick
   username: !secret firestick_kodi_username
   password: !secret firestick_kodi_password
 - platform: kodi
-  host: http://firestick-bedroom
+  host: firestick-bedroom
   port: 8080
   name: Bedroom Firestick
   username: !secret firestick_kodi_username
