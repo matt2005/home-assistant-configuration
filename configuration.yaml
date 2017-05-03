@@ -51,6 +51,9 @@ mqtt:
   username: !secret mqtt_username
   password: !secret mqtt_password
 
+tradfri:
+  host: !secret tradfri_host
+  api_key: !secret tradfri_api_key
 notify:  !include_dir_merge_list notify/
 
 ffmpeg:
