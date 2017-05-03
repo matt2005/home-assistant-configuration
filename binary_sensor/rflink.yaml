@@ -5,4 +5,4 @@
   qos: 0
   payload_on: "online"
   payload_off: "offline"
-  sensor_class: connectivity
+  device_class: connectivity
