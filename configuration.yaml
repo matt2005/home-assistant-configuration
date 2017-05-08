@@ -54,6 +54,7 @@ mqtt:
 tradfri:
   host: !secret tradfri_host
   api_key: !secret tradfri_api_key
+
 notify:  !include_dir_merge_list notify/
 
 ffmpeg:
