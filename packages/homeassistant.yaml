@@ -13,14 +13,10 @@ homeassistant:
       order: 4
     group.date_time:
       order: 5
-    group.travel_time:
-      order: 6
 
     group.home_assistant_automations:
       order: 50
-      
-    group.manuals:
-      order: 70
+
     group.common_urls:
       order: 71
 
@@ -50,7 +46,7 @@ homeassistant:
     sensor.ram_free:
       friendly_name: Available Memory
 
-    sensor.ipv4_address_wlan0:
+    sensor.ipv4_address_eth0:
       friendly_name: IP Address
 
     sensor.last_boot:
@@ -82,7 +78,7 @@ group:
       - sensor.cpu_use  
       - sensor.ram_free
       - sensor.disk_free_
-      - sensor.ipv4_address_wlan0
+      - sensor.ipv4_address_eth0
       - sensor.last_boot
       - sensor.since_last_boot
       - sensor.cpu_temperature
@@ -102,13 +98,6 @@ group:
       - sensor.ha_installed_version
       - sensor.ha_current_version
       - sensor.ha_last_restart
-  
-  Travel Time:
-    entities:
-      - sensor.home2work
-      - sensor.work2home
-      - sensor.suresh2home
-      - sensor.suresh2work
 
   Home Assistant Automations:
     entities:
@@ -118,12 +107,13 @@ group:
   
   Common URLS:
     entities:
-      - weblink.linksys_router_wrt1900acs
-      - weblink.multiroom_music_player
-      - weblink.palo_alto_firewall
+      - weblink.router
       - weblink.pi_hole
-      - weblink.qnap_nas
       - weblink.this_home_assistant
+
+binary_sensor:
+  - platform: workday
+    country: UK
     
 sensor:
   - platform: rest
@@ -161,7 +151,7 @@ sensor:
       - type: memory_free
       - type: processor_use
       - type: ipv4_address
-        arg: wlan0
+        arg: eth0
       - type: last_boot
       - type: since_last_boot
 
