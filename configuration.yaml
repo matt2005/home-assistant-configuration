@@ -11,7 +11,7 @@ homeassistant:
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/London
-
+  packages: !include_dir_named packages
 # Show links to resources in log and frontend
 #introduction:
 
@@ -76,13 +76,6 @@ input_select: !include_dir_merge_named input_select/
 weblink: !include web_links.yaml
 shell_command: !include_dir_merge_named shell_commands/
 group: !include_dir_merge_named group/
-logger:
-  default: info
-  logs:
-    homeassistant.components.device_tracker: critical
-    homeassistant.components.camera: critical
-    homeassistant.components.media_player: critical
-    homeassistant.components.automation: critical
-    custom_components.camera.onvif: debug
-    homeassistant.components.mysensors: debug
+logger: !include logger.yaml
+
 
