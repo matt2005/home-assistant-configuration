@@ -1,5 +1,5 @@
 # this script must be run as homeassistant user.
 # run `sudo su -s /bin/bash homeassistant` first and then run the following commands to update HA
 
-source /srv/homeassistant/homeassistant_venv/bin/activate
+source /srv/homeassistant/bin/activate
 pip3 install --upgrade homeassistant
