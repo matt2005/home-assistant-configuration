@@ -1,0 +1,37 @@
+homeassistant:
+  customize:
+    group.scripts:
+      order: 25
+    
+# Script Stuff
+    script.slack_notify:
+      friendly_name: Notify Via Slack
+      icon: mdi:share
+
+    script.notify_me:
+      friendly_name: Notify Me (Default Slack)
+      icon: mdi:share
+
+group:
+  Scripts:
+    entities:
+      - script.slack_notify
+      - script.notify_me
+
+notify:
+  - name: slack
+    platform: slack
+    api_key: !secret slack_api_key
+    default_channel: '#general'
+    
+script:
+  slack_notify:
+    sequence:
+      - service: notify.slack
+        data_template: 
+          message: "{{ value1 }} {{ value2 }}" 
+  notify_me:
+    sequence:
+      - service: notify.slack
+        data_template: 
+          message: "{{ value1 }} {{ value2 }}" 

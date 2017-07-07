@@ -1,0 +1,228 @@
+###############################################################################
+#   @author         :   Mahasri Kalavala
+#   @date           :   04/15/2017
+#   @package        :   Home Assistant
+#   @description    :   Bunch of Sensors that are system or environment related
+###############################################################################
+homeassistant:
+  customize:
+  
+    group.system_monitor:
+      order: 3
+    group.internet_speed:
+      order: 4
+    group.date_time:
+      order: 5
+    group.travel_time:
+      order: 6
+
+    group.home_assistant_automations:
+      order: 50
+      
+    group.manuals:
+      order: 70
+    group.common_urls:
+      order: 71
+
+    sensor.external_ip:
+      friendly_name: External IP Address
+
+# Speed Test Sensor
+    sensor.speedtest_ping:
+      friendly_name: Ping Speed
+
+    sensor.speedtest_upload:
+      friendly_name: Upload Speed
+
+    sensor.speedtest_download:
+      friendly_name: Download Speed
+
+# System Info Sensor
+    sensor.cpu_speed:
+      friendly_name: CPU Speed
+
+    sensor.cpu_use:
+      friendly_name: CPU Usage
+
+    sensor.disk_free_:
+      friendly_name: Available Disk
+
+    sensor.ram_free:
+      friendly_name: Available Memory
+
+    sensor.ipv4_address_wlan0:
+      friendly_name: IP Address
+
+    sensor.last_boot:
+      friendly_name: Last Boot
+
+    sensor.since_last_boot:
+      friendly_name: Up Since
+
+    sensor.time:
+      friendly_name: Time
+
+    sensor.date:
+      friendly_name: Date
+
+    automation.login_failure:
+      friendly_name: Alert Login Failures
+
+    automation.startup_notification:
+      friendly_name: Notify Startup Events
+      icon: mdi:thumb-up
+
+    automation.update_available_notification:
+      friendly_name: Notify of new updates
+      icon: mdi:update
+
+group:
+  System Monitor:
+    entities:
+      - sensor.cpu_use  
+      - sensor.ram_free
+      - sensor.disk_free_
+      - sensor.ipv4_address_wlan0
+      - sensor.last_boot
+      - sensor.since_last_boot
+      - sensor.cpu_temperature
+
+  Internet Speed:
+    entities:
+      - sensor.speedtest_ping 
+      - sensor.speedtest_upload
+      - sensor.speedtest_download
+      - sensor.external_ip
+
+  Date Time:
+    entities:
+      - sensor.time
+      - sensor.date
+      - binary_sensor.workday_sensor
+      - sensor.ha_installed_version
+      - sensor.ha_current_version
+      - sensor.ha_last_restart
+  
+  Travel Time:
+    entities:
+      - sensor.home2work
+      - sensor.work2home
+      - sensor.suresh2home
+      - sensor.suresh2work
+
+  Home Assistant Automations:
+    entities:
+      - automation.notify_of_new_external_ip
+      - automation.startup_notification
+      - automation.update_available_notification
+  
+  Common URLS:
+    entities:
+      - weblink.linksys_router_wrt1900acs
+      - weblink.multiroom_music_player
+      - weblink.palo_alto_firewall
+      - weblink.pi_hole
+      - weblink.qnap_nas
+      - weblink.this_home_assistant
+    
+sensor:
+  - platform: rest
+    resource: http://ip.jsontest.com
+    name: external_ip
+    value_template: '{{ value_json.ip }}'
+
+  - platform: command_line
+    name: CPU Temperature
+    command: cat /sys/class/thermal/thermal_zone0/temp
+    unit_of_measurement: 'F'
+    value_template: '{{ (value|int / 1000 * 1.8 + 32)|round(1) }}'
+
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+
+  - platform: speedtest
+    minute: 30
+    hour:
+      - 0
+      - 6
+      - 12
+      - 18
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+  
+  - platform: systemmonitor
+    resources:
+      - type: disk_free
+        arg: /
+      - type: memory_free
+      - type: processor_use
+      - type: ipv4_address
+        arg: wlan0
+      - type: last_boot
+      - type: since_last_boot
+
+  - platform: rest
+    resource: https://pypi.python.org/pypi/homeassistant/json
+    name: HA Current Version
+    value_template: '{{ value_json.info.version }}'
+
+  - platform: command_line
+    name: HA Installed Version
+    command: /srv/homeassistant/homeassistant_venv/bin/hass --version
+    scan_interval: 86400
+
+  - platform: template
+    sensors:
+      ha_last_restart:
+        value_template: '{{ as_timestamp(states.automation.startup_notification.attributes.last_triggered) | timestamp_custom("%b %d %X") }}'
+        friendly_name: HA Last Restart
+
+automation:
+
+  - alias: Notify Of New External IP
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: sensor.external_ip
+    condition:
+      - condition: template
+        value_template: "{% if trigger.from_state and trigger.to_state %} true {% else %} false {% endif %}"
+      - condition: template
+        value_template: "{% if trigger.from_state.state == 'unknown' %} false {% else %} true {% endif %}"
+      - condition: template
+        value_template: "{% if trigger.to_state.state == 'unknown' %} false {% else %} true {% endif %}"
+    action:
+      - service: script.notify_me
+        data_template:
+          value1: "Your External IP changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}"
+          value2: ""
+
+  - alias: Update Available Notification
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: updater.updater
+    action:
+      - service: script.notify_me
+        data: {"value1":"New HASS update is available. Please update!", "value2":""}
+        
+  - alias: Clear TTS Cache
+    initial_state: true
+    trigger:
+      platform: time
+      after: '4:45:00'
+    action:
+      service: tts.clear_cache
+
+  - alias: Startup Notification
+    initial_state: true
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      - service: script.notify_me
+        data: { "value1":"Home Assistant restarted successfully!", "value2":""}      

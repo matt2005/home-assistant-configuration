@@ -66,7 +66,6 @@ ffmpeg:
 device_tracker: !include device_tracker.yaml
 camera: !include_dir_merge_list camera/
 media_player: !include media_players.yaml
-#sensor speedtest: !include speedtest.yaml
 automation: !include_dir_merge_list automation
 sensor: !include_dir_merge_list sensor/
 binary_sensor: !include_dir_merge_list binary_sensor/
