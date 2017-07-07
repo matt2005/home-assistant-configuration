@@ -3,6 +3,6 @@ entities:
     url: https://home-assistant.io/
   - name: Router
     url: !secret router_url
-  - name: Pi-Hole
+  - name: Pi Hole
     url: !secret pi_hole_url
 

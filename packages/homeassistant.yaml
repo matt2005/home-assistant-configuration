@@ -109,7 +109,6 @@ group:
     entities:
       - weblink.router
       - weblink.pi_hole
-      - weblink.this_home_assistant
 
 binary_sensor:
   - platform: workday
