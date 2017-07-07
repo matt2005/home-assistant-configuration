@@ -84,3 +84,5 @@ logger:
     homeassistant.components.media_player: critical
     homeassistant.components.automation: critical
     custom_components.camera.onvif: debug
+    homeassistant.components.mysensors: debug
+
