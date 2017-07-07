@@ -1,0 +1,10 @@
+script:
+  update_hass:
+    sequence:
+      - service: shell_command.update_hass
+
+shell_command:
+  update_hass: >-
+    hassctl update-hass && hassctl config && hassctl restart
+
+    #/srv/homeassistant/homeassistant_venv/bin/pip3 install --upgrade homeassistant && sudo systemctl restart home-assistant.service

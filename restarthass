@@ -1,0 +1,8 @@
+sudo rm -f home-assistant.log > /dev/null 2>&1
+sudo touch home-assistant.log
+sudo chown homeassistant home-assistant.log
+sudo chgrp homeassistant home-assistant.log
+echo "[OK] Cleared the home-assistant.log file"
+echo "[OK] Restarting HASS Service..."
+sudo systemctl restart home-assistant
+echo "[OK] Ready to go!"
