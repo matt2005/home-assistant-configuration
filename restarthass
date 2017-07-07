@@ -4,5 +4,5 @@ sudo chown homeassistant home-assistant.log
 sudo chgrp homeassistant home-assistant.log
 echo "[OK] Cleared the home-assistant.log file"
 echo "[OK] Restarting HASS Service..."
-sudo systemctl restart home-assistant
+sudo systemctl restart  home-assistant@homeassistant.service
 echo "[OK] Ready to go!"
