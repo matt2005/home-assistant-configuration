@@ -162,7 +162,7 @@ sensor:
 
   - platform: command_line
     name: HA Installed Version
-    command: /srv/homeassistant/homeassistant_venv/bin/hass --version
+    command: /srv/homeassistant/bin/hass --version
     scan_interval: 86400
 
   - platform: template
