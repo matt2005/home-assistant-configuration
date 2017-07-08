@@ -6,6 +6,7 @@ home-assistant_v2.db
 *.db
 *.db-shm
 *.db-journal
+*.db-wal
 lib
 deps
 secrets.yaml
