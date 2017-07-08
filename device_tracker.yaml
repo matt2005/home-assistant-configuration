@@ -2,9 +2,10 @@
   hosts: 192.168.1.1/24
   home_interval: 10
   track_new_devices: yes
+  scan_options: " --privileged -sP"
 - platform: owntracks
-  max_gps_accuracy: 1500
+  max_gps_accuracy: 250
   waypoints: True
-- platform: bluetooth_tracker
-- platform: bluetooth_le_tracker
+#- platform: bluetooth_tracker
+#- platform: bluetooth_le_tracker
 

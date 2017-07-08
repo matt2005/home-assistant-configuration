@@ -1,0 +1,4 @@
+- platform: rest
+  resource: !secret pollen_url
+  name: Pollen Count
+  value_template: '{{ value_json.forecast[0].pollen_count}}'

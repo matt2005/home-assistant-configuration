@@ -186,9 +186,7 @@ automation:
         value_template: "{% if trigger.to_state.state == 'unknown' %} false {% else %} true {% endif %}"
     action:
       - service: script.notify_me
-        data_template:
-          value1: "Your External IP changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}"
-          value2: ""
+        data: {"value1": "Your External IP changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}", "value2": ""}
 
   - alias: Update Available Notification
     initial_state: true

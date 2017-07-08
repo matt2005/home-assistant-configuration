@@ -1,9 +1,20 @@
 default: error
 logs:
-  homeassistant.components.device_tracker: critical
-  homeassistant.components.camera: critical
-  homeassistant.components.media_player: critical
-  homeassistant.components.automation: critical
+  homeassistant.core: error
+  homeassistant.setup: error
+  homeassistant.loader: error
+  homeassistant.components.automation: error
+  homeassistant.components.device_tracker: error
+  homeassistant.components.discovery: error
+  homeassistant.components.http: error
+  homeassistant.components.media_player: error
+  homeassistant.components.recorder: error
+  homeassistant.components.sensor: error
+  homeassistant.components.zwave: error
+  homeassistant.helpers.script: error
+  homeassistant.components.mqtt: error
+  homeassistant.components.api: error
+  homeassistant.components.camera: debug
   custom_components.camera.onvif: debug
   homeassistant.components.mysensors: debug
 
