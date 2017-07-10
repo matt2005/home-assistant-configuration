@@ -4,8 +4,8 @@
   track_new_devices: yes
   scan_options: " --privileged -sP"
 - platform: owntracks
-  max_gps_accuracy: 250
+  max_gps_accuracy: 500
   waypoints: True
-#- platform: bluetooth_tracker
+- platform: bluetooth_tracker
 #- platform: bluetooth_le_tracker
 

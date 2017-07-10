@@ -4,7 +4,7 @@ homeassistant:
   name: Home
   # Location required to calculate the time the sun rises and sets
   latitude: !secret home_latitude
-  longitude: !secret home_logitude
+  longitude: !secret home_longitude
   # Impacts weather/sunrise data
   elevation: !secret home_elevation
   # metric for Metric, imperial for Imperial
@@ -76,5 +76,6 @@ weblink: !include web_links.yaml
 shell_command: !include_dir_merge_named shell_commands/
 group: !include_dir_merge_named group/
 logger: !include logger.yaml
+zone: !include zones.yaml
 
 
