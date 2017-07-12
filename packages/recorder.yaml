@@ -1,7 +1,7 @@
 recorder:
-  include:
-    domains:
-      - sensor
-      - switch
-      - media_player
+#  include:
+#    domains:
+#      - sensor
+#      - switch
+#      - media_player
   db_url: !secret mysqldb
