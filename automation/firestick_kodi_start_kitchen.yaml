@@ -2,16 +2,16 @@
   trigger:
     platform: state
     entity_id: media_player.kitchen_firestick
-    state: 'off'
+    to: 'off'
   condition:
     condition: and
     conditions:
     - condition: state
       entity_id: device_tracker.kindlea0c9dd832homelocal
-      state: 'home'
+      to: 'home'
     - condition: state
       entity_id: media_player.kitchen_firestick
-      state: 'off'
+      to: 'off'
       for:
         hours: 0
         minutes: 5

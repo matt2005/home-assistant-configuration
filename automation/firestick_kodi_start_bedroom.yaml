@@ -9,7 +9,7 @@
     conditions:
     - condition: state
       entity_id: media_player.bedroom_firestick
-      state: 'off'
+      to: 'off'
       for:
         hours: 0
         minutes: 5
