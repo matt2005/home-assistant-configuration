@@ -177,13 +177,13 @@ automation:
     trigger:
       platform: state
       entity_id: sensor.external_ip
-    condition:
-      - condition: template
-        value_template: "{% if trigger.from_state and trigger.to_state %} true {% else %} false {% endif %}"
-      - condition: template
-        value_template: "{% if trigger.from_state.state == 'unknown' %} false {% else %} true {% endif %}"
-      - condition: template
-        value_template: "{% if trigger.to_state.state == 'unknown' %} false {% else %} true {% endif %}"
+#    condition:
+#      - condition: template
+#        value_template: "{% if trigger.from_state and trigger.to_state %} true {% else %} false {% endif %}"
+#      - condition: template
+#        value_template: "{% if trigger.from_state.state == 'unknown' %} false {% else %} true {% endif %}"
+#      - condition: template
+#        value_template: "{% if trigger.to_state.state == 'unknown' %} false {% else %} true {% endif %}"
     action:
       - service: script.notify_me
         data: {"value1": "Your External IP changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}"}
