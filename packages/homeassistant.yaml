@@ -195,7 +195,7 @@ automation:
       entity_id: updater.updater
     action:
       - service: script.notify_me
-        data: {"value1":"New HASS update is available. Please update!"}
+        data: {"value1": "New HASS update is available. Please update!"}
         
   - alias: Startup Notification
     initial_state: true
@@ -204,4 +204,4 @@ automation:
       event: start
     action:
       - service: script.notify_me
-        data: { "value1":"Home Assistant restarted successfully!"}
+        data: {"value1": "Home Assistant restarted successfully!"}
