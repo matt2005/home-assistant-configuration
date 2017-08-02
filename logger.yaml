@@ -14,9 +14,8 @@ logs:
   homeassistant.helpers.script: error
   homeassistant.components.mqtt: error
   homeassistant.components.api: error
-  homeassistant.components.camera: debug
-  custom_components.camera.onvif: debug
-  homeassistant.components.mysensors: debug
-
-
-
+  homeassistant.components.camera: error
+  custom_components.camera.onvif: error
+  homeassistant.components.mysensors: error
+  homeassistant.components.notify: error
+  homeassustant.components.script: error

@@ -29,9 +29,9 @@ script:
     sequence:
       - service: notify.slack
         data_template: 
-          message: "{{ value1 }} {{ value2 }}" 
+          message: "{{ value1 }}" 
   notify_me:
     sequence:
       - service: notify.slack
         data_template: 
-          message: "{{ value1 }} {{ value2 }}" 
+          message: "{{ value1 }}" 

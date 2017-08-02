@@ -186,7 +186,7 @@ automation:
         value_template: "{% if trigger.to_state.state == 'unknown' %} false {% else %} true {% endif %}"
     action:
       - service: script.notify_me
-        data: {"value1": "Your External IP changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}", "value2": ""}
+        data: {"value1": "Your External IP changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}"}
 
   - alias: Update Available Notification
     initial_state: true
@@ -195,16 +195,8 @@ automation:
       entity_id: updater.updater
     action:
       - service: script.notify_me
-        data: {"value1":"New HASS update is available. Please update!", "value2":""}
+        data: {"value1":"New HASS update is available. Please update!"}
         
-  - alias: Clear TTS Cache
-    initial_state: true
-    trigger:
-      platform: time
-      after: '4:45:00'
-    action:
-      service: tts.clear_cache
-
   - alias: Startup Notification
     initial_state: true
     trigger:
@@ -212,4 +204,4 @@ automation:
       event: start
     action:
       - service: script.notify_me
-        data: { "value1":"Home Assistant restarted successfully!", "value2":""}      
+        data: { "value1":"Home Assistant restarted successfully!"}
