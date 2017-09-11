@@ -16,3 +16,5 @@ pyozw.sqlite
 html5_push_registrations.conf
 tradfri.conf
 *.json
+plex.conf
+

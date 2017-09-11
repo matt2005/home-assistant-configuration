@@ -112,7 +112,7 @@ group:
 
 binary_sensor:
   - platform: workday
-    country: UK
+    country: England
     
 sensor:
   - platform: rest

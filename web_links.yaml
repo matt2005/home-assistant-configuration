@@ -5,4 +5,8 @@ entities:
     url: !secret router_url
   - name: Pi Hole
     url: !secret pi_hole_url
+  - name: Plex
+    url: !secret plex_url
+  - name: MakeMKV
+    url: !secret makemkv_url
 
