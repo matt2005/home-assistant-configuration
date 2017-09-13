@@ -9,4 +9,8 @@ entities:
     url: !secret plex_url
   - name: MakeMKV
     url: !secret makemkv_url
+  - name: Handbrake
+    url: !secret handbrake_url
+  - name: mkvtoolnix
+    url: !secret mkvtoolnix_url
 
