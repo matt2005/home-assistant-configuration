@@ -33,3 +33,8 @@
   name: 'Rain Fall'
   unit_of_measurement: "mm"
   value_template: '{{ value_json.RAIN }}'
+- platform: mqtt
+  state_topic: 'RF/DKW2012-ID=000c'
+  name: 'Weather station battery'
+  value_template: '{{ value_json.BAT }}'
+
