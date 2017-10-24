@@ -1,0 +1,15 @@
+homeassistant:
+  customize: 
+    binary_sensor.floorplan:
+      custom_ui_state_card: state-card-floorplan
+      config: !include ../floorplan.yaml
+panel_custom:
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:home
+    url_path: floorplan
+    config: !include ../floorplan.yaml
+binary_sensor:
+  - platform: mqtt
+    state_topic: dummy/floorplan/sensor
+    name: Floorplan
