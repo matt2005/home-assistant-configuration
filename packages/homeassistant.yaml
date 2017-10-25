@@ -46,7 +46,7 @@ homeassistant:
     sensor.ram_free:
       friendly_name: Available Memory
 
-    sensor.ipv4_address_eth0:
+    sensor.ipv4_address_br0:
       friendly_name: IP Address
 
     sensor.last_boot:
