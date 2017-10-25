@@ -78,7 +78,7 @@ group:
       - sensor.cpu_use  
       - sensor.ram_free
       - sensor.disk_free_
-      - sensor.ipv4_address_eth0
+      - sensor.ipv4_address_br0
       - sensor.last_boot
       - sensor.since_last_boot
       - sensor.cpu_temperature
@@ -135,9 +135,13 @@ sensor:
     minute: 30
     hour:
       - 0
+      - 3
       - 6
+      - 9
       - 12
+      - 15
       - 18
+      - 21
     monitored_conditions:
       - ping
       - download
