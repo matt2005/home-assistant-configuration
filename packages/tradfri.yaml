@@ -1,0 +1,3 @@
+tradfri:
+  host: !secret tradfri_host
+  api_key: !secret tradfri_api_key

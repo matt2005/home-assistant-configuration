@@ -1,0 +1,12 @@
+customizer:
+  custom_ui: local
+  hide_attributes:
+    - node_id
+    - value_index
+homeassistant:
+  customize_glob:
+    light.*:
+      custom_ui_state_card: state-card-custom-ui
+    cover.*:
+      custom_ui_state_card: state-card-custom-ui
+
