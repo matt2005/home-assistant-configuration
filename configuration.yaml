@@ -16,7 +16,9 @@ homeassistant:
 #introduction:
 
 # Enables the frontend
-frontend:
+frontend: !include frontend.yaml
+
+map:
 
 http:
   # Uncomment this to add a password (recommended!)
@@ -53,9 +55,9 @@ mqtt:
   username: !secret mqtt_username
   password: !secret mqtt_password
 
-tradfri:
-  host: !secret tradfri_host
-  api_key: !secret tradfri_api_key
+#tradfri:
+#  host: !secret tradfri_host
+#  api_key: !secret tradfri_api_key
 
 notify:  !include_dir_merge_list notify/
 
