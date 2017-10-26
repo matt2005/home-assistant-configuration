@@ -13,3 +13,8 @@ binary_sensor:
   - platform: mqtt
     state_topic: dummy/floorplan/sensor
     name: Floorplan
+group:
+  zones:
+    name: Zones
+    entities:
+      - binary_sensor.floorplan
