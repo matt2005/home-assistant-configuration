@@ -13,10 +13,10 @@ homeassistant:
       order: 5
 
     sensor.ads_percentage_today:
-      friendly_name: Percentage of Ad Traffic Blocked
+      friendly_name: Ad Traffic Blocked
       unit_of_measurement: '%'
       icon: mdi:ticket-percent
-     
+
     sensor.domains_being_blocked:
       friendly_name: Total Domains Blocking
       icon: mdi:do-not-disturb
@@ -74,7 +74,7 @@ sensor:
   - platform: rest
     name: ads_percentage_today
     resource: !secret pi_hole_url
-    value_template: '{{ value_json.ads_percentage_today }}'
+    value_template: '{{value_json.ads_percentage_today|round(1)}}'
 
   - platform: rest
     name: unique_domains

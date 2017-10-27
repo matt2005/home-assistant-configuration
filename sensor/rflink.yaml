@@ -15,6 +15,7 @@
   state_topic: 'RF/DKW2012-ID=000c'
   name: 'Wind Direction'
   value_template: '{{ value_json.WINDIR }}'
+  unit_of_measurement: "Direction"
 
 - platform: mqtt
   state_topic: 'RF/DKW2012-ID=000c'
@@ -33,6 +34,7 @@
   name: 'Rain Fall'
   unit_of_measurement: "mm"
   value_template: '{{ value_json.RAIN }}'
+
 - platform: mqtt
   state_topic: 'RF/DKW2012-ID=000c'
   name: 'Weather station battery'
