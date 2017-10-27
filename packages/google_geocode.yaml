@@ -1,0 +1,22 @@
+homeassistant:
+  customize:
+    group.google_geocode:
+      order: 25
+    sensor.trackone:
+      friendly_name: !secret trackone
+    sensor.tracktwo:
+      friendly_name: !secret tracktwo
+group:
+  Google geocode:
+    entities:
+      - sensor.trackone
+      - sensor.tracktwo
+sensor:
+  - platform: google_geocode
+    name: trackone
+    origin: !secret trackone_device
+    options: street_number, street, city
+  - platform: google_geocode
+    name: tracktwo
+    origin: !secret tracktwo_device
+    options: street_number, street, city
