@@ -1,4 +1,9 @@
 ###############################################################################
+#   @author         :   Matthew Hilton
+#   @date           :   27/10/2017
+#   @package        :   Home Assistant
+#   @description    :   Bunch of Sensors that are system or environment related
+# Based on
 #   @author         :   Mahasri Kalavala
 #   @date           :   04/15/2017
 #   @package        :   Home Assistant
@@ -46,6 +51,9 @@ homeassistant:
     sensor.ram_free:
       friendly_name: Available Memory
 
+    sensor.pi_power:
+      friendly_name: PI Power status
+
     sensor.ipv4_address_br0:
       friendly_name: IP Address
 
@@ -82,6 +90,7 @@ group:
       - sensor.last_boot
       - sensor.since_last_boot
       - sensor.cpu_temperature
+      - sensor.pi_power
 
   Internet Speed:
     entities:
@@ -123,9 +132,15 @@ sensor:
   - platform: command_line
     name: CPU Temperature
     command: cat /sys/class/thermal/thermal_zone0/temp
-    unit_of_measurement: 'F'
-    value_template: '{{ (value|int / 1000 * 1.8 + 32)|round(1) }}'
-
+    # If errors occur, remove degree symbol below
+    unit_of_measurement: "°C"
+    value_template: '{{ value | multiply(0.001) }}'
+    
+  - platform: command_line
+    name: PI Power
+    command: vcgencmd get_throttled
+    value_template: '{% if value.split("=")[1] is equalto "0x0" %} GOOD {% else %} BAD {% endif %}'
+    
   - platform: time_date
     display_options:
       - 'time'
