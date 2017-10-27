@@ -134,7 +134,7 @@ sensor:
     command: cat /sys/class/thermal/thermal_zone0/temp
     # If errors occur, remove degree symbol below
     unit_of_measurement: "°C"
-    value_template: '{{ value | multiply(0.001) }}'
+    value_template: '{{ value | multiply(0.001)|round(2) }}'
     
   - platform: command_line
     name: PI Power
