@@ -1,4 +1,10 @@
 ###############################################################################
+#   @author         :   Matthew Hilton
+#   @date           :   28/10/2017
+#   @package        :   Pi-Hole Package
+#   @description    :   Pi-Hole Ad Blocking Stuff.  
+#                       Added switch and edited value templates
+# Based on
 #   @author         :   Mahasri Kalavala
 #   @date           :   04/15/2017
 #   @package        :   Pi-Hole Package
@@ -40,6 +46,8 @@ homeassistant:
     sensor.queries_cached:
       friendly_name: Queries Cached
       icon: mdi:animation
+    switch.pihole:
+      friendly_name: Pihole
 
 group:
   Ads Blocked:
@@ -51,6 +59,7 @@ group:
       - sensor.unique_domains
       - sensor.queries_forwarded
       - sensor.queries_cached
+      - switch.pihole
 
 ###############################################################################
 #  Sensors
@@ -90,3 +99,12 @@ sensor:
     name: queries_cached
     resource: !secret pi_hole_url
     value_template: '{{ value_json.queries_cached }}'
+switch:
+  - platform: command_line
+    switches:
+      pihole:
+        command_on: !secret pihole_enable
+        command_off: !secret pihole_disable
+        command_state: !secret pihole_status
+        value_template: '{% if "enabled" in (value | lower)  %} True {% else%} False {% endif %}'
+      
