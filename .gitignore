@@ -19,3 +19,5 @@ tradfri.conf
 plex.conf
 *.pyc
 __pycache__
+*.yaml.disabled
+
