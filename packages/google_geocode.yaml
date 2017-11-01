@@ -16,7 +16,10 @@ sensor:
     name: trackone
     origin: !secret trackone_device
     options: street_number, street, city
+    api_key: !secret google_api_key
   - platform: google_geocode
     name: tracktwo
     origin: !secret tracktwo_device
     options: street_number, street, city
+    api_key: !secret google_api_key
+
