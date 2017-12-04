@@ -1,0 +1,13 @@
+mqtt:
+  broker: !secret mqtt_broker
+  port: 1883
+  client_id: hass-loftpi
+  username: !secret mqtt_username
+  password: !secret mqtt_password 
+#mqtt_eventstream:
+#  publish_topic: hass/master/topic
+#  subscribe_topic: hass/slaves/# 
+mqtt_statestream:
+  base_topic: hass/loftpi
+  publish_attributes: true
+  publish_timestamps: true

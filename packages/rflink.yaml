@@ -1,0 +1,13 @@
+rflink:
+  port: /dev/serial/by-id/usb-Arduino__www.arduino.cc__0042_95432313837351118232-if00
+  wait_for_ack: True
+light:
+  - platform: rflink
+    automatic_add: true
+cover:
+  - platform: rflink
+    automatic_add: true
+sensor:
+  - platform: rflink
+    automatic_add: true
+

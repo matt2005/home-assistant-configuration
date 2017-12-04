@@ -1,4 +1,0 @@
-- platform: onvif
-  host: 192.168.1.186
-  name: Baby
-  #extra_arguments: -q:v 2

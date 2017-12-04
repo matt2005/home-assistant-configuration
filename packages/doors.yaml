@@ -1,0 +1,7 @@
+switch:
+  - platform: rflink
+    devices:
+      ev1527_0d97d0_0a:
+        name: Front Door Open
+      ev1527_0d97d0_0e:
+        name: Front Door Closed

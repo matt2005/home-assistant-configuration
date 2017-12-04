@@ -1,8 +1,0 @@
-radio_station:
-  name: Radio Station
-  options:
-    - Heart (Thames Valley)
-    - Breeze Basingstoke
-    - None
-  initial: None
-  icon: mdi:radio

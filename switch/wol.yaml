@@ -1,4 +1,0 @@
-- platform: wake_on_lan
-  mac_address: "94:DE:80:CF:63:C0"
-  name: "serverwol"
-  host: "192.168.1.50"

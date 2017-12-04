@@ -1,5 +1,0 @@
-kitchen:
-  name: Kitchen
-  entities:
-    - media_player.kitchen_firestick
-    - device_tracker.kindlea0c9dd832homelocal

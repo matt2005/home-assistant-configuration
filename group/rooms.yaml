@@ -1,7 +1,0 @@
-Rooms:
-  view: yes
-  name: Rooms
-  entities:
-    - group.livingroom
-    - group.bedroom
-    - group.kitchen
