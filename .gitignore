@@ -24,4 +24,6 @@ __pycache__
 *.yaml.disabled
 .uuid
 .HA_VERSION
+id_rsa
+id_rsa.pub
 
