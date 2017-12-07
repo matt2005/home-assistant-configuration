@@ -5,3 +5,13 @@ switch:
         name: Front Door Open
       ev1527_0d97d0_0e:
         name: Front Door Closed
+binary_sensor:
+  - platform: template
+    friendly_name: Front Door
+    entity_id:
+      - switch.front_door_closed
+      - switch.front_door_closed
+    sensors:
+      door:
+        device_class: opening
+        value_template: "{{(as_timestamp(states.switch.front_door_open.last_changed)) <= (as_timestamp(states.switch.front_door_closed.last_changed))}}"

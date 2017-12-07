@@ -1,0 +1,89 @@
+switch:
+  - platform: rflink
+    devices:
+      bosch_0284_2:
+        name: bosch_0284_2
+      byron_00ff_01:
+        name: Front Door Bell
+      elrodb_118c4840_1:
+        name: elrodb_118c4840_1
+      eurodomest_0a7e0f_00:
+        name: eurodomest_0a7e0f_00
+      eurodomest_0a7e0f_03:
+        name: eurodomest_0a7e0f_00
+      ev1527_0b8b90_02:
+        name: ev1527_0b8b90_02
+      keeloq_0000_00:
+        name: keeloq_0000_00
+      keeloq_0000_01:
+        name: keeloq_0000_01
+      keeloq_0000_05:
+        name: keeloq_0000_05
+      keeloq_0000_09:
+        name: keeloq_0000_09
+      keeloq_0000_0c:
+        name: keeloq_0000_0c
+      keeloq_3200_06:
+        name: keeloq_3200_06
+      keeloq_3500_00:
+        name: keeloq_3500_00
+      keeloq_3500_06:
+        name: keeloq_3500_06
+      keeloq_3800_00:
+        name: keeloq_3800_00
+      keeloq_4400_06:
+        name: keeloq_4400_06
+      keeloq_4a00_00:
+        name: keeloq_4a00_00
+      keeloq_4a00_06:
+        name: keeloq_4a00_06
+      keeloq_4a00_0c:
+        name: keeloq_4a00_0c
+      keeloq_5200_00:
+        name: keeloq_5200_00
+      keeloq_5200_06:
+        name: keeloq_5200_06
+      keeloq_5200_0b:
+        name: keeloq_5200_0b
+      keeloq_9588_0d:
+        name: keeloq_9588_0d
+      keeloq_f100_00:
+        name: keeloq_f100_00
+      rts_001f1f_01:
+        name: rts_001f1f_01
+      rts_003f3f_01:
+        name: rts_003f3f_01
+      rts_00c03f_01:
+        name: rts_00c03f_01
+      rts_07c73f_01:
+        name: rts_07c73f_01
+      rts_07f800_01:
+        name: rts_07f800_01
+      rts_0f2f20_01:
+        name: rts_0f2f20_01
+      rts_0f303f_01:
+        name: rts_0f303f_01
+      rts_0f4f40_01:
+        name: rts_0f4f40_01
+      rts_0f707f_01:
+        name: rts_0f707f_01
+      rts_3e3e00_01:
+        name: rts_3e3e00_01
+      rts_3f300f_01:
+        name: rts_3f300f_01
+      rts_f8f800_01:
+        name: rts_f8f800_01
+      rts_fcff00_01:
+        name: rts_fcff00_01
+      rts_ffbf40_01:
+        name: rts_ffbf40_01
+      rts_ffc03f_01:
+        name: rts_ffc03f_01
+      silvercrestdb_00000000_1:
+        name: silvercrestdb_00000000_1
+      warema_9659_05:
+        name: warema_9659_05
+      warema_b6c9_05:
+        name: warema_b6c9_05
+      warema_c96d_03:
+        name: warema_c96d_03

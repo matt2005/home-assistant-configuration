@@ -10,6 +10,9 @@ sensor:
       dkw2012_0025_raintot:
         name: WeatherStation Rain Total
         sensor_type: total_rain
+      dkw2012_0025_rain:
+        name: WeatherStation Rain
+        sensor_type: rain_rate
       dkw2012_0025_temp:
         name: WeatherStation Temperature
         sensor_type: temperature
