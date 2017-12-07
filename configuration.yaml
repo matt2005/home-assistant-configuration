@@ -47,18 +47,10 @@ sun:
 # Weather Prediction
 sensor yr:
   platform: yr
-
-mqtt:
-  broker: !secret mqtt_broker
-  port: 1883
-  client_id: home-assistant-1
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-
 notify:  !include_dir_merge_list notify/
 
 ffmpeg:
-  ffmpeg_bin: /usr/bin/ffmpeg
+  ffmpeg_bin: /usr/bin/avconv
   run_test: true
 
 device_tracker: !include device_tracker.yaml

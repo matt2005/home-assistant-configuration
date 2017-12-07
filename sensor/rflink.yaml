@@ -1,42 +1,30 @@
-# ninja blocks WT450 temp / humidity sensor #1
 - platform: mqtt
-  state_topic: 'RF/DKW2012-ID=000c'
+  state_topic: 'hass/loftpi/sensor/weatherstation_temperature/state'
   name: 'Outside Temperature'
   unit_of_measurement: "°C"
-  value_template: '{{ value_json.TEMP }}'
-
+  icon: "mdi:thermometer"
 - platform: mqtt
-  state_topic: 'RF/DKW2012-ID=000c'
+  state_topic: 'hass/loftpi/sensor/weatherstation_humidity/state'
   name: 'Outside Humidity'
   unit_of_measurement: "%"
-  value_template: '{{ value_json.HUM }}'
-
+  icon: "mdi:water-percent"
 - platform: mqtt
-  state_topic: 'RF/DKW2012-ID=000c'
+  state_topic: 'hass/loftpi/sensor/weatherstation_wind_direction/state'
   name: 'Wind Direction'
-  value_template: '{{ value_json.WINDIR }}'
-  unit_of_measurement: "Direction"
-
 - platform: mqtt
-  state_topic: 'RF/DKW2012-ID=000c'
+  state_topic: 'hass/loftpi/sensor/weatherstation_wind_speed/state'
   name: 'Wind Speed'
   unit_of_measurement: "kph"
-  value_template: '{{ value_json.WINSP }}'
-
 - platform: mqtt
-  state_topic: 'RF/DKW2012-ID=000c'
+  state_topic: 'hass/loftpi/sensor/weatherstation_wind_gust/state'
   name: 'Wind Gust Speed'
   unit_of_measurement: "kph"
-  value_template: '{{ value_json.WINGS }}'
-
 - platform: mqtt
-  state_topic: 'RF/DKW2012-ID=000c'
-  name: 'Rain Fall'
+  state_topic: 'hass/loftpi/sensor/weatherstation_rain_total/state'
+  name: 'Total Rain Fall'
   unit_of_measurement: "mm"
-  value_template: '{{ value_json.RAIN }}'
-
 - platform: mqtt
-  state_topic: 'RF/DKW2012-ID=000c'
+  state_topic: 'hass/loftpi/sensor/weatherstation_battery'
   name: 'Weather station battery'
-  unit_of_measurement: "%"
-  value_template: '{% if value_json.BAT is equalto "OK" %} 100 {% else %} value_json.BAT {% endif %}'
+  icon: "mdi:battery"
+

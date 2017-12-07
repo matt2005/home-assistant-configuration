@@ -1,25 +1,25 @@
 sensor:
   - platform: moon
-  - platform: darksky
-    api_key: !secret dark_sky_api_key
-    monitored_conditions:
-      - summary
-      - precip_type
-      - precip_intensity
-      - precip_probability
-      - temperature
-      - apparent_temperature
-      - dew_point
-      - wind_speed
-      - wind_bearing
-      - cloud_cover
-      - humidity
-      - pressure
-      - visibility
-      - ozone
-      - uv_index
-      - icon
-      - nearest_storm_distance
+#  - platform: darksky
+#    api_key: !secret dark_sky_api_key
+#    monitored_conditions:
+#      - summary
+#      - precip_type
+#      - precip_intensity
+#      - precip_probability
+#      - temperature
+#      - apparent_temperature
+#      - dew_point
+#      - wind_speed
+#      - wind_bearing
+#      - cloud_cover
+#      - humidity
+#      - pressure
+#      - visibility
+#      - ozone
+#      - uv_index
+#      - icon
+#      - nearest_storm_distance
   - platform: template
     sensors:
       solar_angle:

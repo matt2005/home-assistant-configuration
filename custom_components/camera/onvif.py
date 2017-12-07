@@ -21,8 +21,13 @@ from homeassistant.helpers.aiohttp_client import (
 
 _LOGGER = logging.getLogger(__name__)
 
-REQUIREMENTS = ['onvif-zeep==0.2.7']
+REQUIREMENTS = ['onvif-py3==0.1.3',
+                'suds-py3==1.3.3.0',
+                'http://github.com/tgaugry/suds-passworddigest-py3'
+                '/archive/86fc50e39b4d2b8997481967d6a7fe1c57118999.zip'
+                '#suds-passworddigest-py3==0.1.2a']
 DEPENDENCIES = ['ffmpeg']
+VERSION = '201711272243'
 DEFAULT_NAME = 'ONVIF Camera'
 DEFAULT_PORT = 5000
 DEFAULT_USERNAME = 'admin'
@@ -42,10 +47,10 @@ def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
     """Set up a ONVIF camera."""
     if not hass.data[DATA_FFMPEG].async_run_test(config.get(CONF_HOST)):
         return
-    async_add_devices([ONVIFCamera(hass, config)])
+    async_add_devices([ONVIFCameraHASS(hass, config)])
 
 
-class ONVIFCamera(Camera):
+class ONVIFCameraHASS(Camera):
     """An implementation of an ONVIF camera."""
 
     def __init__(self, hass, config):
@@ -56,27 +61,28 @@ class ONVIFCamera(Camera):
 
         self._name = config.get(CONF_NAME)
         self._ffmpeg_arguments = '-q:v 2'
+        self._input = None
         try:
-            mycam = ONVIFCamera(
+            _LOGGER.debug("ONVIF Version: %s - Attempting to communicate with ONVIF Camera: %s on port %s",
+                         VERSION, config.get(CONF_HOST), config.get(CONF_PORT))
+            media_service = ONVIFCamera(
                 config.get(CONF_HOST), config.get(CONF_PORT),
                 config.get(CONF_USERNAME), config.get(CONF_PASSWORD)
-            )
-            media_service = mycam.create_media_service()
+            ).create_media_service()
             profiles = media_service.GetProfiles()
-            token = profiles[0].token
             stream_uri = media_service.GetStreamUri(
                 {'StreamSetup': {
-                    'Stream': 'RTP-Unicast', 'Transport': 'UDP'
-                    }, 'ProfileToken': token}
+                    'Stream': 'RTP-Unicast', 'Transport': 'RTSP'
+                    }, 'ProfileToken': profiles[0]._token}
                 )
+            self._input = stream_uri.Uri.replace(
+                'rtsp://', 'rtsp://{}:{}@'.format(config.get(
+                CONF_USERNAME), config.get(CONF_PASSWORD)), 1)
+            _LOGGER.debug("ONVIF Camera Using the following URL for %s: %s",
+                      self._name, self._input)
         except Exception as err:
             _LOGGER.error("Unable to communicate with ONVIF Camera: %s", err)
-
-        self._input = stream_uri.Uri.replace(
-            'rtsp://', 'rtsp://{}:{}@'.format(config.get(
-              CONF_USERNAME), config.get(CONF_PASSWORD)), 1)
-        _LOGGER.debug("ONVIF Camera Using the following URL for %s: %s",
-                      self._name, self._input)
+            raise
 
     @asyncio.coroutine
     def async_camera_image(self):

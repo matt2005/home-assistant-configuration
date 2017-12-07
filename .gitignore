@@ -22,4 +22,8 @@ plex.conf
 *.pyc
 __pycache__
 *.yaml.disabled
-
+.uuid
+.HA_VERSION
+id_rsa
+id_rsa.pub
+__pycache__/*

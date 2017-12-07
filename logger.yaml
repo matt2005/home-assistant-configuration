@@ -15,7 +15,9 @@ logs:
   homeassistant.components.mqtt: error
   homeassistant.components.api: error
   homeassistant.components.camera: error
-  custom_components.camera.onvif: error
+  custom_components.camera.onvif: debug
   homeassistant.components.mysensors: error
   homeassistant.components.notify: error
   homeassustant.components.script: error
+  rflink: debug
+  homeassistant.components.rflink: debug
