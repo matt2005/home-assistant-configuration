@@ -1,17 +1,7 @@
-switch:
-  - platform: mqtt
-    name: front door closed
-    command_topic: "hass/loftpi/switch/front_door_closed/state"
-  - platform: mqtt
-    name: front door open
-    command_topic: "hass/loftpi/switch/front_door_open/state"
 binary_sensor:
-  - platform: template
-    friendly_name: Front Door
-    entity_id:
-      - switch.front_door_closed
-      - switch.front_door_open
-    sensors:
-      door:
-        device_class: opening
-        value_template: "{{(as_timestamp(states.switch.front_door_open.last_changed)) <= (as_timestamp(states.switch.front_door_closed.last_changed))}}"
+  - platform: mqtt
+    name: "Front Door"
+    state_topic: "hass/loftpi/binary_sensor/front_door/state"
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: opening
