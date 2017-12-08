@@ -7,8 +7,12 @@ switch:
         name: Front Door Closed
       ev1527_0b0aa0_0a:
         name: Back Door Open
+        aliases:
+          - selectplus_07aafa_02
       ev1527_0b0aa0_0e:
         name: Back Door Closed
+        aliases:
+          - selectplus_07aaf8_02
 binary_sensor:
   - platform: template
     friendly_name: Front Door
