@@ -12,6 +12,6 @@ binary_sensor:
       - switch.front_door_closed
       - switch.front_door_closed
     sensors:
-      door:
+      front_door:
         device_class: opening
         value_template: "{{(as_timestamp(states.switch.front_door_open.last_changed)) >= (as_timestamp(states.switch.front_door_closed.last_changed))}}"
