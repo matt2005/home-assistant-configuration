@@ -1,0 +1,6 @@
+switch:
+  - platform: rflink
+    devices:
+      eurodomest_0a7e0f_01:
+        name: Energenie switch 1
+
