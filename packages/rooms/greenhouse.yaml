@@ -1,0 +1,132 @@
+###############################################################################
+#   @author         :   Matthew Hilton
+#   @date           :   12/03/2018
+#   @package        :   Home Assistant
+#   @description    :   Greenhouse
+###############################################################################
+homeassistant:
+  customize:
+
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'greenhouse'
+
+      exposed: &exposed
+        <<: *customize
+        emulated_hue: true
+        homebridge_hidden: false
+        critical: true
+
+      not_exposed: &not_exposed
+        <<: *customize
+        emulated_hue: false
+        homebridge_hidden: true
+        critical: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        critical: false
+
+    group.greenhouse:
+      <<: *customize
+      friendly_name: "Greenhouse"
+    light.greenhouse_lights:
+      <<: *customize
+      friendly_name: "Greenhouse Lights"
+    group.greenhouse_switches:
+      <<: *customize
+      friendly_name: "Greenhouse Switches"
+    sensor.greenhouse_temperature:
+      <<: *customize
+      friendly_name: "Greenhouse Temperature"
+      icon: mdi:thermometer-lines
+    sensor.greenhouse_humidity:
+      <<: *customize
+      friendly_name: "Greenhouse Humidity"
+    binary_sensor.greenhouse_occupancy:
+      <<: *customize
+      friendly_name: "Greenhouse Occupancy"
+    binary_sensor.greenhouse_door:
+      <<: *customize
+      friendly_name: "Greenhouse Door"
+    binary_sensor.greenhouse_window:
+      <<: *customize
+      friendly_name: "Greenhouse Window"
+    switch.greenhouse_switch:
+      <<: *customize
+      friendly_name: "Greenhouse Switch"
+    light.greenhouse_light:
+      <<: *customize
+      friendly_name: "Greenhouse Light"
+
+group:
+  greenhouse:
+    control: hidden
+    entities:
+      - sensor.greenhouse_temperature
+      - sensor.greenhouse_humidity
+      - binary_sensor.greenhouse_occupancy
+      - binary_sensor.greenhouse_door
+      - binary_sensor.greenhouse_window
+      - group.greenhouse_switches
+      - light.greenhouse_lights
+  greenhouse_switches:
+    entities:
+      - switch.greenhouse_switch
+sensor:
+  - platform: template
+    sensors:
+      greenhouse_temperature:
+        value_template: '{{states.sensor.template.state}}'
+      greenhouse_humidity:
+        value_template: '{{states.sensor.template.state}}'
+
+binary_sensor:
+  - platform: template
+    sensors:
+      greenhouse_occupancy:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: occupancy
+      greenhouse_door:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: door
+      greenhouse_window:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: window
+
+switch:
+  - platform: template
+    switches:
+      greenhouse_switch:
+        value_template: "{{ is_state('switch.template', 'on') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.template
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.template
+
+light:
+  - platform: template
+    lights:
+      greenhouse_light:
+        value_template: "{{ is_state('light.template', 'on') }}"
+        turn_on:
+          service: light.turn_on
+          data:
+            entity_id: light.template
+        turn_off:
+          service: light.turn_off
+          data:
+            entity_id: light.template
+  - platform: group
+    name: greenhouse_lights
+    entities:
+      - light.greenhouse_light

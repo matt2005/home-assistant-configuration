@@ -1,0 +1,35 @@
+camera:
+#  - platform: onvif
+#    host: 192.168.1.111
+#    name: Lyra
+  - platform: onvif
+    host: 192.168.1.112
+    name: Baby
+    #profile: 1
+    extra_arguments: -rtsp_transport udp 
+
+script:
+    ptz_tilt_up:
+      sequence:
+        - service: camera.onvif_ptz
+          data:
+            entity_id: 'camera.baby'
+            tilt: 'UP'
+    ptz_tilt_down:
+      sequence:
+        - service: camera.onvif_ptz
+          data:
+            entity_id: 'camera.baby'
+            tilt: 'DOWN'
+    ptz_pan_left:
+      sequence:
+        - service: camera.onvif_ptz
+          data:
+            entity_id: 'camera.baby'
+            pan: 'LEFT'
+    ptz_pan_right:
+      sequence:
+        - service: camera.onvif_ptz
+          data:
+            entity_id: 'camera.baby'
+            pan: 'RIGHT'

@@ -1,0 +1,121 @@
+###############################################################################
+#   @author         :   Matthew Hilton
+#   @date           :   12/03/2018
+#   @package        :   Home Assistant
+#   @description    :   Bathroom
+###############################################################################
+homeassistant:
+  customize:
+
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'bathroom'
+
+      exposed: &exposed
+        <<: *customize
+        emulated_hue: true
+        homebridge_hidden: false
+        critical: true
+
+      not_exposed: &not_exposed
+        <<: *customize
+        emulated_hue: false
+        homebridge_hidden: true
+        critical: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        critical: false
+
+    group.bathroom:
+      <<: *customize
+      friendly_name: "Bathroom"
+    light.bathroom_lights:
+      <<: *customize
+      friendly_name: "Bathroom Lights"
+    group.bathroom_switches:
+      <<: *customize
+      friendly_name: "Bathroom Switches"
+    sensor.bathroom_temperature:
+      <<: *customize
+      icon: mdi:thermometer-lines
+      friendly_name: "Bathroom Temperature"
+    sensor.bathroom_humidity:
+      <<: *customize
+      friendly_name: "Bathroom Humidity"
+    binary_sensor.bathroom_occupancy:
+      <<: *customize
+      friendly_name: "Bathroom Occupancy"
+    binary_sensor.bathroom_door:
+      <<: *customize
+      friendly_name: "Bathroom Door"
+    binary_sensor.bathroom_window:
+      <<: *customize
+      friendly_name: "Bathroom Window"
+    switch.bathroom_switch:
+      <<: *customize
+      friendly_name: "Bathroom Switch"
+    light.bathroom:
+      <<: *customize
+      friendly_name: "Bathroom Light"
+
+group:
+  bathroom:
+    control: hidden
+    entities:
+      - sensor.bathroom_temperature
+      - sensor.bathroom_humidity
+      - binary_sensor.bathroom_occupancy
+      - binary_sensor.bathroom_door
+      - binary_sensor.bathroom_window
+      - group.bathroom_switches
+      - light.bathroom_lights
+  bathroom_switches:
+    entities:
+      - switch.bathroom_switch
+
+sensor:
+  - platform: template
+    sensors:
+      bathroom_temperature:
+        value_template: '{{states.sensor.template.state}}'
+      bathroom_humidity:
+        value_template: '{{states.sensor.template.state}}'
+
+binary_sensor:
+  - platform: template
+    sensors:
+      bathroom_occupancy:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: occupancy
+      bathroom_door:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: door
+      bathroom_window:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: window
+
+switch:
+  - platform: template
+    switches:
+      bathroom_switch:
+        value_template: "{{ is_state('switch.template', 'on') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.template
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.template
+
+light:
+  - platform: group
+    name: Bathroom lights
+    entities:
+      - light.bathroom

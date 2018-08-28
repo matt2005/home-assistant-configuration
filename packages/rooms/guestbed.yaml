@@ -1,0 +1,134 @@
+###############################################################################
+#   @author         :   Matthew Hilton
+#   @date           :   12/03/2018
+#   @package        :   Home Assistant
+#   @description    :   Guestbed
+###############################################################################
+homeassistant:
+  customize:
+
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'guestbed'
+
+      exposed: &exposed
+        <<: *customize
+        emulated_hue: true
+        homebridge_hidden: false
+        critical: true
+
+      not_exposed: &not_exposed
+        <<: *customize
+        emulated_hue: false
+        homebridge_hidden: true
+        critical: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        critical: false
+
+    group.guestbed:
+      <<: *customize
+      friendly_name: "Guest Bedroom"
+    light.guestbed_lights:
+      <<: *customize
+      friendly_name: "Guest Bedroom Lights"
+      icon: mdi:lightbulb
+    group.guestbed_switches:
+      <<: *customize
+      friendly_name: "Guest Bedroom Switches"
+    sensor.guestbed_temperature:
+      <<: *customize
+      friendly_name: "Guest Bedroom Temperature"
+      icon: mdi:thermometer-lines
+    sensor.guestbed_humidity:
+      <<: *customize
+      friendly_name: "Guest Bedroom Humidity"
+    binary_sensor.guestbed_occupancy:
+      <<: *customize
+      friendly_name: "Guest Bedroom Occupancy"
+    binary_sensor.guestbed_door:
+      <<: *customize
+      friendly_name: "Guest Bedroom Door"
+    binary_sensor.guestbed_window:
+      <<: *customize
+      friendly_name: "Guest Bedroom Window"
+    switch.guestbed_switch:
+      <<: *customize
+      friendly_name: "Guest Bedroom Switch"
+    light.guestbed_light:
+      <<: *customize
+      friendly_name: "Guest Bedroom Light"
+
+group:
+  guestbed:    
+    control: hidden
+    entities:
+      - sensor.guestbed_temperature
+      - sensor.guestbed_humidity
+      - binary_sensor.guestbed_occupancy
+      - binary_sensor.guestbed_door
+      - binary_sensor.guestbed_window
+      - group.guestbed_switches
+      - light.guestbed_lights
+  guestbed_switches:
+    entities:
+      - switch.guestbed_switch
+
+sensor:
+  - platform: template
+    sensors:
+      guestbed_temperature:
+        value_template: '{{states.sensor.template.state}}'
+      guestbed_humidity:
+        value_template: '{{states.sensor.template.state}}'
+
+binary_sensor:
+  - platform: template
+    sensors:
+      guestbed_occupancy:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: occupancy
+      guestbed_door:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: door
+      guestbed_window:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: window
+
+switch:
+  - platform: template
+    switches:
+      guestbed_switch:
+        value_template: "{{ is_state('switch.template', 'on') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.template
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.template
+
+light:
+  - platform: template
+    lights:
+      guestbed_light:
+        value_template: "{{ is_state('light.template', 'on') }}"
+        turn_on:
+          service: light.turn_on
+          data:
+            entity_id: light.template
+        turn_off:
+          service: light.turn_off
+          data:
+            entity_id: light.template
+  - platform: group
+    name: guestbed lights
+    entities:
+      - light.guestbed_light

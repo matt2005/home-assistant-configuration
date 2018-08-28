@@ -1,0 +1,135 @@
+###############################################################################
+#   @author         :   Matthew Hilton
+#   @date           :   12/03/2018
+#   @package        :   Home Assistant
+#   @description    :   Utility
+###############################################################################
+homeassistant:
+  customize:
+
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'utility'
+
+      exposed: &exposed
+        <<: *customize
+        emulated_hue: true
+        homebridge_hidden: false
+        critical: true
+
+      not_exposed: &not_exposed
+        <<: *customize
+        emulated_hue: false
+        homebridge_hidden: true
+        critical: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        critical: false
+
+    group.utility:
+      <<: *customize
+      friendly_name: "Utility"
+    light.utility_lights:
+      <<: *customize
+      friendly_name: "Utility Lights"
+      icon: mdi:lightbulb
+    group.utility_switches:
+      <<: *customize
+      friendly_name: "Utility Switches"
+    sensor.utility_temperature:
+      <<: *customize
+      friendly_name: "Utility Temperature"
+      icon: mdi:thermometer-lines
+    sensor.utility_humidity:
+      <<: *customize
+      friendly_name: "Utility Humidity"
+    binary_sensor.utility_occupancy:
+      <<: *customize
+      friendly_name: "Utility Occupancy"
+    binary_sensor.utility_door:
+      <<: *customize
+      friendly_name: "Utility Door"
+    binary_sensor.utility_window:
+      <<: *customize
+      friendly_name: "Utility Window"
+    switch.utility_switch:
+      <<: *customize
+      friendly_name: "Utility Switch"
+    light.utility_light:
+      <<: *customize
+      friendly_name: "Utility Light"
+
+group:
+  utility:
+    control: hidden
+    entities:
+      - sensor.utility_temperature
+      - sensor.utility_humidity
+      - binary_sensor.utility_occupancy
+      - binary_sensor.utility_door
+      - binary_sensor.utility_window
+      - group.utility_switches
+      - light.utility_lights
+  utility_switches:
+    entities:
+      - switch.utility_switch
+
+sensor:
+  - platform: template
+    sensors:
+      utility_temperature:
+        value_template: '{{states.sensor.template.state}}'
+      utility_humidity:
+        value_template: '{{states.sensor.template.state}}'
+
+binary_sensor:
+  - platform: template
+    sensors:
+      utility_occupancy:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: occupancy
+      utility_door:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: door
+      utility_window:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: window
+
+switch:
+  - platform: template
+    switches:
+      utility_switch:
+        value_template: "{{ is_state('switch.template', 'on') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.template
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.template
+
+light:
+  - platform: template
+    lights:
+      utility_light:
+        value_template: "{{ is_state('light.template', 'on') }}"
+        turn_on:
+          service: light.turn_on
+          data:
+            entity_id: light.template
+        turn_off:
+          service: light.turn_off
+          data:
+            entity_id: light.template
+  - platform: group
+    name: Utility lights
+    entities:
+      - light.utility_light
+

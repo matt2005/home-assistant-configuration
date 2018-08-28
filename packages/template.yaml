@@ -1,0 +1,22 @@
+light:
+  - platform: mqtt
+    name: "Template"
+    command_topic: "template/light/switch"
+switch:
+  - platform: mqtt
+    name: "Template"
+    command_topic: "template/switch"
+sensor:
+  - platform: mqtt
+    name: "Template"
+    state_topic: "template/sensor"
+binary_sensor:
+  - platform: mqtt
+    name: "Template"
+    state_topic: "template/binary"
+    payload_on: 'on'
+    payload_off: 'off'
+#camera:
+#  - platform: mqtt
+#    name: "Template"
+#    topic: "template/camera"

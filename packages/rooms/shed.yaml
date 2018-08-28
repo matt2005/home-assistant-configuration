@@ -1,0 +1,133 @@
+###############################################################################
+#   @author         :   Matthew Hilton
+#   @date           :   12/03/2018
+#   @package        :   Home Assistant
+#   @description    :   Shed
+###############################################################################
+homeassistant:
+  customize:
+
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'shed'
+
+      exposed: &exposed
+        <<: *customize
+        emulated_hue: true
+        homebridge_hidden: false
+        critical: true
+
+      not_exposed: &not_exposed
+        <<: *customize
+        emulated_hue: false
+        homebridge_hidden: true
+        critical: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        critical: false
+
+    group.shed:
+      <<: *customize
+      friendly_name: "Shed"
+    light.shed_lights:
+      <<: *customize
+      friendly_name: "Shed Lights"
+      icon: mdi:lightbulb
+    group.shed_switches:
+      <<: *customize
+      friendly_name: "Shed Switches"
+    sensor.shed_temperature:
+      <<: *customize
+      friendly_name: "Shed Temperature"
+      icon: mdi:thermometer-lines
+    sensor.shed_humidity:
+      <<: *customize
+      friendly_name: "Shed Humidity"
+    binary_sensor.shed_occupancy:
+      <<: *customize
+      friendly_name: "Shed Occupancy"
+    binary_sensor.shed_door:
+      <<: *customize
+      friendly_name: "Shed Door"
+    binary_sensor.shed_window:
+      <<: *customize
+      friendly_name: "Shed Window"
+    switch.shed_switch:
+      <<: *customize
+      friendly_name: "Shed Switch"
+    light.shed_light:
+      <<: *customize
+      friendly_name: "Shed Light"
+
+group:
+  shed:
+    control: hidden
+    entities:
+      - sensor.shed_temperature
+      - sensor.shed_humidity
+      - binary_sensor.shed_occupancy
+      - binary_sensor.shed_door
+      - binary_sensor.shed_window
+      - group.shed_switches
+      - light.shed_lights
+  shed_switches:
+    entities:
+      - switch.shed_switch
+sensor:
+  - platform: template
+    sensors:
+      shed_temperature:
+        value_template: '{{states.sensor.template.state}}'
+      shed_humidity:
+        value_template: '{{states.sensor.template.state}}'
+
+binary_sensor:
+  - platform: template
+    sensors:
+      shed_occupancy:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: occupancy
+      shed_door:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: door
+      shed_window:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: window
+
+switch:
+  - platform: template
+    switches:
+      shed_switch:
+        value_template: "{{ is_state('switch.template', 'on') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.template
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.template
+
+light:
+  - platform: template
+    lights:
+      shed_light:
+        value_template: "{{ is_state('light.template', 'on') }}"
+        turn_on:
+          service: light.turn_on
+          data:
+            entity_id: light.template
+        turn_off:
+          service: light.turn_off
+          data:
+            entity_id: light.template
+  - platform: group
+    name: Shed lights
+    entities:
+      - light.shed_light

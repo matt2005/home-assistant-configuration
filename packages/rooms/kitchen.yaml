@@ -1,0 +1,133 @@
+###############################################################################
+#   @author         :   Matthew Hilton
+#   @date           :   12/03/2018
+#   @package        :   Home Assistant
+#   @description    :   Kitchen
+###############################################################################
+homeassistant:
+  customize:
+
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'kitchen'
+
+      exposed: &exposed
+        <<: *customize
+        emulated_hue: true
+        homebridge_hidden: false
+        critical: true
+
+      not_exposed: &not_exposed
+        <<: *customize
+        emulated_hue: false
+        homebridge_hidden: true
+        critical: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        critical: false
+
+    group.kitchen:
+      <<: *customize
+      friendly_name: "Kitchen"
+    light.kitchen_lights:
+      <<: *customize
+      friendly_name: "Kitchen Lights"
+      icon: mdi:lightbulb
+    group.kitchen_switches:
+      <<: *customize
+      friendly_name: "Kitchen Switches"
+    sensor.kitchen_temperature:
+      <<: *customize
+      friendly_name: "Kitchen Temperature"
+      icon: mdi:thermometer-lines
+    sensor.kitchen_humidity:
+      <<: *customize
+      friendly_name: "Kitchen Humidity"
+    binary_sensor.kitchen_occupancy:
+      <<: *customize
+      friendly_name: "Kitchen Occupancy"
+    binary_sensor.kitchen_door:
+      <<: *customize
+      friendly_name: "Kitchen Door"
+    binary_sensor.kitchen_window:
+      <<: *customize
+      friendly_name: "Kitchen Window"
+    switch.kitchen_switch:
+      <<: *customize
+      friendly_name: "Kitchen Switch"
+    light.kitchen_light:
+      <<: *customize
+      friendly_name: "Kitchen Light"
+
+group:
+  kitchen:
+    control: hidden
+    entities:
+      - sensor.kitchen_temperature
+      - sensor.kitchen_humidity
+      - binary_sensor.kitchen_occupancy
+      - binary_sensor.kitchen_door
+      - binary_sensor.kitchen_window
+      - group.kitchen_switches
+      - light.kitchen_lights
+  kitchen_switches:
+    entities:
+      - switch.kitchen_switch
+sensor:
+  - platform: template
+    sensors:
+      kitchen_temperature:
+        value_template: '{{states.sensor.template.state}}'
+      kitchen_humidity:
+        value_template: '{{states.sensor.template.state}}'
+
+binary_sensor:
+  - platform: template
+    sensors:
+      kitchen_occupancy:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: occupancy
+      kitchen_door:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: door
+      kitchen_window:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: window
+
+switch:
+  - platform: template
+    switches:
+      kitchen_switch:
+        value_template: "{{ is_state('switch.template', 'on') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.template
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.template
+
+light:
+  - platform: template
+    lights:
+      kitchen_light:
+        value_template: "{{ is_state('light.template', 'on') }}"
+        turn_on:
+          service: light.turn_on
+          data:
+            entity_id: light.template
+        turn_off:
+          service: light.turn_off
+          data:
+            entity_id: light.template
+  - platform: group
+    name: Kitchen lights
+    entities:
+      - light.kitchen_light

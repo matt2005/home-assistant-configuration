@@ -1,0 +1,19 @@
+## This is the main Floorplan configuration page.  To define the pages.
+## This one is called Floorclock since this is for my Clock application.
+## log_level: which can be set to one these: error, warning,  info or debug
+
+date_format: DD-MMM-YYYY
+#log_level: info
+
+fully_kiosk:
+
+  - name: Alarm Clock
+    address: A4:70:D6:70:69:9B
+    motion_sensor: binary_sensor.clock_motion
+    plugged_sensor: binary_sensor.clock_plugged
+    screensaver_light: light.clock_screensaver
+    media_player: media_player.alarm_clock
+
+pages:
+  -  /local/custom_ui/floorplan/clock.yaml
+  -  /local/custom_ui/floorplan/clock_config.yaml

@@ -1,0 +1,81 @@
+#------Whole House Radio Enabled via Emulated Hue----------------------------
+homeassistant:
+  customize:
+    input_boolean.house_station:
+      icon: mdi:radio
+      friendly_name: House Station
+      emulated_hue_hidden: False
+      hidden: False
+#---Use this Boolean to trigger via GUI or Alexa------------------------------
+input_boolean:
+  house_station:
+    name: House Station
+    initial: off
+input_select:
+  radio_player:
+    name: Radio Player
+    options:
+      - Living Room OSMC
+      - Living Room
+      - Bedroom
+      - Kitchen
+      - None
+    initial: None
+    icon: mdi:airplay
+  radio_station:
+    name: Radio Station
+    options:
+      - Heart (Thames Valley)
+      - Breeze Basingstoke
+      - None
+    initial: None
+    icon: mdi:radio
+automation:
+  - alias: Stream Radio - Template
+    trigger:
+      - platform: state
+        entity_id: input_select.radio_station
+    action:
+      - service: media_player.play_media
+        data_template:
+          entity_id: >
+            {% if is_state("input_select.radio_player", "Living Room OSMC") %}
+              media_player.livingroom_osmc
+            {%-elif is_state("input_select.radio_player", "Living Room") %}
+              media_player.plex_751e3e6a36ac6e8_com_plexapp_android
+            {%-elif is_state("input_select.radio_player", "Bedroom") %}
+              media_player.bedroom_firestick
+            {%-elif is_state("input_select.radio_player", "Kitchen") %}
+              media_player.plex_2afd1d0521906ab2_com_plexapp_android
+            {% else %}
+              none
+            {% endif %}
+          media_content_id: >
+            {% if is_state("input_select.radio_station", "Heart (Thames Valley)") %}
+              http://media-ice.musicradio.com/HeartBerkshireMP3.m3u
+            {%-elif is_state("input_select.radio_station", "Breeze Basingstoke") %}
+              http://webradio.radiomonitor.com/m3u/Breeze-Basingstoke-128.m3u
+            {% else %}
+              none
+            {% endif %}
+          media_content_type: 'audio/mp4'
+  - alias: Stop Streaming Radio
+    trigger:
+      - platform: state
+        entity_id: input_select.radio_station
+        to: "None"
+    action:
+      service: media_player.media_stop
+      data_template:
+        entity_id: >
+            {% if is_state("input_select.radio_player", "Living Room OSMC") %}
+              media_player.livingroom_osmc
+            {%-elif is_state("input_select.radio_player", "Living Room") %}
+              media_player.plex_751e3e6a36ac6e8_com_plexapp_android
+            {%-elif is_state("input_select.radio_player", "Bedroom") %}
+              media_player.bedroom_firestick
+            {%-elif is_state("input_select.radio_player", "Kitchen") %}
+              media_player.plex_2afd1d0521906ab2_com_plexapp_android
+            {% else %}
+              none
+            {% endif %}

@@ -1,0 +1,75 @@
+###############################################################################
+#   @author         :   Matthew Hilton
+#   @date           :   12/03/2018
+#   @package        :   Home Assistant
+#   @description    :   Rooms
+###############################################################################
+homeassistant:
+  customize:
+
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'rooms'
+
+      exposed: &exposed
+        <<: *customize
+        emulated_hue: true
+        homebridge_hidden: false
+        critical: true
+
+      not_exposed: &not_exposed
+        <<: *customize
+        emulated_hue: false
+        homebridge_hidden: true
+        critical: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        critical: false
+
+    group.upstairs:
+      order: 1
+    group.downstairs:
+      order: 2
+    group.outside:
+      order: 3
+group:
+  rooms:
+    name: House
+    view: yes
+    icon: mdi:home
+    control: hidden
+    entities:
+      - group.upstairs
+      - group.downstairs
+      - group.outside
+  outside:
+    name: Outside
+    control: hidden
+    entities:
+      - group.shed
+      - group.greenhouse
+  upstairs:
+    name: Upstairs
+    control: hidden
+    entities:
+      - group.bathroom
+      - group.masterbed
+      - group.littlebed
+      - group.guestbed
+      - group.loft
+
+  downstairs:
+    name: Downstairs
+    control: hidden
+    entities:
+      - group.kitchen
+      - group.living
+      - group.toilet
+      - group.utility
+      - group.hallway

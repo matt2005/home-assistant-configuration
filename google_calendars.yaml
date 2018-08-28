@@ -1,0 +1,30 @@
+- cal_id: !secret google_calendar_homeassistant
+  entities:
+  - device_id: homeassistant
+    name: HomeAssistant
+    track: true
+  - device_id: waste_collection
+    name: Waste Collection
+    track: true
+    search: "#Waste Collection"
+  - device_id: recycling_collection
+    name: Recycling Collection
+    track: true
+    search: "#Recycling Collection"
+- cal_id: !secret google_calendar_gmail
+  entities:
+  - device_id: !secret google_calendar_gmail_device
+    name: !secret google_calendar_gmail
+    track: true
+
+- cal_id: '#contacts@group.v.calendar.google.com'
+  entities:
+  - device_id: contacts
+    name: Contacts
+    track: true
+
+- cal_id: en.uk#holiday@group.v.calendar.google.com
+  entities:
+  - device_id: holidays_in_united_kingdom
+    name: Holidays in United Kingdom
+    track: true

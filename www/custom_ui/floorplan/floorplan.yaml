@@ -1,0 +1,4 @@
+date_format: DD-MMM-YYYY
+log_level: debug
+pages:
+  -  /local/custom_ui/floorplan/floor.yaml

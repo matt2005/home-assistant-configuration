@@ -1,0 +1,9 @@
+recorder:
+  purge_keep_days: 90
+  include:
+    domains:
+      - sensor
+      - switch
+      - device_tracker
+#      - media_player
+  db_url: !secret mysqldb

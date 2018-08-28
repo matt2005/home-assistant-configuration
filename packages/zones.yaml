@@ -1,0 +1,11 @@
+zone:
+  - name: Matt Work
+    latitude: !secret work_latitude
+    longitude: !secret work_longitude
+    radius: 500
+    icon: mdi:worker
+  - name: Nat Work
+    latitude: !secret nat_work_latitude
+    longitude: !secret nat_work_longitude
+    radius: 250
+    icon: mdi:castle

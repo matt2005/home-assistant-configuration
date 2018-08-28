@@ -1,0 +1,28 @@
+device_tracker:
+#  - platform: nmap_tracker
+#    hosts: 192.168.1.1/24
+#    home_interval: 5
+#    track_new_devices: yes
+#    scan_options: " --privileged -sP"
+  - platform: luci
+    host: !secret ROUTER_IP_ADDRESS
+    new_device_defaults:
+      track_new_devices: true
+      hide_if_away: true
+    username: !secret ROUTER_ADMIN_USERNAME
+    password: !secret ROUTER_ADMIN_PASSWORD
+  - platform: owntracks
+    max_gps_accuracy: 500
+    waypoints: True
+    new_device_defaults:
+      track_new_devices: true
+      hide_if_away: False
+#  - platform: luci
+#    host: !secret AP1_IP_ADDRESS
+#    new_device_defaults:
+#      track_new_devices: False
+#      hide_if_away: True
+#    username: !secret AP1_USERNAME
+#    password: !secret AP1_PASSWORD#
+
+

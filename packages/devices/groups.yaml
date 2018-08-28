@@ -1,0 +1,95 @@
+###############################################################################
+#   @author         :   Matthew Hilton
+#   @date           :   29/05/2018
+#   @package        :   Home Assistant
+#   @description    :   Devices
+###############################################################################
+homeassistant:
+  customize:
+
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'devices'
+
+      exposed: &exposed
+        <<: *customize
+        emulated_hue: true
+        homebridge_hidden: false
+        critical: true
+
+      not_exposed: &not_exposed
+        <<: *customize
+        emulated_hue: false
+        homebridge_hidden: true
+        critical: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        critical: false
+
+group:
+  known_devices:
+    name: Known Devices
+    entities:
+      - device_tracker.TLWA850RE
+      - device_tracker.repeater_TLWA850RE
+      - device_tracker.firestickkitchen
+      - device_tracker.repeater_firestickkitchen
+      - device_tracker.firesticklivingroom
+      - device_tracker.repeater_firesticklivingroom
+      - device_tracker.firestickbedroom
+      - device_tracker.repeater_firestickbedroom
+      - device_tracker.immersion
+      - device_tracker.repeater_immersion
+      - device_tracker.youview
+      - device_tracker.repeater_youview
+      - device_tracker.bt_youview
+      - device_tracker.repeater_bt_youview
+      - device_tracker.tradfri
+      - device_tracker.hassio
+      - device_tracker.repeater_matt_phone
+      - device_tracker.wrt54g
+      - device_tracker.babycam
+      - device_tracker.repeater_babycam
+      - device_tracker.esx
+      - device_tracker.wii
+      - device_tracker.ps3homelocal
+      - device_tracker.t400
+      - device_tracker.repeater_t400
+      - device_tracker.matt_matt
+      - device_tracker.amazonfire
+      - device_tracker.repeater_amazonfire
+      - device_tracker.nat_nat
+      - device_tracker.repeater_nat_phone
+      - device_tracker.matt_work_laptop
+      - device_tracker.matt_work_phone
+      - device_tracker.repeater_matt_work_laptop
+      - device_tracker.repeater_matt_work_phone
+      - device_tracker.repeater_amazonffd493b15
+      - device_tracker.TLWPA4230P
+      - device_tracker.dashpampers
+      - device_tracker.repeater_dashpampers
+      - device_tracker.dashariel
+      - device_tracker.repeater_dashariel
+      - device_tracker.dashpedigree
+      - device_tracker.repeater_dashpedigree
+      - device_tracker.e0cb1dede9bf
+      - device_tracker.matt_kindle
+      - device_tracker.repeater_matt_kindle
+      - device_tracker.nat_dad_phone
+      - device_tracker.repeater_nat_dad_phone
+      - device_tracker.nat_mum_phone
+      - device_tracker.repeater_nat_mum_phone
+      - device_tracker.repeater_printer
+      - device_tracker.printer
+      - device_tracker.sammi_phone
+      - device_tracker.repeater_sammi_phone
+
+
+
+

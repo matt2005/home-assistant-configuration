@@ -1,0 +1,135 @@
+###############################################################################
+#   @author         :   Matthew Hilton
+#   @date           :   12/03/2018
+#   @package        :   Home Assistant
+#   @description    :   Living
+###############################################################################
+homeassistant:
+  customize:
+
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'living'
+
+      exposed: &exposed
+        <<: *customize
+        emulated_hue: true
+        homebridge_hidden: false
+        critical: true
+
+      not_exposed: &not_exposed
+        <<: *customize
+        emulated_hue: false
+        homebridge_hidden: true
+        critical: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        critical: false
+
+    group.living:
+      <<: *customize
+      friendly_name: "Living room"
+    light.living_lights:
+      <<: *customize
+      friendly_name: "Living room Lights"
+      icon: mdi:lightbulb
+    group.living_switches:
+      <<: *customize
+      friendly_name: "Living room Switches"
+    sensor.living_temperature:
+      <<: *customize
+      friendly_name: "Living room Temperature"
+      icon: mdi:thermometer-lines
+    sensor.living_humidity:
+      <<: *customize
+      friendly_name: "Living room Humidity"
+    binary_sensor.living_occupancy:
+      <<: *customize
+      friendly_name: "Living room Occupancy"
+    binary_sensor.living_door:
+      <<: *customize
+      friendly_name: "Living room Door"
+    binary_sensor.living_window:
+      <<: *customize
+      friendly_name: "Living room Window"
+    switch.living_switch:
+      <<: *customize
+      friendly_name: "Living room Switch"
+    light.living_light:
+      <<: *customize
+      friendly_name: "Living room Light"
+
+group:
+  living:
+    control: hidden
+    entities:
+      - sensor.living_temperature
+      - sensor.living_humidity
+      - binary_sensor.living_occupancy
+      - binary_sensor.living_door
+      - binary_sensor.living_window
+      - group.living_switches
+      - light.living_lights
+  living_switches:
+    entities:
+      - switch.living_switch
+sensor:
+  - platform: template
+    sensors:
+      living_temperature:
+        value_template: '{{states.sensor.template.state}}'
+      living_humidity:
+        value_template: '{{states.sensor.template.state}}'
+
+binary_sensor:
+  - platform: template
+    sensors:
+      living_occupancy:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: occupancy
+      living_door:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: door
+      living_window:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: window
+
+switch:
+  - platform: template
+    switches:
+      living_switch:
+        value_template: "{{ is_state('switch.template', 'on') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.template
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.template
+
+light:
+  - platform: template
+    lights:
+      living_light:
+        value_template: "{{ is_state('light.living_room', 'on') }}"
+        turn_on:
+          service: light.turn_on
+          data:
+            entity_id: light.living_room
+        turn_off:
+          service: light.turn_off
+          data:
+            entity_id: light.living_room
+  - platform: group
+    name: Living lights
+    entities:
+      - light.living_light
+      - light.near_door
+      - light.near_window

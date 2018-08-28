@@ -1,0 +1,134 @@
+###############################################################################
+#   @author         :   Matthew Hilton
+#   @date           :   12/03/2018
+#   @package        :   Home Assistant
+#   @description    :   Hallway
+###############################################################################
+homeassistant:
+  customize:
+
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'hallway'
+
+      exposed: &exposed
+        <<: *customize
+        emulated_hue: true
+        homebridge_hidden: false
+        critical: true
+
+      not_exposed: &not_exposed
+        <<: *customize
+        emulated_hue: false
+        homebridge_hidden: true
+        critical: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        critical: false
+
+    group.hallway:
+      <<: *customize
+      friendly_name: "Hallway"
+    light.hallway_lights:
+      <<: *customize
+      friendly_name: "Hallway Lights"
+      icon: mdi:lightbulb
+    group.hallway_switches:
+      <<: *customize
+      friendly_name: "Hallway Switches"
+    sensor.hallway_temperature:
+      <<: *customize
+      friendly_name: "Hallway Temperature"
+      icon: mdi:thermometer-lines
+    sensor.hallway_humidity:
+      <<: *customize
+      friendly_name: "Hallway Humidity"
+    binary_sensor.hallway_occupancy:
+      <<: *customize
+      friendly_name: "Hallway Occupancy"
+    binary_sensor.hallway_door:
+      <<: *customize
+      friendly_name: "Hallway Door"
+    binary_sensor.hallway_window:
+      <<: *customize
+      friendly_name: "Hallway Window"
+    switch.hallway_switch:
+      <<: *customize
+      friendly_name: "Hallway Switch"
+    light.hallway_light:
+      <<: *customize
+      friendly_name: "Hallway Light"
+
+group:
+  hallway:
+    control: hidden
+    entities:
+      - sensor.hallway_temperature
+      - sensor.hallway_humidity
+      - binary_sensor.hallway_occupancy
+      - binary_sensor.hallway_door
+      - binary_sensor.hallway_window
+      - group.hallway_switches
+      - light.hallway_lights
+  hallway_switches:
+    entities:
+      - switch.hallway_switch
+
+sensor:
+  - platform: template
+    sensors:
+      hallway_temperature:
+        value_template: '{{states.sensor.template.state}}'
+      hallway_humidity:
+        value_template: '{{states.sensor.template.state}}'
+
+binary_sensor:
+  - platform: template
+    sensors:
+      hallway_occupancy:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: occupancy
+      hallway_door:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: door
+      hallway_window:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: window
+
+switch:
+  - platform: template
+    switches:
+      hallway_switch:
+        value_template: "{{ is_state('switch.template', 'on') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.template
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.template
+
+light:
+  - platform: template
+    lights:
+      hallway_light:
+        value_template: "{{ is_state('light.template', 'on') }}"
+        turn_on:
+          service: light.turn_on
+          data:
+            entity_id: light.template
+        turn_off:
+          service: light.turn_off
+          data:
+            entity_id: light.template
+  - platform: group
+    name: Hallway lights
+    entities:
+      - light.hallway_light

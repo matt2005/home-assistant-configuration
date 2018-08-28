@@ -1,0 +1,13 @@
+sensor:
+  - platform: template
+    sensors:
+      bins_out:
+        friendly_name: "Bins Out"
+        value_template: >-
+          {% if states.calendar.recycling_collection.attributes['offset_reached'] == true %}
+            Both
+          {% elif states.calendar.waste_collection.attributes['offset_reached'] == true %}
+            Waste
+          {% else %}
+            off
+          {% endif %}

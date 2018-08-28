@@ -1,0 +1,61 @@
+#hello_world:
+#  module: hello
+#  class: HelloWorld
+hwcheck_master:
+  module: hwcheck
+  class: HWCheck
+  namespace: master
+  notification: 'googlepush'
+#hwcheck_slave:
+#  module: hwcheck
+#  class: HWCheck
+#  namespace: slave
+#  notification: 'googlepush'
+#  delay: 30
+#test_notifier:
+#  module: monitornotifier
+#  class: MonitorNotifier
+#  ttl: 1
+#  sensors_to_monitor: device_tracker.bingou8,device_tracker.pi_motog3
+#test_sensors:
+#  module: testsensors
+#  class: TestSensors
+#  namespace: master
+#heating_test:
+#  module: heatinglogic
+#  class: HeatingLogic
+#  namespace: master
+#  sensor_temperature_flow_actual: sensor.heating_flow_temp
+#  sensor_temperature_outside_actual: sensor.heating_outside_temp
+#  input_temperature_inside_setpoint: input_slider.heating_setpoint_temp
+#  switch_heating: switch.heating
+#  adjustment: 3
+#  gain: 1.2
+#  temperature_flow_max: 70   # C
+#  temperature_flow_min: 25   # C
+#  temperature_flow_tolerance_above: 5   # C
+#  temperature_flow_tolerance_below: 5   # C
+#  switch_heating_max_on: 150  # Minutes
+newdevices:
+  module: newdevices
+  class: DeviceNotify
+  namespace: master
+  notification: 'googlepush'
+  known_devices: 'group.known_devices'
+bins_out:
+  module: notifystatechange
+  class: StateChangeNotify
+  namespace: master
+  notification: 'googlepush'
+  entity: 'sensor.bins_out'
+  message: 'Bins out'  
+nat_work:
+  module: notifystatechange
+  class: StateChangeNotify
+  namespace: master
+  notification: 'googlepush'
+  entity: 'sensor.work'
+  message: 'Nat Work'  
+
+
+

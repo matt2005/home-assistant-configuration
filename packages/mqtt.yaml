@@ -1,0 +1,12 @@
+mqtt:
+  broker: !secret mqtt_broker
+  port: 1883
+  client_id: home-assistant-1
+  username: !secret mqtt_username
+  password: !secret mqtt_password 
+#mqtt_eventstream:
+#  publish_topic: hass/master/hassio 
+mqtt_statestream:
+  base_topic: hass/esx
+  publish_attributes: true
+  publish_timestamps: true

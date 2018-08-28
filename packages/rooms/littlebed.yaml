@@ -1,0 +1,133 @@
+###############################################################################
+#   @author         :   Matthew Hilton
+#   @date           :   12/03/2018
+#   @package        :   Home Assistant
+#   @description    :   Littlebed
+###############################################################################
+homeassistant:
+  customize:
+
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'littlebed'
+
+      exposed: &exposed
+        <<: *customize
+        emulated_hue: true
+        homebridge_hidden: false
+        critical: true
+
+      not_exposed: &not_exposed
+        <<: *customize
+        emulated_hue: false
+        homebridge_hidden: true
+        critical: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        critical: false
+
+    group.littlebed:
+      <<: *customize
+      friendly_name: "Little Bedroom"
+    light.littlebed_lights:
+      <<: *customize
+      friendly_name: "Little Bedroom Lights"
+      icon: mdi:lightbulb
+    group.littlebed_switches:
+      <<: *customize
+      friendly_name: "Little Bedroom Switches"
+    sensor.littlebed_temperature:
+      <<: *customize
+      friendly_name: "Little Bedroom Temperature"
+      icon: mdi:thermometer-lines
+    sensor.littlebed_humidity:
+      <<: *customize
+      friendly_name: "Little Bedroom Humidity"
+    binary_sensor.littlebed_occupancy:
+      <<: *customize
+      friendly_name: "Little Bedroom Occupancy"
+    binary_sensor.littlebed_door:
+      <<: *customize
+      friendly_name: "Little Bedroom Door"
+    binary_sensor.littlebed_window:
+      <<: *customize
+      friendly_name: "Little Bedroom Window"
+    switch.littlebed_switch:
+      <<: *customize
+      friendly_name: "Little Bedroom Switch"
+    light.littlebed_light:
+      <<: *customize
+      friendly_name: "Little Bedroom Light"
+
+group:
+  littlebed:
+    control: hidden
+    entities:
+      - sensor.littlebed_temperature
+      - sensor.littlebed_humidity
+      - binary_sensor.littlebed_occupancy
+      - binary_sensor.littlebed_door
+      - binary_sensor.littlebed_window
+      - group.littlebed_switches
+      - light.littlebed_lights
+  littlebed_switches:
+    entities:
+      - switch.littlebed_switch
+sensor:
+  - platform: template
+    sensors:
+      littlebed_temperature:
+        value_template: '{{states.sensor.template.state}}'
+      littlebed_humidity:
+        value_template: '{{states.sensor.template.state}}'
+
+binary_sensor:
+  - platform: template
+    sensors:
+      littlebed_occupancy:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: occupancy
+      littlebed_door:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: door
+      littlebed_window:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: window
+
+switch:
+  - platform: template
+    switches:
+      littlebed_switch:
+        value_template: "{{ is_state('switch.template', 'on') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.template
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.template
+
+light:
+  - platform: template
+    lights:
+      littlebed_light:
+        value_template: "{{ is_state('light.template', 'on') }}"
+        turn_on:
+          service: light.turn_on
+          data:
+            entity_id: light.template
+        turn_off:
+          service: light.turn_off
+          data:
+            entity_id: light.template
+  - platform: group
+    name: Littlebed lights
+    entities:
+      - light.littlebed_light

@@ -1,0 +1,208 @@
+# Download the Dark Sky icons from https://www.dr-lex.be/software/download/DarkSky-icons.zip
+# and save them under /www/icons/dark_sky/ in your configuration directory.
+sensor:
+  - platform: metoffice
+    api_key: !secret metoffice_api
+    monitored_conditions:
+      - weather
+      - temperature
+      - feels_like_temperature
+      - wind_speed
+      - wind_direction
+      - wind_gust
+      - visibility
+      - uv
+      - precipitation
+      - humidity
+  - platform: moon
+  - platform: darksky
+    api_key: !secret dark_sky_api_key
+    forecast:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+    monitored_conditions:
+      - summary
+      - precip_probability
+      - wind_speed
+      - cloud_cover
+      - icon
+      - temperature_low
+      - temperature_high
+      - daily_summary
+      - hourly_summary
+      # - Added for weather card
+      - humidity
+      - temperature
+      - wind_bearing
+      - pressure
+      - visibility
+    update_interval:
+      minutes: 5
+  - platform: season
+  - platform: template
+    sensors:
+      forecast_0:
+        friendly_name: "Today"
+        value_template: >
+          {{states.sensor.dark_sky_daytime_high_temperature.state|round(0)}}°/{{states.sensor.dark_sky_overnight_low_temperature.state|round(0)}}°/{{states.sensor.dark_sky_precip_probability.state|round(0)}}%
+        entity_picture_template: >-
+          {{ '/local/icons/dark_sky/' ~ states.sensor.dark_sky_icon.state ~ '.png'}}
+
+      forecast_1:
+        friendly_name_template: >
+          {%- set date = as_timestamp(now()) + (1 * 86400 ) -%}
+          {{ date | timestamp_custom("Tomorrow (%d/%m)") | replace("(0", "(") | replace("/0", "/") }}
+        value_template: >
+          {{states.sensor.dark_sky_daytime_high_temperature_1.state|round(0)}}°/{{states.sensor.dark_sky_overnight_low_temperature_1.state|round(0)}}°/{{states.sensor.dark_sky_precip_probability_1.state|round(0)}}%
+        entity_picture_template: >-
+          {{ '/local/icons/dark_sky/' ~ states.sensor.dark_sky_icon_1.state ~ '.png'}}
+
+      forecast_2:
+        friendly_name_template: >
+          {%- set date = as_timestamp(now()) + (2 * 86400 ) -%}
+          {{ date | timestamp_custom("%A (%d/%m)") | replace("(0", "(") | replace("/0", "/") }}
+        value_template: >
+          {{states.sensor.dark_sky_daytime_high_temperature_2.state|round(0)}}°/{{states.sensor.dark_sky_overnight_low_temperature_2.state|round(0)}}°/{{states.sensor.dark_sky_precip_probability_2.state|round(0)}}%
+        entity_picture_template: >-
+          {{ '/local/icons/dark_sky/' ~ states.sensor.dark_sky_icon_2.state ~ '.png'}}
+
+      forecast_3:
+        friendly_name_template: >
+          {%- set date = as_timestamp(now()) + (3 * 86400 ) -%}
+          {{ date | timestamp_custom("%A (%d/%m)") | replace("(0", "(") | replace("/0", "/") }}
+        value_template: >
+          {{states.sensor.dark_sky_daytime_high_temperature_3.state|round(0)}}°/{{states.sensor.dark_sky_overnight_low_temperature_3.state|round(0)}}°/{{states.sensor.dark_sky_precip_probability_3.state|round(0)}}%
+        entity_picture_template: >-
+          {{ '/local/icons/dark_sky/' ~ states.sensor.dark_sky_icon_3.state ~ '.png'}}
+
+      forecast_4:
+        friendly_name_template: >
+          {%- set date = as_timestamp(now()) + (4 * 86400 ) -%}
+          {{ date | timestamp_custom("%A (%d/%m)") | replace("(0", "(") | replace("/0", "/") }}
+        value_template: >
+          {{states.sensor.dark_sky_daytime_high_temperature_4.state|round(0)}}°/{{states.sensor.dark_sky_overnight_low_temperature_4.state|round(0)}}°/{{states.sensor.dark_sky_precip_probability_4.state|round(0)}}%
+        entity_picture_template: >-
+          {{ '/local/icons/dark_sky/' ~ states.sensor.dark_sky_icon_4.state ~ '.png'}}
+
+      forecast_5:
+        friendly_name_template: >
+          {%- set date = as_timestamp(now()) + (5 * 86400 ) -%}
+          {{ date | timestamp_custom("%A (%d/%m)") | replace("(0", "(") | replace("/0", "/") }}
+        value_template: >
+          {{states.sensor.dark_sky_daytime_high_temperature_5.state|round(0)}}°/{{states.sensor.dark_sky_overnight_low_temperature_5.state|round(0)}}°/{{states.sensor.dark_sky_precip_probability_5.state|round(0)}}%
+        entity_picture_template: >-
+          {{ '/local/icons/dark_sky/' ~ states.sensor.dark_sky_icon_5.state ~ '.png'}}
+
+      forecast_6:
+        friendly_name_template: >
+          {%- set date = as_timestamp(now()) + (6 * 86400 ) -%}
+          {{ date | timestamp_custom("%A (%d/%m)") | replace("(0", "(") | replace("/0", "/") }}
+        value_template: >
+            {{states.sensor.dark_sky_daytime_high_temperature_6.state|round(0)}}°/{{states.sensor.dark_sky_overnight_low_temperature_6.state|round(0)}}°/{{states.sensor.dark_sky_precip_probability_6.state|round(0)}}%
+        entity_picture_template: >-
+          {{ '/local/icons/dark_sky/' ~ states.sensor.dark_sky_icon_6.state ~ '.png'}}
+
+      forecast_7:
+        friendly_name_template: >
+          {%- set date = as_timestamp(now()) + (7 * 86400 ) -%}
+          {{ date | timestamp_custom("%A (%d/%m)") | replace("(0", "(") | replace("/0", "/") }}
+        value_template: >
+            {{states.sensor.dark_sky_daytime_high_temperature_7.state|round(0)}}°/{{states.sensor.dark_sky_overnight_low_temperature_7.state|round(0)}}°/{{states.sensor.dark_sky_precip_probability_7.state|round(0)}}%
+        entity_picture_template: >-
+          {{ '/local/icons/dark_sky/' ~ states.sensor.dark_sky_icon_7.state ~ '.png'}}
+  - platform: template
+    sensors:
+      solar_angle:
+        friendly_name: "Sun angle"
+        unit_of_measurement: 'degrees'
+        value_template: "{{ states.sun.sun.attributes.elevation }}"
+      sunrise:
+        value_template: "{{ states.sun.sun.attributes.next_rising }}"
+# True if sun is below horizon and time is greater than 16:00 or visibility is Very Poor, Poor or Moderate
+      turn_on_indoor_lights:
+        friendly_name: 'Turn On Indoor Lights'
+        value_template: >
+          {% if (states.sun.sun.attributes.elevation | int < 5) %}True
+          {% elif ( (states.sun.sun.attributes.elevation | int < 10) and (states.sensor.dark_sky_cloud_coverage.state | int > 50)) %}True
+          {% elif (states.sensor.dark_sky_cloud_coverage.state | int > 90) %}True
+          {% elif (states.sensor.turn_on_indoor_lights.state == 'True' and ((as_timestamp(now()) - as_timestamp(states.sensor.turn_on_indoor_lights.last_changed)) | float < 1200)) %}True
+          {% else %}False
+          {% endif %}
+  - platform: mqtt
+    state_topic: 'weatherstation/pywws/temp_out_c'
+    name: 'Outside Temperature'
+    unit_of_measurement: "°C"
+    icon: "mdi:thermometer"
+  - platform: mqtt
+    state_topic: 'weatherstation/pywws/temp_in_c'
+    name: 'Inside Temperature'
+    unit_of_measurement: "°C"
+    icon: "mdi:thermometer"
+  - platform: mqtt
+    state_topic: 'weatherstation/pywws/hum_in'
+    name: 'Inside Humidity'
+    unit_of_measurement: "%"
+    icon: "mdi:water-percent"
+  - platform: mqtt
+    state_topic: 'weatherstation/pywws/hum_out'
+    name: 'Outside Humidity'
+    unit_of_measurement: "%"
+    icon: "mdi:water-percent"
+  - platform: mqtt
+    state_topic: 'weatherstation/pywws/wind_dir'
+    name: 'Wind Direction'
+    unit_of_measurement: "°"
+  - platform: mqtt
+    state_topic: 'weatherstation/pywws/wind_ave'
+    name: 'Average Wind Speed'
+    unit_of_measurement: "mph"
+  - platform: mqtt
+    state_topic: 'weatherstation/pywws/wind_gust'
+    name: 'Wind Gust Speed'
+    unit_of_measurement: "mph"
+  - platform: mqtt
+    state_topic: 'weatherstation/pywws/rain'
+    name: 'rain'
+    unit_of_measurement: "mm"
+  - platform: mqtt
+    state_topic: 'weatherstation/pywws/rainin'
+    name: 'rainin'
+    unit_of_measurement: "mm"
+  - platform: mqtt
+    state_topic: 'weatherstation/pywws/dailyrainin'
+    name: 'dailyrainin'
+    unit_of_measurement: "mm"
+  - platform: mqtt
+    state_topic: 'weatherstation/pywws/dailyrain'
+    name: 'dailyrain'
+    unit_of_measurement: "mm"
+  - platform: mqtt
+    state_topic: 'weatherstation/pywws/rain'
+    name: 'rain'
+    unit_of_measurement: "mm"
+  - platform: mqtt
+    state_topic: 'weatherstation/pywws/rel_pressure'
+    name: 'relative pressure'
+    unit_of_measurement: "mmhg"
+
+group:
+  weather_card_forecast:
+    name: Forecast
+    view: no
+    icon: mdi:sun
+    entities:
+      - sensor.forecast_0
+      - sensor.forecast_1
+      - sensor.forecast_2
+      - sensor.forecast_3
+      - sensor.forecast_4
+      - sensor.forecast_5
+      - sensor.forecast_6
+      - sensor.forecast_7
+
+  

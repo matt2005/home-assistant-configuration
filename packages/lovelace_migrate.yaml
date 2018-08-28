@@ -1,0 +1,2 @@
+shell_command:
+  lovelace_migrate: 'python3 /config/lovelace_migrate.py -c /config'

@@ -1,0 +1,85 @@
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'heating'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Group
+    ################################################
+
+    group.immersion:
+      <<: *customize
+      friendly_name: "Immersion"
+      icon: mdi:steam
+group:
+  immersion:
+    control: hidden
+    entities:
+      - sensor.immersion_heater_voltage
+      - sensor.immersion_heater_amperage
+      - sensor.immersion_heater_watts
+      - sensor.immersion_heater_today
+      - sensor.immersion_heater_yesterday
+      - sensor.immersion_heater_total
+      - switch.immersion_heater
+      - automation.immersion
+sensor:
+  - platform: mqtt
+    name: 'Immersion Heater Voltage'
+    state_topic: 'tele/immersion/ENERGY'
+    value_template: '{{ value_json.Voltage }}'
+  - platform: mqtt
+    name: 'Immersion Heater Amperage'
+    state_topic: 'tele/immersion/ENERGY'
+    value_template: '{{ value_json.Current }}'
+  - platform: mqtt
+    name: 'Immersion Heater Watts'
+    state_topic: 'tele/immersion/ENERGY'
+    value_template: '{{ value_json.Power }}'
+  - platform: mqtt
+    name: 'Immersion Heater Today'
+    state_topic: 'tele/immersion/ENERGY'
+    value_template: '{{ value_json.Today }}'
+  - platform: mqtt
+    name: 'Immersion Heater Yesterday'
+    state_topic: 'tele/immersion/ENERGY'
+    value_template: '{{ value_json.Yesterday }}'
+  - platform: mqtt
+    name: 'Immersion Heater Total'
+    state_topic: 'tele/immersion/ENERGY'
+    value_template: '{{ value_json.Total }}'
+switch:
+  - platform: mqtt
+    name: 'Immersion Heater'
+    command_topic: 'cmnd/immersion/POWER'
+    state_topic: 'stat/immersion/POWER'
+#    availability_topic: 'tele/immersion/LWT'
+#    value_template: '{{ value_json.POWER }}'
+#    payload_available: 'ONLINE'
+#    payload_not_available: 'OFFLINE'
+automation:
+- alias: 'Turn Off immersion after 30 mins'
+  trigger:
+    platform: state
+    entity_id: switch.immersion_heater
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 45
+  action:
+    service: switch.turn_off
+    entity_id: switch.immersion_heater

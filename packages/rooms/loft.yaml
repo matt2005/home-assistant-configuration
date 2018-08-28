@@ -1,0 +1,133 @@
+###############################################################################
+#   @author         :   Matthew Hilton
+#   @date           :   12/03/2018
+#   @package        :   Home Assistant
+#   @description    :   Loft
+###############################################################################
+homeassistant:
+  customize:
+
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'loft'
+
+      exposed: &exposed
+        <<: *customize
+        emulated_hue: true
+        homebridge_hidden: false
+        critical: true
+
+      not_exposed: &not_exposed
+        <<: *customize
+        emulated_hue: false
+        homebridge_hidden: true
+        critical: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        critical: false
+
+    group.loft:
+      <<: *customize
+      friendly_name: "Loft"
+    light.loft_lights:
+      <<: *customize
+      friendly_name: "Loft Lights"
+      icon: mdi:lightbulb
+    group.loft_switches:
+      <<: *customize
+      friendly_name: "Loft Switches"
+    sensor.loft_temperature:
+      <<: *customize
+      friendly_name: "Loft Temperature"
+      icon: mdi:thermometer-lines
+    sensor.loft_humidity:
+      <<: *customize
+      friendly_name: "Loft Humidity"
+    binary_sensor.loft_occupancy:
+      <<: *customize
+      friendly_name: "Loft Occupancy"
+    binary_sensor.loft_door:
+      <<: *customize
+      friendly_name: "Loft Door"
+    binary_sensor.loft_window:
+      <<: *customize
+      friendly_name: "Loft Window"
+    switch.loft_switch:
+      <<: *customize
+      friendly_name: "Loft Switch"
+    light.loft_light:
+      <<: *customize
+      friendly_name: "Loft Light"
+
+group:
+  loft:
+    control: hidden
+    entities:
+      - sensor.loft_temperature
+      - sensor.loft_humidity
+      - binary_sensor.loft_occupancy
+      - binary_sensor.loft_door
+      - binary_sensor.loft_window
+      - group.loft_switches
+      - light.loft_lights
+  loft_switches:
+    entities:
+      - switch.loft_switch
+sensor:
+  - platform: template
+    sensors:
+      loft_temperature:
+        value_template: '{{states.sensor.template.state}}'
+      loft_humidity:
+        value_template: '{{states.sensor.template.state}}'
+
+binary_sensor:
+  - platform: template
+    sensors:
+      loft_occupancy:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: occupancy
+      loft_door:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: door
+      loft_window:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: window
+
+switch:
+  - platform: template
+    switches:
+      loft_switch:
+        value_template: "{{ is_state('switch.template', 'on') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.template
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.template
+
+light:
+  - platform: template
+    lights:
+      loft_light:
+        value_template: "{{ is_state('light.template', 'on') }}"
+        turn_on:
+          service: light.turn_on
+          data:
+            entity_id: light.template
+        turn_off:
+          service: light.turn_off
+          data:
+            entity_id: light.template
+  - platform: group
+    name: Loft lights
+    entities:
+      - light.loft_light
