@@ -35,4 +35,5 @@ plex_cert.sh
 entity_registry.yaml
 .storage/*
 gactions
+compiled
 
