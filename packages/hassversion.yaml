@@ -1,0 +1,24 @@
+sensor:
+  - platform: cert_expiry
+    host: !secret cert_url
+  - platform: version
+  - platform: uptime
+    unit_of_measurement: minutes
+  - platform: template
+    sensors:
+      hassuptime:
+        friendly_name: "HASS Uptime"
+        value_template: >-
+          {% set uptime = states.sensor.uptime.state | round %}
+          {% set minutes = (uptime % 60) | int %}
+          {% set hours = ((uptime / 60) % 24) | int %}
+          {% set days = (uptime / 1440) | int %}
+          {%- if days > 0 -%}
+            {%- if days == 1 -%}
+              1 day
+            {%- else -%}
+              {{ days }} days
+            {%- endif -%}
+            {{ ', ' }}
+          {%- endif -%}
+          {{ '%02d' % hours }}:{{ '%02d' % minutes }} hrs

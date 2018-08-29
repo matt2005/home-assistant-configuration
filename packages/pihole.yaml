@@ -48,6 +48,9 @@ homeassistant:
       icon: mdi:animation
     switch.pihole:
       friendly_name: Pihole
+    switch.set_pihole_pass:
+      friendly_name: Set Pihole Password
+
 
 group:
   Ads Blocked:
@@ -60,7 +63,7 @@ group:
       - sensor.queries_forwarded
       - sensor.queries_cached
       - switch.pihole
-
+      - switch.set_pihole_pass
 ###############################################################################
 #  Sensors
 ###############################################################################
@@ -107,6 +110,6 @@ switch:
         command_off: !secret pihole_disable
         command_state: !secret pihole_status
         value_template: '{% if "enabled" in (value | lower)  %} True {% else%} False {% endif %}'
-shell_command:
-  set_pihole_pass: !secret pihole_set_pass
-      
+      set_pihole_pass:
+        command_on: !secret pihole_set_pass
+        command_off: !secret pihole_set_pass

@@ -1,6 +1,7 @@
 # Download the Dark Sky icons from https://www.dr-lex.be/software/download/DarkSky-icons.zip
 # and save them under /www/icons/dark_sky/ in your configuration directory.
 sensor:
+  - platform: yr
   - platform: metoffice
     api_key: !secret metoffice_api
     monitored_conditions:

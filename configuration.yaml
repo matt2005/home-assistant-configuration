@@ -37,7 +37,7 @@ http:
   ssl_key: /ssl/privkey.pem
   server_port: 443
   ip_ban_enabled: True
-  login_attempts_threshold: 3
+  login_attempts_threshold: 5
 
 # For more information, please see:
 # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
@@ -66,7 +66,7 @@ sun:
 # Weather prediction
 #sensor:
 #  - platform: yr
-
+python_script:
 # Text to speech
 tts:
   - platform: google

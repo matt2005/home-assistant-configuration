@@ -1,0 +1,34 @@
+switch:
+  - platform: template
+    switches:
+      developer_mode:
+        friendly_name: Developer Mode
+        value_template: "{{states.group.developer.attributes.view == True}}"
+        turn_on:
+          - service: python_script.populate_catchall_group
+          - service: python_script.find_unused_entities
+          - service: group.set
+            data:
+              object_id: developer
+              view: true
+              visible: true
+        turn_off:
+          - service: group.set
+            data:
+              object_id: developer
+              view: false
+              visible: false
+          - service: group.remove
+            data:
+              object_id: catchall
+          - service: group.remove
+            data:
+              object_id: deaditems
+group:
+  developer:
+    name: Developer
+    view: false
+    icon: mdi:developer-board
+    entities:
+      - group.catchall
+      - group.deaditems

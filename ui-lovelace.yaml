@@ -1,16 +1,36 @@
 resources:
   - url: /local/custom_ui/weather-card.js
     type: js
+  - url: /local/custom_ui/clock-element.js
+    type: js
+  - url: /local/custom_ui/circle-sensor-card.js
+    type: module
   - url: /local/custom_ui/dark-sky-weather-card.js?v=1
     type: js
-  - url: /local/custom_ui/monster-card.js
+  - url: /local/custom-lovelace/monster-card/monster-card.js?v=1
     type: js
-  - url: /local/custom_ui/gauge-card.js
+  - url: /local/custom-lovelace/gauge-card/gauge-card.js
     type: js
-  - url: /local/custom_ui/bignumber-card.js
+  - url: /local/custom-lovelace/bignumber-card/bignumber-card.js
     type: js
-  - url: /local/custom_ui/alarm_control_panel-card.js?v=1
+  - url: /local/custom_ui/alarm_control_panel-card.js?v=1.1
     type: js
+  - url: /local/custom-lovelace/thermostat-card/thermostat-card.js?v=1.3
+    type: module
+  - url: /local/custom_ui/canvas-gauge-card.js?v=0.1
+    type: module
+  - url: /local/custom_ui/calendar-card.js
+    type: module
+  - url: https://unpkg.com/moment@2.22.2/moment.js
+    type: js
+  - url: /local/custom_ui/ext-weblink.js?v=0.6
+    type: js
+  - url: /local/custom_ui/slider-entity-row.js?v=0.2
+    type: js
+  - url: /local/custom-lovelace/group-card/group-card.js?v=1.0
+    type: js
+  - url: /local/custom_ui/button-card.js
+    type: module
 
 title: My Home
 views:
@@ -363,9 +383,9 @@ views:
     cards:
       # - type: 'custom:custom-weather-animated'
       #   entity: input_boolean.weather
-#      - type: "custom:weather-card"
-#        entity_weather: weather.yweather
-#        entity_sun: sun.sun
+      #- type: "custom:weather-card"
+      #  entity_weather: sensor.dark_sky_hourly_summary
+      #  entity_sun: sun.sun
       # - type: "custom:wired-toggle-card"
       #   entities:
       #     - input_boolean.abodeupdate
@@ -464,145 +484,145 @@ views:
 #        entity: camera.ars_bloom
 #
 #
-  - icon: mdi:play-circle-outline
-    id: media
-    title: Media
-    cards:
-      - type: entities
-        title: Entertainment
-        show_header_toggle: false
-        entities:
-          - sensor.living_room
-          - input_select.livingroomharmony
-          - input_select.hdmiswitcher
-          - input_select.hdmiinput
-          - input_number.harmonyvolume
-          - input_boolean.tv
-          - input_boolean.tvtime
-          - sensor.total_tv_time
-          - script.tv_off
-      - type: entities
-        title: Light Operations
-        show_header_toggle: false
-        entities:
-          - input_boolean.partymode
-          - script.sonoslinein
-          - script.colorloop_start
-          - script.disco_party
-          - script.lifx_stop_effects
-      - type: media-control
-        entity: media_player.livingroomsonos
-      - type: media-control
-        entity: media_player.office
-      - type: media-control
-        entity: media_player.kodi_nstv
-      - type: media-control
-        entity: media_player.echo_dot_gen2
-      - type: media-control
-        entity: media_player.living_room_home
-      - type: media-control
-        entity: media_player.panasonic_viera_tv
-      - type: media-control
-        entity: media_player.shield
-      - type: media-control
-        entity: media_player.shield_android_tv
-      - type: media-control
-        entity: media_player.plex_shield_android_tv
+#  - icon: mdi:play-circle-outline
+#    id: media
+#    title: Media
+#    cards:
+#      - type: entities
+#        title: Entertainment
+#        show_header_toggle: false
+#        entities:
+#          - sensor.living_room
+#          - input_select.livingroomharmony
+#          - input_select.hdmiswitcher
+#          - input_select.hdmiinput
+#          - input_number.harmonyvolume
+#          - input_boolean.tv
+#          - input_boolean.tvtime
+#          - sensor.total_tv_time
+#          - script.tv_off
+#      - type: entities
+#        title: Light Operations
+#        show_header_toggle: false
+#        entities:
+#          - input_boolean.partymode
+#          - script.sonoslinein
+#          - script.colorloop_start
+#          - script.disco_party
+#          - script.lifx_stop_effects
+#      - type: media-control
+#        entity: media_player.livingroomsonos
+#      - type: media-control
+#        entity: media_player.office
+#      - type: media-control
+#        entity: media_player.kodi_nstv
+#      - type: media-control
+#        entity: media_player.echo_dot_gen2
+#      - type: media-control
+#        entity: media_player.living_room_home
+#      - type: media-control
+#        entity: media_player.panasonic_viera_tv
+#      - type: media-control
+#        entity: media_player.shield
+#      - type: media-control
+#        entity: media_player.shield_android_tv
+#      - type: media-control
+#        entity: media_player.plex_shield_android_tv
 
   - icon: mdi:settings
     id: settings
     title: Settings
     cards:
-      - type: horizontal-stack
-        cards:
-          - type: picture-entity
-            entity: device_tracker.pi_rashmiphone
-            show_info: false
-            state_image:
-              "home": /local/icons/rashmi_owntracks_home.png
-              "not_home": /local/icons/rashmi_owntracks_not_home.png
-          - type: picture-entity
-            entity: device_tracker.rashmiappiphone
-            show_info: false
-            state_image:
-              "home": /local/icons/rashmi_ios_home.png
-              "not_home": /local/icons/rashmi_ios_not_home.png
-          - type: picture-entity
-            entity: device_tracker.rashmisiphone
-            show_info: false
-            state_image:
-              "home": /local/icons/rashmi_wifi_home.png
-              "not_home": /local/icons/rashmi_wifi_not_home.png
-          - type: picture-entity
-            entity: device_tracker.sonu_sonu
-            show_info: false
-            state_image:
-              "home": /local/icons/rashmi_life360_home.png
-              "not_home": /local/icons/rashmi_life360_not_home.png
-          - type: picture-entity
-            entity: device_tracker.e1594e5321df414c82daf655d5282fca
-            show_info: false
-            state_image:
-              "home": /local/icons/rashmi_geofency_home.png
-              "not_home": /local/icons/rashmi_geofency_not_home.png
-      - type: horizontal-stack
-        cards:
-          - type: picture-entity
-            entity: device_tracker.pi_alokphone
-            show_info: false
-            state_image:
-              "home": /local/icons/alok_owntracks_home.png
-              "not_home": /local/icons/alok_owntracks_not_home.png
-              "Buckhead": /local/icons/alok_owntracks_not_home.png
-              "Downtown": /local/icons/alok_owntracks_not_home.png
-          - type: picture-entity
-            entity: device_tracker.alokiosiphone
-            show_info: false
-            state_image:
-              "home": /local/icons/alok_ios_home.png
-              "not_home": /local/icons/alok_ios_not_home.png
-              "Buckhead": /local/icons/alok_ios_not_home.png
-              "Downtown": /local/icons/alok_ios_not_home.png
-          - type: picture-entity
-            entity: device_tracker.myiphone
-            show_info: false
-            state_image:
-              "home": /local/icons/alok_wifi_home.png
-              "not_home": /local/icons/alok_wifi_not_home.png
-          - type: picture-entity
-            entity: device_tracker.alok_alok
-            show_info: false
-            state_image:
-              "home": /local/icons/alok_life360_home.png
-              "not_home": /local/icons/alok_life360_not_home.png
-              "Buckhead": /local/icons/alok_life360_not_home.png
-              "Downtown": /local/icons/alok_life360_not_home.png
-          - type: picture-entity
-            entity: device_tracker.b4445761f6c04b7f835fcfdc03b47111
-            show_info: false
-            state_image:
-              "home": /local/icons/alok_geofency_home.png
-              "not_home": /local/icons/alok_geofency_not_home.png
-              "buckhead": /local/icons/alok_geofency_not_home.png
-              "downtown": /local/icons/alok_geofency_not_home.png
-      - type: horizontal-stack
-        cards:
-          - type: picture-entity
-            entity: device_tracker.meta_alok
-            state_image:
-              home: /local/icons/alok_home.png
-              not_home: /local/icons/alok_not_home.png
-              buckhead: /local/icons/alok_not_home.png
-              Buckhead: /local/icons/alok_not_home.png
-              downtown: /local/icons/alok_not_home.png
-              Downtown: /local/icons/alok_not_home.png
-            show_info: false
-          - type: picture-entity
-            entity: device_tracker.meta_rashmi
-            state_image:
-              "home": /local/icons/rashmi_home.png
-              "not_home": /local/icons/rashmi_not_home.png
-            show_info: false
+#      - type: horizontal-stack
+#        cards:
+#          - type: picture-entity
+#            entity: device_tracker.pi_rashmiphone
+#            show_info: false
+#            state_image:
+#              "home": /local/icons/rashmi_owntracks_home.png
+#              "not_home": /local/icons/rashmi_owntracks_not_home.png
+#          - type: picture-entity
+#            entity: device_tracker.rashmiappiphone
+#            show_info: false
+#            state_image:
+#              "home": /local/icons/rashmi_ios_home.png
+#              "not_home": /local/icons/rashmi_ios_not_home.png
+#          - type: picture-entity
+#            entity: device_tracker.rashmisiphone
+#            show_info: false
+#            state_image:
+#              "home": /local/icons/rashmi_wifi_home.png
+#              "not_home": /local/icons/rashmi_wifi_not_home.png
+#          - type: picture-entity
+#            entity: device_tracker.sonu_sonu
+#            show_info: false
+#            state_image:
+#              "home": /local/icons/rashmi_life360_home.png
+#              "not_home": /local/icons/rashmi_life360_not_home.png
+#          - type: picture-entity
+#            entity: device_tracker.e1594e5321df414c82daf655d5282fca
+#            show_info: false
+#            state_image:
+#              "home": /local/icons/rashmi_geofency_home.png
+#              "not_home": /local/icons/rashmi_geofency_not_home.png
+#      - type: horizontal-stack
+#        cards:
+#          - type: picture-entity
+#            entity: device_tracker.pi_alokphone
+#            show_info: false
+#            state_image:
+#              "home": /local/icons/alok_owntracks_home.png
+#              "not_home": /local/icons/alok_owntracks_not_home.png
+#              "Buckhead": /local/icons/alok_owntracks_not_home.png
+#              "Downtown": /local/icons/alok_owntracks_not_home.png
+#          - type: picture-entity
+#            entity: device_tracker.alokiosiphone
+#            show_info: false
+#            state_image:
+#              "home": /local/icons/alok_ios_home.png
+#              "not_home": /local/icons/alok_ios_not_home.png
+#              "Buckhead": /local/icons/alok_ios_not_home.png
+#              "Downtown": /local/icons/alok_ios_not_home.png
+#          - type: picture-entity
+#            entity: device_tracker.myiphone
+#            show_info: false
+#            state_image:
+#              "home": /local/icons/alok_wifi_home.png
+#              "not_home": /local/icons/alok_wifi_not_home.png
+#          - type: picture-entity
+#            entity: device_tracker.alok_alok
+#            show_info: false
+#            state_image:
+#              "home": /local/icons/alok_life360_home.png
+#              "not_home": /local/icons/alok_life360_not_home.png
+#              "Buckhead": /local/icons/alok_life360_not_home.png
+#              "Downtown": /local/icons/alok_life360_not_home.png
+#          - type: picture-entity
+#            entity: device_tracker.b4445761f6c04b7f835fcfdc03b47111
+#            show_info: false
+#            state_image:
+#              "home": /local/icons/alok_geofency_home.png
+#              "not_home": /local/icons/alok_geofency_not_home.png
+#              "buckhead": /local/icons/alok_geofency_not_home.png
+#              "downtown": /local/icons/alok_geofency_not_home.png
+#      - type: horizontal-stack
+#       cards:
+#          - type: picture-entity
+#            entity: device_tracker.meta_alok
+#            state_image:
+#              home: /local/icons/alok_home.png
+#              not_home: /local/icons/alok_not_home.png
+#              buckhead: /local/icons/alok_not_home.png
+#              Buckhead: /local/icons/alok_not_home.png
+#              downtown: /local/icons/alok_not_home.png
+#              Downtown: /local/icons/alok_not_home.png
+#            show_info: false
+#          - type: picture-entity
+#            entity: device_tracker.meta_rashmi
+#            state_image:
+#              "home": /local/icons/rashmi_home.png
+#              "not_home": /local/icons/rashmi_not_home.png
+#            show_info: false#
 
       - type: entities
         title: HASS Details
@@ -610,76 +630,69 @@ views:
         entities:
           - switch.developer_mode
           - sensor.hassuptime
+          - sensor.current_version
           - sensor.ssl_certificate_expiry
           - input_select.current_theme
-      - type: entities
-        title: Camera Sensors
-        entities:
-          - binary_sensor.backyard_motion
-          - binary_sensor.backyard_field_detection
-          - binary_sensor.backyard_line_crossing
-          - binary_sensor.driveway_motion
-          - binary_sensor.driveway_field_detection
-          - binary_sensor.driveway_line_crossing
-          - binary_sensor.patio_motion
-          - binary_sensor.patio_field_detection
-          - binary_sensor.patio_line_crossing
-          - binary_sensor.porch_field_detection
-          - binary_sensor.porch_line_crossing
-          - binary_sensor.porch_motion
-      - type: entities
-        title: Camera Processing
-        show_header_toggle: false
-        entities:
-          - script.classify_images
-          - image_processing.facebox_backyard
-          - image_processing.facebox_patio
-          - image_processing.facebox_driveway
-          - image_processing.facebox_porch
-          - image_processing.tagbox_backyard
-          - image_processing.tagbox_patio
-          - image_processing.tagbox_driveway
-          - image_processing.tagbox_porch
+#      - type: custom:group-card
+#        card:
+#          type: entities
+#          title: Dead Items
+#        group: group.deaditems
+#      - type: custom:group-card
+#        card:
+#          type: entities
+#          title: Catch All
+#        group: group.catchall
+#      - type: entities
+#        title: Camera Sensors
+#        entities:
+#          - binary_sensor.backyard_motion
+#          - binary_sensor.backyard_field_detection
+#          - binary_sensor.backyard_line_crossing
+#          - binary_sensor.driveway_motion
+#          - binary_sensor.driveway_field_detection
+#          - binary_sensor.driveway_line_crossing
+#          - binary_sensor.patio_motion
+#          - binary_sensor.patio_field_detection
+#          - binary_sensor.patio_line_crossing
+#          - binary_sensor.porch_field_detection
+#          - binary_sensor.porch_line_crossing
+#          - binary_sensor.porch_motion
+#      - type: entities
+#        title: Camera Processing
+#        show_header_toggle: false
+#        entities:
+#          - script.classify_images
+#          - image_processing.facebox_backyard
+#          - image_processing.facebox_patio
+#          - image_processing.facebox_driveway
+#          - image_processing.facebox_porch
+#          - image_processing.tagbox_backyard
+#          - image_processing.tagbox_patio
+#          - image_processing.tagbox_driveway
+#          - image_processing.tagbox_porch
 
 
       - type: entities
         title: Network Details
+        show_header_toggle: false
         entities:
-          - binary_sensor.pihole
-          - sensor.speedtest_download
-          - sensor.pihole_dns_queries_today
-          - sensor.pihole_domains_blocked
-          - sensor.pihole_ads_percentage_blocked_today
-          - sensor.pihole_dns_unique_domains
-          - sensor.glances_cpu_load
-          - sensor.glances_disk_used
-          - sensor.glances_ram_used
-      - type: entities
-        title: Arlo
-        entities:
-          - sensor.battery_level_arlolivingroom
-          - sensor.captured_today_arlolivingroom
-          - sensor.signal_strength_arlolivingroom
-          - sensor.battery_level_livingroom2
-          - sensor.captured_today_livingroom2
-          - sensor.signal_strength_livingroom2
-          - sensor.battery_level_arlo3
-          - sensor.captured_today_arlo3
-          - sensor.signal_strength_arlo3
-      - type: entities
-        title: USCIS
-        entities:
-          - sensor.alok_485
-          - sensor.alok_131
-          - sensor.rashmi_485
-          - sensor.rashmi_131
-          - sensor.arnav_485
-          - sensor.arnav_131
-
-#  - icon: mdi:test-tube
-#    id: test
-#    title: Testing
-#    cards:
+           - sensor.dns_queries_today
+           - sensor.domains_being_blocked
+           - sensor.ads_blocked_today
+           - sensor.ads_percentage_today
+           - sensor.unique_domains
+           - sensor.queries_forwarded
+           - sensor.queries_cached
+           - switch.set_pihole_pass
+           - sensor.speedtest_download
+           - sensor.speedtest_upload
+           - sensor.speedtest_ping
+           
+  - icon: mdi:test-tube
+    id: test
+    title: Testing
+    cards:
 #      - type: glance
 #        title: Devices
 #        entities:
@@ -718,13 +731,13 @@ views:
 #          - entity: device_tracker.meta_alok
 #          - entity: device_tracker.meta_rashmi
 #          - zone.home
-#      - type: custom:monster-card
-#        card:
-#          type: entities
-#          title: Things that are probably broken
-#        filter:
-#          include:
-#            - state: "unknown"
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Things that are probably broken
+        filter:
+          include:
+            - state: "unknown"
 #      - type: horizontal-stack
 #        cards:
 #          - type: custom:gauge-card
