@@ -684,6 +684,7 @@ views:
            - sensor.unique_domains
            - sensor.queries_forwarded
            - sensor.queries_cached
+           - switch.pihole
            - switch.set_pihole_pass
            - sensor.speedtest_download
            - sensor.speedtest_upload
