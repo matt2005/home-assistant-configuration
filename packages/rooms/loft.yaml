@@ -46,9 +46,11 @@ homeassistant:
       <<: *customize
       friendly_name: "Loft Temperature"
       icon: mdi:thermometer-lines
+      unit_of_measurement: '°C'
     sensor.loft_humidity:
       <<: *customize
       friendly_name: "Loft Humidity"
+      unit_of_measurement: '%'
     binary_sensor.loft_occupancy:
       <<: *customize
       friendly_name: "Loft Occupancy"
@@ -80,12 +82,12 @@ group:
     entities:
       - switch.loft_switch
 sensor:
-  - platform: template
-    sensors:
-      loft_temperature:
-        value_template: '{{states.sensor.template.state}}'
-      loft_humidity:
-        value_template: '{{states.sensor.template.state}}'
+  - platform: mqtt
+    name: loft_humidity
+    state_topic: "hass/loftpi/sensor/dht_sensor_humidity/state"
+  - platform: mqtt
+    name: loft_temperature
+    state_topic: "hass/loftpi/sensor/dht_sensor_temperature/state"
 
 binary_sensor:
   - platform: template

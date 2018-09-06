@@ -46,9 +46,11 @@ homeassistant:
       <<: *customize
       friendly_name: "Guest Bedroom Temperature"
       icon: mdi:thermometer-lines
+      unit_of_measurement: '°C'
     sensor.guestbed_humidity:
       <<: *customize
       friendly_name: "Guest Bedroom Humidity"
+      unit_of_measurement: '%'
     binary_sensor.guestbed_occupancy:
       <<: *customize
       friendly_name: "Guest Bedroom Occupancy"

@@ -46,9 +46,11 @@ homeassistant:
       <<: *customize
       friendly_name: "Shed Temperature"
       icon: mdi:thermometer-lines
+      unit_of_measurement: '°C'
     sensor.shed_humidity:
       <<: *customize
       friendly_name: "Shed Humidity"
+      unit_of_measurement: '%'
     binary_sensor.shed_occupancy:
       <<: *customize
       friendly_name: "Shed Occupancy"

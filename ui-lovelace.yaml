@@ -40,6 +40,17 @@ views:
     title: Home
     # theme: darkorange
     cards:
+      - type: entities
+        title: Lights
+        show_header_toggle: false
+        entities:
+          - light.master_bedroom
+      - type: entities
+        title: Loft
+        show_header_toggle: false
+        entities:
+          - sensor.loft_temperature
+          - sensor.loft_humidity
 #      - type: picture-elements
 #        # title: Main Level
 #        image: /local/floorplans/main.jpg

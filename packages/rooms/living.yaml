@@ -46,9 +46,11 @@ homeassistant:
       <<: *customize
       friendly_name: "Living room Temperature"
       icon: mdi:thermometer-lines
+      unit_of_measurement: '°C'
     sensor.living_humidity:
       <<: *customize
       friendly_name: "Living room Humidity"
+      unit_of_measurement: '%'
     binary_sensor.living_occupancy:
       <<: *customize
       friendly_name: "Living room Occupancy"

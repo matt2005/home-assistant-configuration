@@ -46,9 +46,11 @@ homeassistant:
       <<: *customize
       friendly_name: "Toilet Temperature"
       icon: mdi:thermometer-lines
+      unit_of_measurement: '°C'
     sensor.toilet_humidity:
       <<: *customize
       friendly_name: "Toilet Humidity"
+      unit_of_measurement: '%'
     binary_sensor.toilet_occupancy:
       <<: *customize
       friendly_name: "Toilet Occupancy"

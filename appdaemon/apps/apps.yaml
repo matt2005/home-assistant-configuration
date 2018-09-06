@@ -6,12 +6,12 @@ hwcheck_master:
   class: HWCheck
   namespace: master
   notification: 'googlepush'
-#hwcheck_slave:
-#  module: hwcheck
-#  class: HWCheck
-#  namespace: slave
-#  notification: 'googlepush'
-#  delay: 30
+hwcheck_slave:
+  module: hwcheck
+  class: HWCheck
+  namespace: slave
+  notification: 'googlepush'
+  delay: 30
 #test_notifier:
 #  module: monitornotifier
 #  class: MonitorNotifier
@@ -49,13 +49,13 @@ bins_out:
   notification: 'googlepush'
   entity: 'sensor.bins_out'
   message: 'Bins out'  
-nat_work:
-  module: notifystatechange
-  class: StateChangeNotify
-  namespace: master
-  notification: 'googlepush'
-  entity: 'sensor.work'
-  message: 'Nat Work'  
+#nat_work:
+#  module: notifystatechange
+#  class: StateChangeNotify
+#  namespace: master
+#  notification: 'googlepush'
+#  entity: 'sensor.work'
+#  message: 'Nat Work'  
 
 
 

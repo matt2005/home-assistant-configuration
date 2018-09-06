@@ -46,9 +46,11 @@ homeassistant:
       <<: *customize
       friendly_name: "Utility Temperature"
       icon: mdi:thermometer-lines
+      unit_of_measurement: '°C'
     sensor.utility_humidity:
       <<: *customize
       friendly_name: "Utility Humidity"
+      unit_of_measurement: '%'
     binary_sensor.utility_occupancy:
       <<: *customize
       friendly_name: "Utility Occupancy"

@@ -46,9 +46,11 @@ homeassistant:
       <<: *customize
       friendly_name: "Kitchen Temperature"
       icon: mdi:thermometer-lines
+      unit_of_measurement: '°C'
     sensor.kitchen_humidity:
       <<: *customize
       friendly_name: "Kitchen Humidity"
+      unit_of_measurement: '%'
     binary_sensor.kitchen_occupancy:
       <<: *customize
       friendly_name: "Kitchen Occupancy"

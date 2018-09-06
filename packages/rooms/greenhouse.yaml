@@ -45,9 +45,11 @@ homeassistant:
       <<: *customize
       friendly_name: "Greenhouse Temperature"
       icon: mdi:thermometer-lines
+      unit_of_measurement: '°C'
     sensor.greenhouse_humidity:
       <<: *customize
       friendly_name: "Greenhouse Humidity"
+      unit_of_measurement: '%'
     binary_sensor.greenhouse_occupancy:
       <<: *customize
       friendly_name: "Greenhouse Occupancy"

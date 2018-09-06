@@ -46,9 +46,11 @@ homeassistant:
       <<: *customize
       friendly_name: "Hallway Temperature"
       icon: mdi:thermometer-lines
+      unit_of_measurement: '°C'
     sensor.hallway_humidity:
       <<: *customize
       friendly_name: "Hallway Humidity"
+      unit_of_measurement: '%'
     binary_sensor.hallway_occupancy:
       <<: *customize
       friendly_name: "Hallway Occupancy"

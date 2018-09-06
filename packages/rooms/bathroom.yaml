@@ -44,10 +44,12 @@ homeassistant:
     sensor.bathroom_temperature:
       <<: *customize
       icon: mdi:thermometer-lines
+      unit_of_measurement: '°C'
       friendly_name: "Bathroom Temperature"
     sensor.bathroom_humidity:
       <<: *customize
       friendly_name: "Bathroom Humidity"
+      unit_of_measurement: '%'
     binary_sensor.bathroom_occupancy:
       <<: *customize
       friendly_name: "Bathroom Occupancy"

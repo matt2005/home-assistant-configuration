@@ -46,9 +46,11 @@ homeassistant:
       <<: *customize
       friendly_name: "Little Bedroom Temperature"
       icon: mdi:thermometer-lines
+      unit_of_measurement: '°C'
     sensor.littlebed_humidity:
       <<: *customize
       friendly_name: "Little Bedroom Humidity"
+      unit_of_measurement: '%'
     binary_sensor.littlebed_occupancy:
       <<: *customize
       friendly_name: "Little Bedroom Occupancy"
