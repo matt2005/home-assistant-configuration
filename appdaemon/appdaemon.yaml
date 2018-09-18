@@ -7,14 +7,13 @@ appdaemon:
     HASS:
       type: hass
       ha_url: http://hassio/homeassistant
-      ha_key: 0e1af06f5ffa44a4a035cef9501757b6
+      ha_key: 000783ee221b5cdc12309917126223653d158be3e715cad375c35917c8f16fd2
       namespace: master
     loftpi:
       type: hass
-      ha_url: !secret ha_slave_url
+      a_url: h!secret ha_slave_url
       ha_key: !secret ha_slave_key
       namespace: slave
-
 HADashboard:
-  dash_url: !secret dash_url
+  dash_url: dash_url
   dash_dir: /config/appdaemon/dashboards
