@@ -9,7 +9,7 @@ hwcheck_master:
 hwcheck_slave:
   module: hwcheck
   class: HWCheck
-  namespace: slave
+  namespace: loftpi
   notification: 'googlepush'
   delay: 30
 #test_notifier:
