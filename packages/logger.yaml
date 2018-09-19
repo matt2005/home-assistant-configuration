@@ -5,12 +5,12 @@ logger:
     homeassistant.setup: error
     homeassistant.loader: error
     homeassistant.components.automation: error
-    homeassistant.components.device_tracker: debug
+    homeassistant.components.device_tracker: error
     homeassistant.components.discovery: error
     homeassistant.components.http: error
     homeassistant.components.media_player: error
-    homeassistant.components.recorder: debug
-    homeassistant.components.history: debug
+    homeassistant.components.recorder: error
+    homeassistant.components.history: error
     homeassistant.components.sensor: error
     homeassistant.components.zwave: error
     homeassistant.helpers.script: error
@@ -19,7 +19,7 @@ logger:
     homeassistant.components.camera: error
     custom_components.camera.onvif: error
     homeassistant.components.mysensors: error
-    homeassistant.components.notify: error
+    homeassistant.components.notify: debug
     homeassustant.components.script: error
     rflink: error
     homeassistant.components.rflink: error
