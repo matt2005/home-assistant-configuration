@@ -36,4 +36,5 @@ entity_registry.yaml
 .storage/*
 gactions
 compiled
+appdaemon/appdaemon.yaml
 
