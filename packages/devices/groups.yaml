@@ -89,7 +89,7 @@ group:
       - device_tracker.printer
       - device_tracker.sammi_phone
       - device_tracker.repeater_sammi_phone
-      - device_tracket.kindlefire
+      - device_tracker.kindlefire
 
 
 
