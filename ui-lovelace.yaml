@@ -51,6 +51,13 @@ views:
         entities:
           - sensor.loft_temperature
           - sensor.loft_humidity
+      - type: entities
+        title: Doors
+        show_header_toggle: false
+        entities:
+          - binary_sensor.back_door
+          - binary_sensor.front_door
+
 #      - type: picture-elements
 #        # title: Main Level
 #        image: /local/floorplans/main.jpg

@@ -1,0 +1,45 @@
+homeassistant:
+  customize:
+
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'doors'
+
+      exposed: &exposed
+        <<: *customize
+        emulated_hue: true
+        homebridge_hidden: false
+        critical: true
+
+      not_exposed: &not_exposed
+        <<: *customize
+        emulated_hue: false
+        homebridge_hidden: true
+        critical: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        critical: false
+      "binary_sensor.back_door":
+        assumed_state: false
+      "binary_sensor.front_door":
+        assumed_state: false
+
+binary_sensor:
+  - platform: mqtt
+    state_topic: 'hass/loftpi/binary_sensor/back_door/state'
+    name: Back Door
+    device_class: opening
+    payload_on: "on"
+    payload_off: "off"
+  - platform: mqtt
+    state_topic: 'hass/loftpi/binary_sensor/front_door/state'
+    name: Front Door
+    device_class: opening
+    payload_on: "on"
+    payload_off: "off"

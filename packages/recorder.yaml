@@ -5,5 +5,7 @@ recorder:
       - sensor
       - switch
       - device_tracker
+      - binary_sensor
+      - light
 #      - media_player
   db_url: !secret mysqldb
