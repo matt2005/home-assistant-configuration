@@ -57,7 +57,17 @@ views:
         entities:
           - binary_sensor.back_door
           - binary_sensor.front_door
-
+      - type: entities
+        title: weatherstation
+        show_header_toggle: false
+        entities:
+           - sensor.inside_temperature
+           - sensor.inside_humidity
+           - sensor.average_wind_speed
+           - sensor.outside_temperature
+           - sensor.outside_humidity
+           - sensor.wind_gust_speed
+           - sensor.relative_pressure
 #      - type: picture-elements
 #        # title: Main Level
 #        image: /local/floorplans/main.jpg
