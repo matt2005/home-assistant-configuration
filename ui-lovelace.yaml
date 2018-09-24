@@ -58,6 +58,11 @@ views:
           - binary_sensor.back_door
           - binary_sensor.front_door
       - type: entities
+        title: heating
+        show_header_toggle: false
+        entities:
+            - switch.immersion_heater
+      - type: entities
         title: weatherstation
         show_header_toggle: false
         entities:
