@@ -1,3 +1,4 @@
+.storage/*
 *.pid
 *.swp
 *.xml
