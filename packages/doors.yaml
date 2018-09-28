@@ -1,34 +1,66 @@
+homeassistant:
+  customize:
+
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'doors'
+
+      exposed: &exposed
+        <<: *customize
+        emulated_hue: true
+        homebridge_hidden: false
+        critical: true
+
+      not_exposed: &not_exposed
+        <<: *customize
+        emulated_hue: false
+        homebridge_hidden: true
+        critical: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        critical: false
+      "binary_sensor.back_door":
+        assumed_state: false
+      "binary_sensor.front_door":
+        assumed_state: false
+
 switch:
   - platform: rflink
     devices:
+      byron_00ff_01:
+        name: Front Door Bell
       ev1527_0d97d0_0a:
         name: Front Door Open
+        fire_event: true
       ev1527_0d97d0_0e:
         name: Front Door Closed
+        fire_event: true
       ev1527_0b0aa0_0a:
         name: Back Door Open
+        fire_event: true
         aliases:
           - selectplus_07aafa_02
       ev1527_0b0aa0_0e:
         name: Back Door Closed
+        fire_event: true
         aliases:
           - selectplus_07aaf8_02
 binary_sensor:
-  - platform: template
-    friendly_name: Front Door
-    entity_id:
-      - switch.front_door_closed
-      - switch.front_door_open
-    sensors:
-      front_door:
-        device_class: opening
-        value_template: "{{(as_timestamp(states.switch.front_door_open.last_changed)) >= (as_timestamp(states.switch.front_door_closed.last_changed))}}"
-  - platform: template
-    friendly_name: Back Door
-    entity_id:
-      - switch.back_door_closed
-      - switch.back_door_open
-    sensors:
-      back_door:
-        device_class: opening
-        value_template: "{{(as_timestamp(states.switch.back_door_open.last_changed)) >= (as_timestamp(states.switch.back_door_closed.last_changed))}}"
+  - platform: mqtt
+    state_topic: 'hass/security/door/back'
+    name: Back Door
+    device_class: opening
+    payload_on: "true"
+    payload_off: "false"
+  - platform: mqtt
+    state_topic: 'hass/security/door/front'
+    name: Front Door
+    device_class: opening
+    payload_on: "true"
+    payload_off: "false"

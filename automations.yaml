@@ -1,1 +1,72 @@
-[]
+- id: '1538163208697'
+  alias: back_door_open
+  trigger:
+  - entity_id: switch.back_door_open
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.back_door_closed
+    service: switch.turn_off
+  - data:
+      payload: 'true'
+      qos: 2
+      retain: true
+      topic: hass/security/door/back
+    service: mqtt.publish
+- id: '1538163208698'
+  alias: back_door_closed
+  trigger:
+  - entity_id: switch.back_door_closed
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.back_door_open
+    service: switch.turn_off
+  - data:
+      payload: 'false'
+      qos: 2
+      retain: true
+      topic: hass/security/door/back
+    service: mqtt.publish
+- id: '1538163208597'
+  alias: front_door_open
+  trigger:
+  - entity_id: switch.front_door_open
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.front_door_closed
+    service: switch.turn_off
+  - data:
+      payload: 'true'
+      qos: 2
+      retain: true
+      topic: hass/security/door/front
+    service: mqtt.publish
+- id: '1538163208598'
+  alias: front_door_closed
+  trigger:
+  - entity_id: switch.front_door_closed
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.front_door_open
+    service: switch.turn_off
+  - data:
+      payload: 'false'
+      qos: 2
+      retain: true
+      topic: hass/security/door/front
+    service: mqtt.publish

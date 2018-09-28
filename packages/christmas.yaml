@@ -3,4 +3,6 @@ switch:
     devices:
       eurodomest_0a7e0f_01:
         name: Christmas Lights
+        signal_repetitions: 3
+
 

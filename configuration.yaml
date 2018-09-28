@@ -27,6 +27,10 @@ http:
  api_password: !secret http_api_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   # base_url: example.duckdns.org:8123
+ trusted_networks: 
+   - 127.0.0.1
+   - ::1
+   - 192.168.1.0/24
 
 # Checks for available updates
 # Note: This component will send some information about your system to
