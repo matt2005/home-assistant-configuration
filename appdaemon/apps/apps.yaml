@@ -49,6 +49,21 @@ bins_out:
   notification: 'googlepush'
   entity: 'sensor.bins_out'
   message: 'Bins out'  
+front_door:
+  module: notifystatechange
+  class: StateChangeNotify
+  namespace: master
+  notification: 'googlepush'
+  entity: 'binary_sensor.front_door'
+  message: 'Front Door'  
+back_door:
+  module: notifystatechange
+  class: StateChangeNotify
+  namespace: master
+  notification: 'googlepush'
+  entity: 'binary_sensor.back_door'
+  message: 'Back Door'  
+
 #nat_work:
 #  module: notifystatechange
 #  class: StateChangeNotify

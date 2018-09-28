@@ -489,13 +489,13 @@ views:
       - type: iframe
         aspect_ratio: 70%
         url: https://embed.windy.com/embed2.html?rain,51.291,-1.057,6
-#  - icon: mdi:cctv
-#    id: cameras
-#    title: Cameras
-#    cards:
-#      - type: picture-entity
-#        entity: camera.driveway
-#        show_info: false
+  - icon: mdi:cctv
+    id: cameras
+    title: Cameras
+    cards:
+      - type: picture-entity
+        entity: camera.baby
+        show_info: false
 #      - type: picture-entity
 #        entity: camera.patio
 #      - type: picture-entity

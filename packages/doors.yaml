@@ -32,14 +32,14 @@ homeassistant:
 
 binary_sensor:
   - platform: mqtt
-    state_topic: 'hass/loftpi/binary_sensor/back_door/state'
+    state_topic: 'hass/security/door/back'
     name: Back Door
     device_class: opening
-    payload_on: "on"
-    payload_off: "off"
+    payload_on: "true"
+    payload_off: "false"
   - platform: mqtt
-    state_topic: 'hass/loftpi/binary_sensor/front_door/state'
+    state_topic: 'hass/security/door/front'
     name: Front Door
     device_class: opening
-    payload_on: "on"
-    payload_off: "off"
+    payload_on: "true"
+    payload_off: "false"
