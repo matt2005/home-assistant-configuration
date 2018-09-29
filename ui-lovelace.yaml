@@ -33,11 +33,11 @@ resources:
     type: module
   - url: /local/lovelace-fullykiosk/lovelace-fullykiosk.js?v=1
     type: js
-  - url: /local//lovelace-fullykiosk/lovelace-fullykiosk-config.js?v=1
+  - url: /local//lovelace-fullykiosk/lovelace-fullykiosk-config.js?v=2
     type: js
   - url: /local/lovelace-player/lovelace-player.js?v=1
     type: js
-  - url: /local/lovelace-player/lovelace-player-config.js?v=1
+  - url: /local/lovelace-player/lovelace-player-config.js?v=2
     type: js
 title: My Home
 views:
