@@ -1,0 +1,16 @@
+light:
+  - platform: template
+    lights:
+      fire_dashboard_screen:
+        turn_on:
+        turn_off:
+        set_level:
+
+binary_sensor:
+  - platform: mqtt
+    name: fire_dashboard_motion
+    state_topic: hass/security/fire/motion
+
+media_player:
+  - platform: floorplan_speaker
+    name: fire_dashboard

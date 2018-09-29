@@ -31,7 +31,14 @@ resources:
     type: js
   - url: /local/custom_ui/button-card.js
     type: module
-
+  - url: /local/lovelace-fullykiosk/lovelace-fullykiosk.js?v=1
+    type: js
+  - url: /local//lovelace-fullykiosk/lovelace-fullykiosk-config.js?v=1
+    type: js
+  - url: /local/lovelace-player/lovelace-player.js?v=1
+    type: js
+  - url: /local/lovelace-player/lovelace-player-config.js?v=1
+    type: js
 title: My Home
 views:
   - icon: mdi:home-assistant
@@ -830,4 +837,15 @@ views:
 #        entity_forecast_icon_3: sensor.dark_sky_icon_3
 #        entity_forecast_icon_4: sensor.dark_sky_icon_4
 #        entity_forecast_icon_5: sensor.dark_sky_icon_5
-#
+  - icon: mdi:android
+    id: android
+    title: Android
+    cards:
+      - type: entities
+        title: Fire
+        show_header_toggle: false
+        entities:
+          - light.fire_dashboard_screen
+          - binary_sensor.fire_dashboard_motion
+          - media_player.fire_dashboard
+
