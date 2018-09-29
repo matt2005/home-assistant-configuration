@@ -726,7 +726,8 @@ views:
            - sensor.queries_cached
            - switch.pihole
            - switch.set_pihole_pass
-           - sensor.speedtest_download
+           - entity: sensor.speedtest_download
+             secondary_info: last-changed
            - sensor.speedtest_upload
            - sensor.speedtest_ping
            
