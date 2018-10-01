@@ -59,12 +59,6 @@ views:
           - sensor.loft_temperature
           - sensor.loft_humidity
       - type: entities
-        title: Doors
-        show_header_toggle: false
-        entities:
-          - binary_sensor.back_door
-          - binary_sensor.front_door
-      - type: entities
         title: heating
         show_header_toggle: false
         entities:
@@ -80,6 +74,39 @@ views:
            - sensor.outside_humidity
            - sensor.wind_gust_speed
            - sensor.relative_pressure
+  - icon: mdi:settings
+    id: security
+    title: Security
+    cards:
+      - type: entities
+        title: Home Security
+        show_header_toggle: false
+        entities:
+          - alarm_control_panel.ha_alarm
+      - type: entities
+        title: Doors
+        show_header_toggle: false
+        entities:
+          - binary_sensor.back_door
+          - binary_sensor.front_door
+      - type: entities
+        title: People
+        show_header_toggle: false
+        entities:
+          - binary_sensor.matt_presence
+          - device_tracker.matt_presence
+          - binary_sensor.nat_presence
+          - device_tracker.nat_presence
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:alarm_control_panel-card
+            entity: alarm_control_panel.ha_alarm
+            title: HA Alarm
+            states:
+              - arm_home
+              - arm_away
+
 #      - type: picture-elements
 #        # title: Main Level
 #        image: /local/floorplans/main.jpg
@@ -340,19 +367,6 @@ views:
 #              'font-family': Helvetica
 #              'display': block
 #              'overflow': hidden
-#      - type: horizontal-stack
-#        cards:
-#          - type: custom:alarm_control_panel-card
-#            entity: alarm_control_panel.abode_alarm
-#            title: Abode
-#            states:
-#              - arm_home
-#              - arm_away
-#          - type: custom:alarm_control_panel-card
-#            entity: alarm_control_panel.arlohome
-#            title: Arlo
-#            states:
-#              - arm_away
 #      - type: entities
 #        title: Investments
 #        entities:
@@ -375,23 +389,6 @@ views:
 #          - sensor.alok_to_home
 #          - sensor.plexspy
 #          - sensor.usdinr
-#      - type: entities
-#        title: Home Security
-#        show_header_toggle: false
-#        entities:
-#          - alarm_control_panel.abode_alarm
-#          - alarm_control_panel.arlohome
-#          # - alarm_control_panel.abode
-#          - input_select.abodestatus
-#          - cover.garagedoor
-#          - input_boolean.abodeupdate
-#          - binary_sensor.back_door
-#          - binary_sensor.front_door
-#          - binary_sensor.door_window_sensor_158d0001bf26df
-#          - input_boolean.startrecording
-#          - binary_sensor.motion_sensor_158d00016daecc
-#          - binary_sensor.motion_sensor_158d00016612af
-#          - binary_sensor.motion_sensor_158d0001a1f2ab
 #      - type: entities
 #        title: Lights
 #        entities:

@@ -17,10 +17,10 @@ hwcheck_slave:
 #  class: MonitorNotifier
 #  ttl: 1
 #  sensors_to_monitor: device_tracker.bingou8,device_tracker.pi_motog3
-#test_sensors:
-#  module: testsensors
-#  class: TestSensors
-#  namespace: master
+test_sensors:
+  module: testsensors
+  class: TestSensors
+  namespace: master
 #heating_test:
 #  module: heatinglogic
 #  class: HeatingLogic
@@ -49,20 +49,20 @@ bins_out:
   notification: 'googlepush'
   entity: 'sensor.bins_out'
   message: 'Bins out'  
-front_door:
-  module: notifystatechange
-  class: StateChangeNotify
-  namespace: master
-  notification: 'googlepush'
-  entity: 'binary_sensor.front_door'
-  message: 'Front Door'  
-back_door:
-  module: notifystatechange
-  class: StateChangeNotify
-  namespace: master
-  notification: 'googlepush'
-  entity: 'binary_sensor.back_door'
-  message: 'Back Door'  
+#front_door:
+#  module: notifystatechange
+#  class: StateChangeNotify
+#  namespace: master
+#  notification: 'googlepush'
+#  entity: 'binary_sensor.front_door'
+#  message: 'Front Door'  
+#back_door:
+#  module: notifystatechange
+#  class: StateChangeNotify
+#  namespace: master
+#  notification: 'googlepush'
+#  entity: 'binary_sensor.back_door'
+#  message: 'Back Door'  
 
 #nat_work:
 #  module: notifystatechange
@@ -72,5 +72,22 @@ back_door:
 #  entity: 'sensor.work'
 #  message: 'Nat Work'  
 
+presencetracker_matt:
+  module: presencetracker
+  class: PresenceTracker
+  namespace: master
+  binary_sensor: binary_sensor.matt_presence #<for testing will using binary sensor once working>
+  device_tracker: device_tracker.matt_presence
+  known_devices: 'group.known_devices'
+  notification: 'googlepush'
+  friendly_name: "Matt"
 
-
+presencetracker_nat:
+  module: presencetracker
+  class: PresenceTracker
+  namespace: master
+  binary_sensor: binary_sensor.nat_presence #<for testing will using binary sensor once working>
+  device_tracker: device_tracker.nat_presence
+  known_devices: 'group.known_devices'
+  notification: 'googlepush'
+  friendly_name: "Nat"

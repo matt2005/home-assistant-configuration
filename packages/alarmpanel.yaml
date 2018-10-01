@@ -1,0 +1,67 @@
+homeassistant:
+  customize_glob:
+    "sensor.*_alarm_panel*":
+      emulated_hue_hidden: True
+      hidden: False
+    "binary_sensor.*_alarm_panel*":
+      emulated_hue_hidden: True
+      hidden: False
+
+alarm_control_panel:
+  - platform: manual_mqtt
+    state_topic: security/alarm
+    command_topic: security/alarm/set
+    pending_time: 60
+    trigger_time: 1800
+    disarm_after_trigger: false
+    delay_time: 30
+    armed_home:
+      pending_time: 0
+      delay_time: 0
+    armed_away:
+      pending_time: 60
+      delay_time: 30
+
+sensor:
+  - platform: mqtt
+    state_topic: "security/alarmpanel/sensor/battery"
+    name: "Alarm Panel Battery Level"
+    unit_of_measurement: "%"
+    value_template: ''
+  - platform: mqtt
+    state_topic: "security/alarmpanel/sensor/temperature"
+    name: "Alarm Panel Temperature"
+    unit_of_measurement: "°C"
+    value_template: ''
+  - platform: mqtt
+    state_topic: "security/alarmpanel/sensor/light"
+    name: "Alarm Panel Light Level"
+    unit_of_measurement: "lx"
+    value_template: ''
+  - platform: mqtt
+    state_topic: "security/alarmpanel/sensor/magneticField"
+    name: "Alarm Panel Magnetic Field"
+    unit_of_measurement: "uT"
+    value_template: ''
+  - platform: mqtt
+    state_topic: "security/alarmpanel/sensor/pressure"
+    name: "Alarm Panel Pressure"
+    unit_of_measurement: "hPa"
+    value_template: ''
+  - platform: mqtt
+    state_topic: "security/alarmpanel/sensor/qrcode"
+    name: "Alarm Panel QR Code"
+    value_template: ''
+binary_sensor:
+  - platform: mqtt
+    state_topic: "security/alarmpanel/sensor/motion"
+    name: "Motion"
+    payload_on: '{"value":true}'
+    payload_off: '{"value":false}'
+    device_class: motion 
+  - platform: mqtt
+    state_topic: "security/alarmpanel/sensor/face"
+    name: "Face Detected"
+    payload_on: '{"value":true}'
+    payload_off: '{"value":false}'
+    device_class: motion 
