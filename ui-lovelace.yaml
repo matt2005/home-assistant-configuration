@@ -581,9 +581,9 @@ views:
     id: cameras
     title: Cameras
     cards:
-#      - type: picture-entity
-#        entity: camera.baby
-#        show_info: false
+      - type: picture-entity
+        entity: camera.baby
+        show_info: false
       - type: custom:monster-card
         card:
           type: entities
