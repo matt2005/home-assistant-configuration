@@ -38,3 +38,6 @@ gactions
 compiled
 appdaemon.yaml
 .HA_VERSION
+adbkey
+adbkey.pub
+
