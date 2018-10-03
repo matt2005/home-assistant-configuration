@@ -76,7 +76,7 @@ presencetracker_matt:
   module: presencetracker
   class: PresenceTracker
   namespace: master
-  binary_sensor: binary_sensor.matt_presence #<for testing will using binary sensor once working>
+  binary_sensor: binary_sensor.matt_presence 
   device_tracker: device_tracker.matt_presence
   known_devices: 'group.known_devices'
   notification: 'googlepush'
@@ -86,8 +86,18 @@ presencetracker_nat:
   module: presencetracker
   class: PresenceTracker
   namespace: master
-  binary_sensor: binary_sensor.nat_presence #<for testing will using binary sensor once working>
+  binary_sensor: binary_sensor.nat_presence 
   device_tracker: device_tracker.nat_presence
   known_devices: 'group.known_devices'
   notification: 'googlepush'
   friendly_name: "Nat"
+
+presencetracker_evie:
+  module: presencetracker
+  class: PresenceTracker
+  namespace: master
+  binary_sensor: binary_sensor.evie_presence 
+  device_tracker: device_tracker.evie_presence
+  known_devices: 'group.known_devices'
+  notification: 'googlepush'
+  friendly_name: "Evie"

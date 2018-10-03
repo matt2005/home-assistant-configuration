@@ -1,0 +1,16 @@
+binary_sensor:
+- platform: bayesian
+  prior: 0.5
+  name: 'Evie Presence'
+  probability_threshold: 0.9
+  observations:
+    - entity_id: 'binary_sensor.nat_presence'
+      prob_given_true: 0.9
+      prob_given_false: 0.1
+      platform: 'state'
+      to_state: 'on'
+    - entity_id: 'binary_sensor.matt_presence'
+      prob_given_true: 0.5
+      prob_given_false: 0.3
+      platform: 'state'
+      to_state: 'on'

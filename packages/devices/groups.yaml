@@ -90,6 +90,9 @@ group:
       - device_tracker.sammi_phone
       - device_tracker.repeater_sammi_phone
       - device_tracker.kindlefire
+      - device_tracker.matt_presence
+      - device_tracker.nat_presence
+      - device_tracker.evie_presence
 
 
 

@@ -51,7 +51,7 @@ class PresenceTracker(hass.Hass):
             membership = groupcheck["attributes"]["entity_id"].append(
                 entity.lower())
             self.log_notify("updating group membership: {}"
-                            .format(entity.lower()), "WARNING")
+                            .format(entity.lower()), "INFO")
             self.set_state(entity,
                            attributes={"assumed_state": False,
                                        "entity_id": [membership]})

@@ -97,6 +97,8 @@ views:
           - device_tracker.matt_presence
           - binary_sensor.nat_presence
           - device_tracker.nat_presence
+          - binary_sensor.evie_presence
+          - device_tracker.evie_presence
 
       - type: horizontal-stack
         cards:
