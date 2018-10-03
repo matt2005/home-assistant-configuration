@@ -101,3 +101,8 @@ presencetracker_evie:
   known_devices: 'group.known_devices'
   notification: 'googlepush'
   friendly_name: "Evie"
+
+rene:
+  class: input_boolean
+  module: input_boolean
+  name: switch.rene

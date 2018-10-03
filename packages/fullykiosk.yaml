@@ -11,6 +11,6 @@ binary_sensor:
     name: fire_dashboard_motion
     state_topic: hass/security/fire/motion
 
-media_player:
-  - platform: floorplan_speaker
-    name: fire_dashboard
+#media_player:
+#  - platform: floorplan_speaker
+#    name: fire_dashboard
