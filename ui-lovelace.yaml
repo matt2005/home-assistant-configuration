@@ -100,8 +100,10 @@ views:
         title: Doors
         show_header_toggle: false
         entities:
-          - binary_sensor.back_door
-          - binary_sensor.front_door
+          - entity: binary_sensor.back_door
+            secondary_info: last-changed
+          - entity: binary_sensor.front_door
+            secondary_info: last-changed
       - id: fe6c89dad0d047479ff71724c3f6f560  # Automatically created id
         type: glance
         title: People
@@ -223,6 +225,7 @@ views:
         filter:
           include:
             - entity_id: '*masterbed*'
+            - entity_id: '*master_bedroom*'
       - id: f9983673eb954caab0cb9b110609883c  # Automatically created id
         type: custom:monster-card
         card:
