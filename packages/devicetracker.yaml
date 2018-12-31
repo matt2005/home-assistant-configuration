@@ -11,12 +11,12 @@ device_tracker:
       hide_if_away: true
     username: !secret ROUTER_ADMIN_USERNAME
     password: !secret ROUTER_ADMIN_PASSWORD
-  - platform: owntracks
-    max_gps_accuracy: 500
-    waypoints: True
-    new_device_defaults:
-      track_new_devices: true
-      hide_if_away: False
+#  - platform: owntracks
+#    max_gps_accuracy: 500
+#    waypoints: True
+#    new_device_defaults:
+#      track_new_devices: true
+#      hide_if_away: False
 #  - platform: luci
 #    host: !secret AP1_IP_ADDRESS
 #    new_device_defaults:

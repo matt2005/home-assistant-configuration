@@ -1,0 +1,135 @@
+###############################################################################
+#   @author         :   Matthew Hilton
+#   @date           :   12/03/2018
+#   @package        :   Home Assistant
+#   @description    :   Garden
+###############################################################################
+homeassistant:
+  customize:
+
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'garden'
+
+      exposed: &exposed
+        <<: *customize
+        emulated_hue: true
+        homebridge_hidden: false
+        critical: true
+
+      not_exposed: &not_exposed
+        <<: *customize
+        emulated_hue: false
+        homebridge_hidden: true
+        critical: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        critical: false
+
+    group.garden:
+      <<: *customize
+      friendly_name: "garden"
+    light.garden_lights:
+      <<: *customize
+      friendly_name: "garden Lights"
+      icon: mdi:lightbulb
+    group.garden_switches:
+      <<: *customize
+      friendly_name: "garden Switches"
+    sensor.garden_temperature:
+      <<: *customize
+      friendly_name: "garden Temperature"
+      icon: mdi:thermometer-lines
+      unit_of_measurement: '°C'
+    sensor.garden_humidity:
+      <<: *customize
+      friendly_name: "garden Humidity"
+      unit_of_measurement: '%'
+    binary_sensor.garden_occupancy:
+      <<: *customize
+      friendly_name: "garden Occupancy"
+    binary_sensor.garden_door:
+      <<: *customize
+      friendly_name: "garden Door"
+    binary_sensor.garden_window:
+      <<: *customize
+      friendly_name: "garden Window"
+    switch.garden_switch:
+      <<: *customize
+      friendly_name: "garden Switch"
+    light.garden_light:
+      <<: *customize
+      friendly_name: "garden Light"
+
+group:
+  garden:
+    control: hidden
+    entities:
+      - sensor.garden_temperature
+      - sensor.garden_humidity
+      - binary_sensor.garden_occupancy
+      - binary_sensor.garden_door
+      - binary_sensor.garden_window
+      - group.garden_switches
+      - light.garden_lights
+  garden_switches:
+    entities:
+      - switch.garden_switch
+sensor:
+  - platform: template
+    sensors:
+      garden_temperature:
+        value_template: '{{states.sensor.template.state}}'
+      garden_humidity:
+        value_template: '{{states.sensor.template.state}}'
+
+binary_sensor:
+  - platform: template
+    sensors:
+      garden_occupancy:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: occupancy
+      garden_door:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: door
+      garden_window:
+        value_template: "{{ is_state('binary_sensor.template', 'on')}}"
+        device_class: window
+
+switch:
+  - platform: template
+    switches:
+      garden_switch:
+        value_template: "{{ is_state('switch.template', 'on') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.template
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.template
+
+light:
+  - platform: template
+    lights:
+      garden_light:
+        value_template: "{{ is_state('light.template', 'on') }}"
+        turn_on:
+          service: light.turn_on
+          data:
+            entity_id: light.template
+        turn_off:
+          service: light.turn_off
+          data:
+            entity_id: light.template
+  - platform: group
+    name: garden lights
+    entities:
+      - light.garden_light

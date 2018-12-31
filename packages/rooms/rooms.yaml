@@ -47,13 +47,14 @@ group:
     entities:
       - group.upstairs
       - group.downstairs
-      - group.outside
+      - group.garden
   outside:
     name: Outside
     control: hidden
     entities:
       - group.shed
       - group.greenhouse
+      - group.garden
   upstairs:
     name: Upstairs
     control: hidden

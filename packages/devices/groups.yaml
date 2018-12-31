@@ -93,6 +93,8 @@ group:
       - device_tracker.matt_presence
       - device_tracker.nat_presence
       - device_tracker.evie_presence
+      - device_tracker.matt_iphone_repeater
+      - device_tracker.matt_iphone
 
 
 

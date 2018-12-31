@@ -1,0 +1,15 @@
+binary_sensor:
+  - platform: trend
+    sensors:
+      inside_temp_falling:
+        entity_id: sensor.inside_temperature
+        sample_duration: 600
+        max_samples: 20
+        min_gradient: -0.00020
+        device_class: cold
+      inside_temp_rising:
+        entity_id: sensor.inside_temperature
+        sample_duration: 600
+        max_samples: 20
+        min_gradient: 0.00020
+        device_class: heat

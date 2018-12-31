@@ -1,4 +1,0 @@
-device_tracker:
-  - platform: google_maps
-    username: !secret google_location_user
-    password: !secret google_location_pass

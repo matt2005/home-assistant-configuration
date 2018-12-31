@@ -1,5 +1,5 @@
 logger:
-  default: error
+  default: info
   logs:
     homeassistant.core: error
     homeassistant.setup: error
@@ -25,4 +25,11 @@ logger:
     homeassistant.components.rflink: error
     homeassistant.components.emulated_hue: debug
     homeassistant.components.emulated_hue.upnp: debug
-
+    suds: info
+    suds.xsd.sxbase: info
+    suds.xsd.query: info
+    suds.xsd.schema: info
+    suds.xsd.sxbasic: info
+    suds.metrics: info
+    suds.transport.http: info
+    suds.xsd.deplist: info

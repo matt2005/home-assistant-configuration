@@ -49,12 +49,15 @@ views:
     title: Home
     # theme: darkorange
     cards:
-      - type: entities
+      - id: 5d4621563a8046ad825a3051351a0986  # Automatically created id
+        type: entities
         title: Lights
         show_header_toggle: false
         entities:
           - light.master_bedroom
-      - type: custom:monster-card
+          - light.garden_light
+      - id: 05ef5dcdf75d41969b75845a5c376e6f  # Automatically created id
+        type: custom:monster-card
         card:
           type: entities
           title: Loft
@@ -62,38 +65,45 @@ views:
         filter:
           include:
             - entity_id: '*loft*'
-      - type: entities
+      - id: 738a220b6d8b4d68a945bed3872f031f  # Automatically created id
+        type: entities
         title: heating
         show_header_toggle: false
         entities:
-            - switch.immersion_heater
-      - type: entities
+          - switch.immersion_heater
+          - binary_sensor.inside_temp_falling
+          - binary_sensor.inside_temp_rising
+      - id: 5bc8065fafc34e2e8315b4a2d4164cef  # Automatically created id
+        type: entities
         title: weatherstation
         show_header_toggle: false
         entities:
-           - sensor.inside_temperature
-           - sensor.inside_humidity
-           - sensor.average_wind_speed
-           - sensor.outside_temperature
-           - sensor.outside_humidity
-           - sensor.wind_gust_speed
-           - sensor.relative_pressure
+          - sensor.inside_temperature
+          - sensor.inside_humidity
+          - sensor.average_wind_speed
+          - sensor.outside_temperature
+          - sensor.outside_humidity
+          - sensor.wind_gust_speed
+          - sensor.relative_pressure
   - icon: mdi:security
     id: security
     title: Security
     cards:
-      - type: entities
+      - id: 81d59524d11e4a4aaac48bfb2ed549b9  # Automatically created id
+        type: entities
         title: Home Security
         show_header_toggle: false
         entities:
           - alarm_control_panel.ha_alarm
-      - type: entities
+      - id: 8accc3801d7d490f9397b67dfebb74cb  # Automatically created id
+        type: entities
         title: Doors
         show_header_toggle: false
         entities:
           - binary_sensor.back_door
           - binary_sensor.front_door
-      - type: glance
+      - id: fe6c89dad0d047479ff71724c3f6f560  # Automatically created id
+        type: glance
         title: People
         show_header_toggle: false
         entities:
@@ -101,7 +111,8 @@ views:
           - device_tracker.nat_presence
           - device_tracker.evie_presence
 
-      - type: horizontal-stack
+      - id: 510ab5def06e4258941031e0cef2b5b7  # Automatically created id
+        type: horizontal-stack
         cards:
           - type: custom:alarm_control_panel-card
             entity: alarm_control_panel.ha_alarm
@@ -113,13 +124,15 @@ views:
     id: weather
     title: Weather
     cards:
-      - type: entities
+      - id: e631b276a27044339e56d193ef9b5576  # Automatically created id
+        type: entities
         title: Weather
         entities:
           - sensor.dark_sky_cloud_coverage
           - sensor.dark_sky_hourly_summary
           - sensor.dark_sky_daily_summary
-      - type: entities
+      - id: c59f39f461f843679fe3305caae7c405  # Automatically created id
+        type: entities
         title: Forecast
         entities:
           - sensor.forecast_0
@@ -130,14 +143,16 @@ views:
           - sensor.forecast_5
           - sensor.forecast_6
           - sensor.forecast_7
-      - type: iframe
+      - id: 0d8db09732bd40f592ecc3dd44520a9f  # Automatically created id
+        type: iframe
         aspect_ratio: 70%
         url: https://embed.windy.com/embed2.html?rain,51.291,-1.057,6
   - icon: mdi:home
     id: outside
     title: Outside
     cards:
-      - type: custom:monster-card
+      - id: e5e6a849218e4c89a0c4ff0af0bd0ef7  # Automatically created id
+        type: custom:monster-card
         card:
           type: entities
           title: Shed
@@ -145,7 +160,8 @@ views:
         filter:
           include:
             - entity_id: '*shed*'
-      - type: custom:monster-card
+      - id: d0aa638e85aa4d96a845658b813e5c27  # Automatically created id
+        type: custom:monster-card
         card:
           type: entities
           title: Greenhouse
@@ -158,7 +174,8 @@ views:
     id: groundfloor
     title: Ground Floor
     cards:
-      - type: custom:monster-card
+      - id: 3b16ce7830ba4df0b2dae1c3bb289fc3  # Automatically created id
+        type: custom:monster-card
         card:
           type: entities
           title: Livingroom
@@ -166,7 +183,8 @@ views:
         filter:
           include:
             - entity_id: '*living*'
-      - type: custom:monster-card
+      - id: 86a3e374b36a447f8797771c7515a01b  # Automatically created id
+        type: custom:monster-card
         card:
           type: entities
           title: Kitchen
@@ -174,7 +192,8 @@ views:
         filter:
           include:
             - entity_id: '*kitchen*'
-      - type: custom:monster-card
+      - id: b7c6ffd6d7144dd6b67df70a50f5579a  # Automatically created id
+        type: custom:monster-card
         card:
           type: entities
           title: Utility room
@@ -186,7 +205,8 @@ views:
     id: firstfloor
     title: First Floor
     cards:
-      - type: custom:monster-card
+      - id: 79f9836acdcb430784c5419f3124806f  # Automatically created id
+        type: custom:monster-card
         card:
           type: entities
           title: Bathroom
@@ -194,7 +214,8 @@ views:
         filter:
           include:
             - entity_id: '*bathroom*'
-      - type: custom:monster-card
+      - id: c6ff7c5c00ba45c89448eaff9bba2146  # Automatically created id
+        type: custom:monster-card
         card:
           type: entities
           title: Masterbed
@@ -202,7 +223,8 @@ views:
         filter:
           include:
             - entity_id: '*masterbed*'
-      - type: custom:monster-card
+      - id: f9983673eb954caab0cb9b110609883c  # Automatically created id
+        type: custom:monster-card
         card:
           type: entities
           title: Little Bedroom
@@ -210,7 +232,8 @@ views:
         filter:
           include:
             - entity_id: '*littlebed*'
-      - type: custom:monster-card
+      - id: 33e7c9c5e7f34a7583934937e8ea5562  # Automatically created id
+        type: custom:monster-card
         card:
           type: entities
           title: Guest Bedroom
@@ -223,7 +246,8 @@ views:
     icon: mdi:cctv
     panel: true
     cards:
-      - type: custom:surveillance-card
+      - id: dc2e7a39ccad421f996f9cac0af9369a  # Automatically created id
+        type: custom:surveillance-card
         thumb_interval: 15
         update_interval: 2
         cameras:
@@ -233,7 +257,8 @@ views:
     id: media
     title: Media
     cards:
-      - type: custom:monster-card
+      - id: 60e21f8b94dc485594e4457ce1de5236  # Automatically created id
+        type: custom:monster-card
         card:
           type: entities
           title: Media Players
@@ -244,7 +269,8 @@ views:
     id: settings
     title: Settings
     cards:
-      - type: entities
+      - id: b76445e158084f239d3a7011c7e25666  # Automatically created id
+        type: entities
         title: HASS Details
         show_header_toggle: false
         entities:
@@ -254,60 +280,70 @@ views:
             secondary_info: last-changed
           - sensor.ssl_certificate_expiry
           - input_select.current_theme
-      - type: entities
+      - id: f88141f068f0459fbb4e40e1d08a4690  # Automatically created id
+        type: entities
         title: Network Details
         show_header_toggle: false
         entities:
-           - sensor.dns_queries_today
-           - sensor.domains_being_blocked
-           - sensor.ads_blocked_today
-           - sensor.ads_percentage_today
-           - sensor.unique_domains
-           - sensor.queries_forwarded
-           - sensor.queries_cached
-           - switch.pihole
-           - switch.set_pihole_pass
-           - entity: sensor.speedtest_download
-             secondary_info: last-changed
-           - sensor.speedtest_upload
-           - sensor.speedtest_ping
-           
+          - sensor.dns_queries_today
+          - sensor.domains_being_blocked
+          - sensor.ads_blocked_today
+          - sensor.ads_percentage_today
+          - sensor.unique_domains
+          - sensor.queries_forwarded
+          - sensor.queries_cached
+          - switch.pihole
+          - switch.set_pihole_pass
+          - entity: sensor.speedtest_download
+            secondary_info: last-changed
+          - sensor.speedtest_upload
+          - sensor.speedtest_ping
+
   - icon: mdi:test-tube
     id: test
     title: Testing
     cards:
-      - type: glance
+      - id: a6926c2006674266826ccffd54c1d2e6  # Automatically created id
+        type: glance
         title: Devices
         entities:
           - entity: device_tracker.matt_matt
             title: Owntracks
           - entity: device_tracker.matt_presence
-            title: "AppDaemon Matt"
+            title: AppDaemon Matt
           - entity: device_tracker.repeater_matt_phone
-            title: "Matt Phone Repeater"
+            title: Matt Phone Repeater
           - entity: device_tracker.nat_nat
             title: Owntracks
           - entity: device_tracker.nat_presence
-            title: "AppDaemon Nat"
+            title: AppDaemon Nat
           - entity: device_tracker.repeater_nat_phone
-            title: "Nat Phone Repeater"
-      - type: map
+            title: Nat Phone Repeater
+          - entity: device_tracker.matt_iphone
+            title: Matt iPhone
+          - entity: device_tracker.matt_iphone_repeater
+            title: Matt iPhone Repeater
+
+      - id: f598fd6500b74f81b1ea5f7170253cca  # Automatically created id
+        type: map
         entities:
           - entity: device_tracker.matt_matt
           - entity: device_tracker.nat_nat
           - zone.home
-      - type: custom:monster-card
+      - id: c395487310194d2ca5590ded4cab8d7e  # Automatically created id
+        type: custom:monster-card
         card:
           type: entities
           title: Things that are probably broken
         filter:
           include:
-            - state: "unknown"
+            - state: unknown
   - icon: mdi:android
     id: android
     title: Android
     cards:
-      - type: entities
+      - id: 5f15be99e80d4f378fb175de1ecaa264  # Automatically created id
+        type: entities
         title: Fire
         show_header_toggle: false
         entities:

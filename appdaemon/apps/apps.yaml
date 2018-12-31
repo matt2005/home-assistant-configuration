@@ -71,6 +71,14 @@ bins_out:
 #  notification: 'googlepush'
 #  entity: 'sensor.work'
 #  message: 'Nat Work'  
+#inside_temp_rising:
+#  module: notifystatechange
+#  class: StateChangeNotify
+#  namespace: master
+#  notification: 'googlepush'
+#  entity: 'binary_sensor.inside_temp_rising'
+#  message: 'Inside Temp rising'  
+
 
 presencetracker_matt:
   module: presencetracker
@@ -101,8 +109,3 @@ presencetracker_evie:
   known_devices: 'group.known_devices'
   notification: 'googlepush'
   friendly_name: "Evie"
-
-rene:
-  class: input_boolean
-  module: input_boolean
-  name: switch.rene
