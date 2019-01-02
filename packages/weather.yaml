@@ -1,27 +1,27 @@
 sensor:
   - platform: rflink
     devices:
-      dkw2012_0025_bat:
+      dkw2012_0076_bat:
         name: WeatherStation Battery
         sensor_type: battery
-      dkw2012_0025_hum:
+      dkw2012_0076_hum:
         name: WeatherStation Humidity
         sensor_type: humidity
-      dkw2012_0025_raintot:
+      dkw2012_0076_raintot:
         name: WeatherStation Rain Total
         sensor_type: total_rain
-      dkw2012_0025_rain:
+      dkw2012_0076_rain:
         name: WeatherStation Rain
         sensor_type: rain_rate
-      dkw2012_0025_temp:
+      dkw2012_0076_temp:
         name: WeatherStation Temperature
         sensor_type: temperature
-      dkw2012_0025_windir:
+      dkw2012_0076_windir:
         name: WeatherStation Wind Direction
         sensor_type: winddirection
-      dkw2012_0025_wings:
+      dkw2012_0076_wings:
         name: WeatherStation Wind Gust
         sensor_type: windgusts
-      dkw2012_0025_winsp:
+      dkw2012_0076_winsp:
         name: WeatherStation Wind Speed
         sensor_type: windspeed
