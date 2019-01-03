@@ -64,3 +64,141 @@ binary_sensor:
     device_class: opening
     payload_on: "true"
     payload_off: "false"
+automation:
+  - id: resetbackdoorsopenonstartup
+    alias: 'Reset Opened Back Door on startup'
+    initial_state: 'on'
+    trigger:
+     - platform: homeassistant
+       event: start
+    condition:
+    - condition: template
+      value_template:  >-
+        {{ states.binary_sensor.back_door.state == 'on' }}
+    action:
+    - service: switch.turn_on
+      entity_id: switch.back_door_open
+    - service: switch.turn_off
+      entity_id: switch.back_door_closed
+  - id: resetbackdoorsclosedonstartup
+    alias: 'Reset Closed Back Door on startup'
+    initial_state: 'on'
+    trigger:
+     - platform: homeassistant
+       event: start
+    condition:
+    - condition: template
+      value_template:  >-
+        {{ states.binary_sensor.back_door.state == 'off' }}
+    action:
+    - service: switch.turn_off
+      entity_id: switch.back_door_open
+    - service: switch.turn_on
+      entity_id: switch.back_door_closed
+  - id: resetfrontdoorsopenonstartup
+    alias: 'Reset Opened Front Door on startup'
+    initial_state: 'on'
+    trigger:
+     - platform: homeassistant
+       event: start
+    condition:
+    - condition: template
+      value_template:  >-
+        {{ states.binary_sensor.front_door.state == 'on' }}
+    action:
+    - service: switch.turn_on
+      entity_id: switch.front_door_open
+    - service: switch.turn_off
+      entity_id: switch.front_door_closed
+  - id: resetfrontdoorsclosedonstartup
+    alias: 'Reset Closed front Door on startup'
+    initial_state: 'on'
+    trigger:
+     - platform: homeassistant
+       event: start
+    condition:
+    - condition: template
+      value_template:  >-
+        {{ states.binary_sensor.front_door.state == 'off' }}
+    action:
+    - service: switch.turn_off
+      entity_id: switch.front_door_open
+    - service: switch.turn_on
+      entity_id: switch.front_door_closed
+  - id: 'backdooropen'
+    alias: back door open
+    initial_state: 'on'
+    trigger:
+    - entity_id: switch.back_door_open
+      from: 'off'
+      platform: state
+      to: 'on'
+    condition: []
+    action:
+    - data:
+        entity_id: switch.back_door_closed
+      service: switch.turn_off
+    - data:
+        payload: 'true'
+        qos: 2
+        retain: true
+        topic: hass/security/door/back
+      service: mqtt.publish
+  - id: 'backdoorclosed'
+    alias: back door closed
+    initial_state: 'on'
+    trigger:
+    - entity_id: switch.back_door_closed
+      from: 'off'
+      platform: state
+      to: 'on'
+    condition: []
+    action:
+    - data:
+        entity_id: switch.back_door_open
+      service: switch.turn_off
+    - data:
+        payload: 'false'
+        qos: 2
+        retain: true
+        topic: hass/security/door/back
+      service: mqtt.publish
+  - id: 'frontdooropen'
+    alias: front door open
+    initial_state: 'on'
+    trigger:
+    - entity_id: switch.front_door_open
+      from: 'off'
+      platform: state
+      to: 'on'
+    condition: []
+    action:
+    - data:
+        entity_id: switch.front_door_closed
+      service: switch.turn_off
+    - data:
+        payload: 'true'
+        qos: 2
+        retain: true
+        topic: hass/security/door/front
+      service: mqtt.publish
+  - id: 'frontdoorclosed'
+    alias: front door closed
+    initial_state: 'on'
+    trigger:
+    - entity_id: switch.front_door_closed
+      from: 'off'
+      platform: state
+      to: 'on'
+    condition: []
+    action:
+    - data:
+        entity_id: switch.front_door_open
+      service: switch.turn_off
+    - data:
+        payload: 'false'
+        qos: 2
+        retain: true
+        topic: hass/security/door/front
+      service: mqtt.publish
+
