@@ -311,13 +311,15 @@ views:
         title: Devices
         entities:
           - entity: device_tracker.matt_matt
-            title: Owntracks
+            title: Matt Owntracks
+          - entity: device_tracker.motog3
+            title: Matt MotoG3 (Ariela)
           - entity: device_tracker.matt_presence
             title: AppDaemon Matt
           - entity: device_tracker.repeater_matt_phone
             title: Matt Phone Repeater
           - entity: device_tracker.nat_nat
-            title: Owntracks
+            title: Nat Owntracks
           - entity: device_tracker.nat_presence
             title: AppDaemon Nat
           - entity: device_tracker.repeater_nat_phone
