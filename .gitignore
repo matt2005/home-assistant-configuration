@@ -41,3 +41,5 @@ appdaemon.yaml
 adbkey
 adbkey.pub
 .google_maps_location_sharing.cookies
+fcm_android_registrations.conf
+
