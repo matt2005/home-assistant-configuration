@@ -15,7 +15,7 @@ resources:
     type: js
   - url: /local/custom_ui/alarm_control_panel-card.js?v=1.1
     type: js
-  - url: /local/surveillance-card/surveillance-card.js?v=0.1
+  - url: /local/surveillance-card/surveillance-card.js?v=0.2
     type: module
   - url: /local/custom-lovelace/thermostat-card/thermostat-card.js?v=1.3
     type: module
@@ -37,10 +37,10 @@ resources:
     type: js
   - url: /local//lovelace-fullykiosk/lovelace-fullykiosk-config.js?v=2
     type: js
-  - url: /local/lovelace-player/lovelace-player.js?v=1
-    type: js
-  - url: /local/lovelace-player/lovelace-player-config.js?v=2
-    type: js
+#  - url: /local/lovelace-player/lovelace-player.js?v=1
+#    type: js
+#  - url: /local/lovelace-player/lovelace-player-config.js?v=2
+#    type: js
 title: My Home
 views:
   - icon: mdi:home-assistant
@@ -56,6 +56,7 @@ views:
         entities:
           - light.master_bedroom
           - light.garden_light
+          - light.hue_white_lamp_2
       - id: 05ef5dcdf75d41969b75845a5c376e6f  # Automatically created id
         type: custom:monster-card
         card:
@@ -94,7 +95,8 @@ views:
         title: Home Security
         show_header_toggle: false
         entities:
-          - alarm_control_panel.ha_alarm
+          - entity: alarm_control_panel.ha_alarm
+            secondary_info: last-changed
       - id: 8accc3801d7d490f9397b67dfebb74cb  # Automatically created id
         type: entities
         title: Doors
@@ -104,14 +106,27 @@ views:
             secondary_info: last-changed
           - entity: binary_sensor.front_door
             secondary_info: last-changed
+          - entity: sensor.back_door_open_time
+            secondary_info: last-changed
+          - entity: sensor.front_door_open_time
+            secondary_info: last-changed
       - id: fe6c89dad0d047479ff71724c3f6f560  # Automatically created id
         type: glance
         title: People
         show_header_toggle: false
         entities:
-          - device_tracker.matt_presence
-          - device_tracker.nat_presence
-          - device_tracker.evie_presence
+          - entity: binary_sensor.matt_presence
+            secondary_info: last-changed
+          - entity: binary_sensor.nat_presence
+            secondary_info: last-changed
+          - entity: binary_sensor.evie_presence
+            secondary_info: last-changed
+          - entity: sensor.matt_home_time
+          - entity: sensor.matt_away_time
+          - entity: sensor.nat_home_time
+          - entity: sensor.nat_away_time
+          - entity: sensor.evie_home_time
+          - entity: sensor.evie_away_time
 
       - id: 510ab5def06e4258941031e0cef2b5b7  # Automatically created id
         type: horizontal-stack
@@ -129,6 +144,7 @@ views:
       - id: e631b276a27044339e56d193ef9b5576  # Automatically created id
         type: entities
         title: Weather
+        show_header_toggle: false
         entities:
           - sensor.dark_sky_cloud_coverage
           - sensor.dark_sky_hourly_summary
@@ -136,6 +152,7 @@ views:
       - id: c59f39f461f843679fe3305caae7c405  # Automatically created id
         type: entities
         title: Forecast
+        show_header_toggle: false
         entities:
           - sensor.forecast_0
           - sensor.forecast_1
@@ -244,18 +261,6 @@ views:
         filter:
           include:
             - entity_id: '*guestbed*'
-  - title: Surveillance
-    id: surveillance
-    icon: mdi:cctv
-    panel: true
-    cards:
-      - id: dc2e7a39ccad421f996f9cac0af9369a  # Automatically created id
-        type: custom:surveillance-card
-        thumb_interval: 15
-        update_interval: 2
-        cameras:
-          - entity: camera.baby
-            motion_entity: binary_sensor.littlebed_motion
   - icon: mdi:play-circle-outline
     id: media
     title: Media
@@ -265,6 +270,7 @@ views:
         card:
           type: entities
           title: Media Players
+          show_header_toggle: false
         filter:
           include:
             - domain: media_player
@@ -314,14 +320,14 @@ views:
             title: Matt Owntracks
           - entity: device_tracker.motog3
             title: Matt MotoG3 (Ariela)
-          - entity: device_tracker.matt_presence
-            title: AppDaemon Matt
+          - entity: binary_sensor.matt_presence
+            title: Bay Matt
           - entity: device_tracker.repeater_matt_phone
             title: Matt Phone Repeater
           - entity: device_tracker.nat_nat
             title: Nat Owntracks
-          - entity: device_tracker.nat_presence
-            title: AppDaemon Nat
+          - entity: binary_sensor.nat_presence
+            title: Bay Nat
           - entity: device_tracker.repeater_nat_phone
             title: Nat Phone Repeater
           - entity: device_tracker.matt_iphone
@@ -340,18 +346,71 @@ views:
         card:
           type: entities
           title: Things that are probably broken
+          show_header_toggle: false
         filter:
           include:
             - state: unknown
-  - icon: mdi:android
-    id: android
-    title: Android
+  - icon: mdi:account-multiple
+    id: People
+    title: People
     cards:
-      - id: 5f15be99e80d4f378fb175de1ecaa264  # Automatically created id
-        type: entities
-        title: Fire
+      - id: c07e64c970694488b2ebd3596333ba98  # (new-guid).guid.replace('-','') | clip
+        type: custom:monster-card
+        card:
+          type: entities
+          title: Presence Sensors
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: 'binary_sensor.*_presence'
+      - id: deefd0753fb94b2d8e21227e603416e0  # (new-guid).guid.replace('-','') | clip
+        type: custom:monster-card
+        card:
+          type: entities
+          title: Ariela Sensors
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: 'sensor.motog3*'
+            - entity_id: 'sensor.nat_*'
+      - id: c81dd189060540079e3f6b046c62caeb  # (new-guid).guid.replace('-','') | clip
+        type: custom:monster-card
+        card:
+          type: entities
+          title: Monitor
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: '*.*_groundfloor_*'
+            - entity_id: '*.*_groundfloor'
+            - entity_id: '*.groundfloor_*'
+            - entity_id: '*.*_firstfloor_*'
+            - entity_id: '*.*_firstfloor'
+            - entity_id: '*.firstfloor_*'
+      - id: c7037d74ef8348fabd23dfa4309a9bd4  # (new-guid).guid.replace('-','') | clip
+        type: custom:monster-card
+        card:
+          type: entities
+          title: Device Trackers (Ariela)
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: 'device_tracker.nat'
+            - entity_id: 'device_tracker.motog3'
+      - id: 0ad76b58554c431e998d67637560c7a1 #(new-guid).guid.replace('-','') | clip
+        type: glance
+        title: Travel
         show_header_toggle: false
         entities:
-          - light.fire_dashboard_screen
-          - binary_sensor.fire_dashboard_motion
-          - media_player.fire_dashboard
+          - entity: input_select.destination
+            secondary_info: last-changed
+            title: Waze Destination
+          - entity: sensor.dest_address
+            secondary_info: last-changed
+            title: Waze Destination GPS
+          - entity: sensor.nat_to_destination
+            secondary_info: last-changed
+            title: Nat Time to Destination
+          - entity: sensor.matt_to_destination
+            secondary_info: last-changed
+            title: Matt Time to Destination

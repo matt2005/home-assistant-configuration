@@ -5,12 +5,35 @@ binary_sensor:
   probability_threshold: 0.5
   observations:
     - entity_id: 'device_tracker.matt_matt'
-      prob_given_true: 0.7
+      prob_given_true: 0.9
       prob_given_false: 0.1
       platform: 'state'
       to_state: 'home'
     - entity_id: 'device_tracker.repeater_matt_phone'
-      prob_given_true: 0.7
+      prob_given_true: 0.9
       prob_given_false: 0.1
       platform: 'state'
       to_state: 'home'
+#    - entity_id: 'device_tracker.motog3'
+#      prob_given_true: 0.9
+#      prob_given_false: 0.1
+#      platform: 'state'
+#      to_state: 'home'
+
+sensor:
+  - platform: history_stats
+    name: Matt Home Time
+    entity_id: binary_sensor.matt_presence
+    state: 'on'
+    type: time
+    end: '{{ now() }}'
+    duration:
+      hours: 24
+  - platform: history_stats
+    name: Matt Away Time
+    entity_id: binary_sensor.matt_presence
+    state: 'off'
+    type: time
+    end: '{{ now() }}'
+    duration:
+      hours: 24

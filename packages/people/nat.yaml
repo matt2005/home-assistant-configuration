@@ -1,16 +1,34 @@
 binary_sensor:
 - platform: bayesian
-  prior: 0.5
+  prior: 0.2
   name: 'Nat Presence'
   probability_threshold: 0.5
   observations:
     - entity_id: 'device_tracker.nat_nat'
-      prob_given_true: 0.7
+      prob_given_true: 0.9
       prob_given_false: 0.1
       platform: 'state'
       to_state: 'home'
     - entity_id: 'device_tracker.repeater_nat_phone'
-      prob_given_true: 0.7
+      prob_given_true: 0.9
       prob_given_false: 0.1
       platform: 'state'
       to_state: 'home'
+
+sensor:
+  - platform: history_stats
+    name: Nat Home Time
+    entity_id: binary_sensor.nat_presence
+    state: 'on'
+    type: time
+    end: '{{ now() }}'
+    duration:
+      hours: 24
+  - platform: history_stats
+    name: Nat Away Time
+    entity_id: binary_sensor.nat_presence
+    state: 'off'
+    type: time
+    end: '{{ now() }}'
+    duration:
+      hours: 24

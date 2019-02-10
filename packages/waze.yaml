@@ -1,0 +1,31 @@
+input_select:
+  destination:
+    name: destination
+    options:
+      - Home
+      - Matt Work
+      
+sensor:
+  - platform: template
+    sensors:
+       dest_address:
+         value_template: >-
+            {%- if is_state("input_select.destination", "Home")  -%}
+              {{ states.zone.home.attributes.latitude}},{{ states.zone.home.attributes.longitude}}
+            {%- elif is_state("input_select.destination", "Matt Work")  -%}
+              {{ states.zone.matt_work.attributes.latitude}},{{ states.zone.matt_work.attributes.longitude}}
+            {%- else -%}
+              Unknown
+            {%- endif %}
+         
+  - platform: waze_travel_time
+    name: "Matt to destination"
+    origin: device_tracker.motog3
+    destination: sensor.dest_address
+    region: 'EU'
+         
+  - platform: waze_travel_time
+    name: "Nat to destination"
+    origin: device_tracker.nat
+    destination: sensor.dest_address
+    region: 'EU'

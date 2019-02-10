@@ -43,3 +43,21 @@ binary_sensor:
     device_class: opening
     payload_on: "true"
     payload_off: "false"
+sensor:
+  - platform: history_stats
+    name: Front Door Open Time
+    entity_id: binary_sensor.front_door
+    state: 'on'
+    type: time
+    end: '{{ now() }}'
+    duration:
+      minutes: 10
+  - platform: history_stats
+    name: Back Door Open Time
+    entity_id: binary_sensor.back_door
+    state: 'on'
+    type: time
+    end: '{{ now() }}'
+    duration:
+      minutes: 10
+

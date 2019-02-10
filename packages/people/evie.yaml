@@ -1,16 +1,33 @@
 binary_sensor:
 - platform: bayesian
-  prior: 0.5
+  prior: 0.2
   name: 'Evie Presence'
-  probability_threshold: 0.7
+  probability_threshold: 0.4
   observations:
     - entity_id: 'binary_sensor.nat_presence'
-      prob_given_true: 0.5
+      prob_given_true: 0.7
       prob_given_false: 0.1
       platform: 'state'
       to_state: 'on'
     - entity_id: 'binary_sensor.matt_presence'
-      prob_given_true: 0.5
+      prob_given_true: 0.7
       prob_given_false: 0.2
       platform: 'state'
       to_state: 'on'
+sensor:
+  - platform: history_stats
+    name: Evie Home Time
+    entity_id: binary_sensor.evie_presence
+    state: 'on'
+    type: time
+    end: '{{ now() }}'
+    duration:
+      hours: 24
+  - platform: history_stats
+    name: Evie Away Time
+    entity_id: binary_sensor.evie_presence
+    state: 'off'
+    type: time
+    end: '{{ now() }}'
+    duration:
+      hours: 24

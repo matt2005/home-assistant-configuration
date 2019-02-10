@@ -67,12 +67,13 @@ switch:
     name: 'Immersion Heater'
     command_topic: 'cmnd/immersion/POWER'
     state_topic: 'stat/immersion/POWER'
-#    availability_topic: 'tele/immersion/LWT'
-#    value_template: '{{ value_json.POWER }}'
-#    payload_available: 'ONLINE'
-#    payload_not_available: 'OFFLINE'
+    availability_topic: 'tele/immersion/LWT'
+    #value_template: '{{ value_json.POWER }}'
+    payload_available: 'Online'
+    payload_not_available: 'Offline'
+
 automation:
-- alias: 'Turn Off immersion after 30 mins'
+- alias: 'Turn Off immersion after 45 mins'
   trigger:
     platform: state
     entity_id: switch.immersion_heater

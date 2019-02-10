@@ -7,5 +7,6 @@ recorder:
       - device_tracker
       - binary_sensor
       - light
+      - alarm
 #      - media_player
   db_url: !secret mysqldb

@@ -43,7 +43,7 @@ sensor:
       - pressure
       - visibility
     update_interval:
-      minutes: 5
+      minutes: 15
   - platform: season
   - platform: template
     sensors:

@@ -1,0 +1,125 @@
+binary_sensor:
+  - platform: mqtt
+    name: "Groundfloor LWT"
+    state_topic: "monitor/groundfloor/status"
+    payload_on: 'online'
+    payload_off: 'offline'
+  - platform: mqtt
+    name: "Firstfloor LWT"
+    state_topic: "monitor/firstfloor/status"
+    payload_on: 'online'
+    payload_off: 'offline'
+sensor:
+  - platform: mqtt
+    state_topic: !secret monitor_groundfloor_user1_topic
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: !secret monitor_groundfloor_user1_name
+  - platform: mqtt
+    state_topic: !secret monitor_groundfloor_user2_topic
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: !secret monitor_groundfloor_user2_name
+  - platform: mqtt
+    state_topic: !secret monitor_groundfloor_user3_topic
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: !secret monitor_groundfloor_user3_name
+  - platform: mqtt
+    state_topic: !secret monitor_groundfloor_user4_topic
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: !secret monitor_groundfloor_user4_name
+  - platform: mqtt
+    state_topic: !secret monitor_firstfloor_user1_topic
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: !secret monitor_firstfloor_user1_name
+  - platform: mqtt
+    state_topic: !secret monitor_firstfloor_user2_topic
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: !secret monitor_firstfloor_user2_name
+  - platform: mqtt
+    state_topic: !secret monitor_firstfloor_user3_topic
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: !secret monitor_firstfloor_user3_name
+  - platform: mqtt
+    state_topic: !secret monitor_firstfloor_user4_topic
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: !secret monitor_firstfloor_user4_name
+#################################################################
+## Automations
+automation:
+
+## Publish Message - Arrival Scan
+  - alias: Publish Message - Arrival Scan
+    initial_state: True
+
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.front_door,binary_sensor.back_door
+        from: 'off'
+        to: 'on'
+
+    condition:
+      - condition: state
+        entity_id: binary_sensor.matt_presence
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.nat_presence
+        state: 'off'
+
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: "monitor/scan/ARRIVE"
+          payload: 'null'
+
+## Publish Message - Departure Scan
+  - alias: Publish Message - Departure Scan
+    initial_state: True
+
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.front_door, binary_sensor.back_door
+        from: 'on'
+        to: 'off'
+
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.matt_presence
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.nat_presence
+          state: 'on'
+
+    action:
+      - delay: '00:00:15'
+      - service: mqtt.publish
+        data_template:
+          topic: "monitor/scan/DEPART"
+          payload: 'null'
+      - delay: '00:01:00'
+      - service: mqtt.publish
+        data_template:
+          topic: "monitor/scan/DEPART"
+          payload: 'null'
+
+## Publish Message - Update MQTT sensors on startup
+  - alias: Publish Message - Update MQTT sensors on startup
+    initial_state: True
+
+    trigger:
+      - platform: homeassistant
+        event: start
+
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "home/scan/restart"
+          payload: 'null'

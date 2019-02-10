@@ -95,6 +95,9 @@ group:
       - device_tracker.evie_presence
       - device_tracker.matt_iphone_repeater
       - device_tracker.matt_iphone
+      - device_tracker.motog3
+      - device_tracker.nat
+
 
 
 

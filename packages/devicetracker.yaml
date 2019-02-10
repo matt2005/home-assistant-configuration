@@ -24,5 +24,7 @@ device_tracker:
 #      hide_if_away: True
 #    username: !secret AP1_USERNAME
 #    password: !secret AP1_PASSWORD#
-
+  - platform: google_maps
+    username: !secret google_location_user
+    password: !secret google_location_pass
 
