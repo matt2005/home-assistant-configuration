@@ -1,9 +1,9 @@
 switch:
   - platform: rflink
     devices:
-      eurodomest_0a7e0f_03:
-        name: kitchen heater
-        signal_repetitions: 3
+#      eurodomest_0a7e0f_03:
+#        name: kitchen heater
+#        signal_repetitions: 3
       eurodomest_0a7e0f_06:
         name: button 4
         signal_repetitions: 3

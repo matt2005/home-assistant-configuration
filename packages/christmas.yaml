@@ -4,6 +4,10 @@ switch:
       eurodomest_0a7e0f_01:
         name: Christmas Lights
         signal_repetitions: 10
+      eurodomest_0a7e0f_03:
+        name: Outside Christmas Lights
+        signal_repetitions: 10
+
 automation:
 - alias: Turn on Christmas lights at 0715
   initial_state: 'on'
@@ -24,8 +28,10 @@ automation:
           {{ now().strftime('%F') >= (now().strftime('%Y') | int ) ~ "-11-30" 
           or now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-01-07" }}
   action:
-    service: switch.turn_on
-    entity_id: switch.christmas_lights
+    - service: switch.turn_on
+      entity_id: switch.christmas_lights
+    - service: switch.turn_on
+      entity_id: switch.outside_christmas_lights
 - alias: Turn off Christmas lights at 2300
   initial_state: 'on'
   trigger:
@@ -50,8 +56,10 @@ automation:
           {{ now().strftime('%F') >= (now().strftime('%Y') | int ) ~ "-11-30" 
           or now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-01-07" }}
   action:
-    service: switch.turn_off
-    entity_id: switch.christmas_lights
+    - service: switch.turn_off
+      entity_id: switch.christmas_lights
+    - service: switch.turn_off
+      entity_id: switch.outside_christmas_lights
 
 
 
