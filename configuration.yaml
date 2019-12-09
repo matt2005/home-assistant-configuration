@@ -23,15 +23,33 @@ frontend:
 config:
 
 http:
-  # Secrets are defined in the file secrets.yaml
- api_password: !secret http_api_password
-  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  # base_url: example.duckdns.org:8123
- trusted_networks: 
-   - 127.0.0.1
-   - ::1
-   - 192.168.1.0/24
-
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
+    - ::1
+    - 172.30.0.0/16
+    - 172.18.0.0/16
+    - 192.168.1.1
+  cors_allowed_origins:
+    - !secret baseurl
+    - http://192.168.1.121:8123
+    - http://loftpi:8123
+  trusted_networks:
+    - 127.0.0.1
+    - ::1
+    - 192.168.1.51/32
+    - 172.30.0.0/16
+    - 172.18.0.0/16
+#auth_providers:
+#    - type: trusted_networks
+#      trusted_networks:
+#        - 127.0.0.1
+#        - ::1
+#        - 192.168.1.51/32
+#        - 172.30.0.0/16
+#        - 172.18.0.0/16
+#      allow_bypass_login: true
+#    - type: homeassistant
 # Checks for available updates
 # Note: This component will send some information about your system to
 # the developers to assist with development of Home Assistant.

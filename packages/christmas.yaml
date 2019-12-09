@@ -3,31 +3,49 @@ switch:
     devices:
       eurodomest_0a7e0f_01:
         name: Christmas Lights
-        signal_repetitions: 6
+        signal_repetitions: 10
 automation:
 - alias: Turn on Christmas lights at 0715
   initial_state: 'on'
   trigger:
-    platform: time
-    at: "07:15:00"
+    - platform: time
+      at: "07:15:00"
+    - platform: time_pattern
+    # You can also match on interval. This will match every 2 minutes
+      minutes: "/2"
   condition:
-    condition: template
-    value_template: >-
-      {{ now().strftime('%F') >= (now().strftime('%Y') | int ) ~ "-11-30" 
-      or now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-01-07" }}
+    condition: and
+    conditions:
+      - condition: time
+        after: '07:14:00'
+        before: '23:00:00'
+      - condition: template
+        value_template: >-
+          {{ now().strftime('%F') >= (now().strftime('%Y') | int ) ~ "-11-30" 
+          or now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-01-07" }}
   action:
     service: switch.turn_on
     entity_id: switch.christmas_lights
-- alias: Turn off Christmas lights at 2335
+- alias: Turn off Christmas lights at 2300
   initial_state: 'on'
   trigger:
-    platform: time
-    at: "23:35:00"
+    - platform: time
+      at: "23:00:00"
   condition:
-    condition: template
-    value_template: >-
-      {{ now().strftime('%F') >= (now().strftime('%Y') | int ) ~ "-11-30" 
-      or now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-01-07" }}
+    condition: and
+    conditions:
+      - condition: or
+        conditions:
+          - condition: time
+            after: '00:00:00'
+            before: '07:13:00'
+          - condition: time
+            after: '23:00:00'
+            before: '23:59:59'
+      - condition: template
+        value_template: >-
+          {{ now().strftime('%F') >= (now().strftime('%Y') | int ) ~ "-11-30" 
+          or now().strftime('%F') <= (now().strftime('%Y') | int ) ~ "-01-07" }}
   action:
     service: switch.turn_off
     entity_id: switch.christmas_lights

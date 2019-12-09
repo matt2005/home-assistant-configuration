@@ -3,11 +3,11 @@ rflink:
   wait_for_ack: True
 light:
   - platform: rflink
-    automatic_add: true
+#    automatic_add: true
 cover:
   - platform: rflink
-    automatic_add: true
+#    automatic_add: true
 sensor:
   - platform: rflink
-    automatic_add: true
+#    automatic_add: true
 
