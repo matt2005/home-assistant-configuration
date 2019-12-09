@@ -31,6 +31,9 @@ automation:
   trigger:
     - platform: time
       at: "23:00:00"
+    - platform: time_pattern
+    # You can also match on interval. This will match every 2 minutes
+      minutes: "/2"
   condition:
     condition: and
     conditions:
